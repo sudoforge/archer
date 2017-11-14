@@ -1,0 +1,3 @@
+---
+- name: Install rofi
+  pacman: name=rofi state=present

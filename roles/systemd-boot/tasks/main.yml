@@ -1,0 +1,5 @@
+---
+- name: Copy arch linux boot configuration
+  template: src=arch.conf.j2 dest=/boot/loader/entries/arch.conf mode=755
+  tags:
+    - systemd-boot

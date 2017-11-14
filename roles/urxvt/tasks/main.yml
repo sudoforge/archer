@@ -1,0 +1,3 @@
+---
+- name: Install rxvt-unicode
+  pacman: name=rxvt-unicode state=present

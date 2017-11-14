@@ -1,5 +1,0 @@
----
-- name: Install unclutter
-  pacman: name=unclutter state=present
-  tags:
-    - unclutter

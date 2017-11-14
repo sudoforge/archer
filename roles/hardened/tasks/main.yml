@@ -5,4 +5,4 @@
       - linux-hardened
       - linux-hardened-headers
   notify:
-    - rebuild grub
+    - Build intramfs image

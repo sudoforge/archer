@@ -14,12 +14,6 @@
 - name: Install whois
   pacman: name=whois state=present
 
-- name: Install netcat
-  pacman: name=gnu-netcat state=present
-
-- name: Install lftp
-  pacman: name=lftp state=present
-
 - name: Install nmap
   pacman: name=nmap state=present
 
@@ -28,11 +22,6 @@
 
 - name: Install sshuttle
   pacman: name=sshuttle state=present
-
-- name: Install pdsh
-  aur: name=pdsh user={{ user.name }}
-  tags:
-    - aur
 
 - name: Install wireshark
   pacman: name=wireshark-qt state=present

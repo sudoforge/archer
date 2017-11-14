@@ -1,38 +1,68 @@
 user:
-    name: pigmonkey
+    name: bddenhartog
     uid: 1000
-    group: pigmonkey
+    group: bddenhartog
     shell: /usr/bin/zsh
-    email:  peter@havenaut.net
-    log:
-        dir: log
-        rotate: 8
-
-hostname: nous
+    email: ben@bddenhartog.com
+    logrotate: 8
 
 dotfiles:
-    url: git@github.com:pigmonkey/dotfiles.git
-    destination: projects/dotfiles
-    rcup_flags: -fx README.md
+    uri: https://github.com/bddenhartog/dotfiles.git
+    destination: .dotfiles
+    post:
+        remotes:
+            - name: origin
+              uri: git@github.com:bddenhartog/dotfiles.git
+
+bootloader: systemd-boot
+
+journal:
+    max_size: 500M
+
+passwordless_sudo:
+    users:
+        - bddenhartog
+    commands:
+        - /usr/bin/openvpn*
+
+base_packages:
+    - base-devel
+    - tmux
+    - git
+    - rsync
+    - glances
+    - coreutils
+    - reflector
+    - ranger
+    - strace
+    - lsof
+    - arch-wiki-lite
+    - arch-wiki-docs
+    - jq
+    - python-docs
+    - python2-docs
 
 aur:
     dir: aur
     packages:
         - aura-bin
         - downgrade
+        - polybar
+        - rcm
+        - systemd-boot-pacman-hook
         - zplug
-        - miller
-        - myrepos
-        - ctmg
 
 ssh:
     port: 22
-    user_key: /root/id_rsa
+    user_key: /mnt/pny-1/ssh/id_rsa
     enable_sshd: False
 
 gnupg:
-    enable_agent: True
+    enable_agent: False
     emulate_ssh: True
+
+
+
 
 mail:
     sync_tool: isync
@@ -60,36 +90,6 @@ editors:
 video_drivers:
     - libva-intel-driver
 
-base_packages:
-    - base-devel
-    - tmux
-    - git
-    - rsync
-    - glances
-    - coreutils
-    - moreutils
-    - dateutils
-    - reflector
-    - bc
-    - ranger
-    - strace
-    - lsof
-    - sysstat
-    - arch-wiki-lite
-    - arch-wiki-docs
-    - python-keyring
-    - python-secretstorage
-    - fabric
-    - tig
-    - ruby
-    - pv
-    - minicom
-    - jq
-    - python-docs
-    - python2-docs
-    - screen
-    - units
-
 filesystem_packages:
     - dosfstools
     - hfsprogs
@@ -105,9 +105,6 @@ browser_choices:
     - qcode
     - "| xclip -selection c"
 
-passwordless_sudo:
-    - /usr/bin/openvpn*
-
 tarsnapper:
   deltas: 1h 1d 7d 30d 365d
   period: DAILY
@@ -122,11 +119,6 @@ bitlbee:
     run_on: trusted
     torify: True
 
-bootloader: grub
-
-postgresql:
-    enable: True
-    root: /home/postgres
 
 fingerprint: False
 
@@ -188,9 +180,6 @@ cryptshot:
           interval: 6
         - level: monthly
           interval: 3
-
-journal:
-    max_size: 500M
 
 udisks:
     auto_mount: False

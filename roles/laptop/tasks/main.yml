@@ -1,26 +1,8 @@
 ---
 - include: tlp.yml
-- include: light-git.yml
 
 - name: Copy touchpad configuration file
   copy: src=30-touchpad.conf dest=/etc/X11/xorg.conf.d/30-touchpad.conf
 
 - name: Copy logind configuration file
   copy: src=logind.conf dest=/etc/systemd/logind.conf
-
-- name: Push low battery warning script
-  copy: src=lowbatt.sh dest=/usr/local/bin/lowbatt mode=0755
-
-- name: Push low battery warning service file
-  template: src=lowbatt.service.j2 dest=/etc/systemd/system/lowbatt.service
-  notify:
-    - reload systemd config
-
-- name: Push low battery timer file
-  template: src=lowbatt.timer.j2 dest=/etc/systemd/system/lowbatt.timer
-  notify:
-    - reload systemd config
-    - restart lowbatt
-
-- name: Enable and start lowbatt timer
-  service: name=lowbatt.timer enabled=yes state=started

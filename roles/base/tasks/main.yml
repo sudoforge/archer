@@ -9,8 +9,8 @@
   hostname: name={{ hostname }}
   when: hostname is defined
 
-- include: shell.yml
-- include: user.yml
-- include: sudo.yml
-- include: packages.yml
-- include: journal.yml
+- import_tasks: shell.yml
+- import_tasks: user.yml
+- import_tasks: sudo.yml
+- import_tasks: packages.yml
+- import_tasks: journal.yml

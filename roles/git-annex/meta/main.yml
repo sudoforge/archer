@@ -1,5 +1,0 @@
----
-dependencies:
-  - { role: networkmanager }
-  - { role: systemd }
-  - { role: sysctl }

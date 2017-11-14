@@ -6,13 +6,17 @@
     - aur
 
 - name: Clone user dotfiles
-  git: repo={{ dotfiles.url }} dest=/home/{{ user.name }}/{{ dotfiles.destination }} accept_hostkey=yes update=no
+  git: repo={{ dotfiles.uri }} dest=/home/{{ user.name }}/{{ dotfiles.destination }} update=no
   when: dotfiles is defined
   become: yes
   become_user: "{{ user.name }}"
 
+- name: Change dotfiles remotes
+  command: chdir=/home/{{ user.name }}/{{ dotfiles.destination }} git remote set-url {{ item.name }} {{ item.uri }}
+  with_items: "{{ dotfiles.post.remotes }}"
+
 - name: Install user dotfiles
-  command: rcup -d /home/{{ user.name}}/{{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
+  command: rcup -d /home/{{ user.name }}/{{ dotfiles.destination }}
   when: dotfiles is defined
   become: yes
   become_user: "{{ user.name }}"
