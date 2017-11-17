@@ -1,16 +1,16 @@
 ## {{ ansible_managed }}
-##
-## User privilege specification
-##
-root ALL=(ALL) ALL
-{% for entry in passwordless_sudo.users %}
-{{ entry }} ALL=(ALL) NOPASSWD:ALL
-{% endfor %}
-
 #
 # Group privilege specification
 #
 %wheel ALL=(ALL) ALL
 {% for entry in passwordless_sudo.commands %}
 %wheel ALL=(ALL) NOPASSWD:{{ entry }}
+{% endfor %}
+
+#
+# User privilege specification
+#
+root ALL=(ALL) ALL
+{% for entry in passwordless_sudo.users %}
+{{ entry }} ALL=(ALL) NOPASSWD:ALL
 {% endfor %}
