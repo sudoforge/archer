@@ -48,6 +48,7 @@ aur:
         - aura-bin
         - downgrade
         - google-cloud-sdk
+        - firefox-developer
         - polybar
         - rcm
         - systemd-boot-pacman-hook
