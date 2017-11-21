@@ -47,6 +47,7 @@ aur:
     packages:
         - aura-bin
         - downgrade
+        - google-cloud-sdk
         - polybar
         - rcm
         - systemd-boot-pacman-hook
