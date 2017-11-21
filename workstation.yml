@@ -22,6 +22,7 @@
     - { role: nettools, tags: ['nettools'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: sound, tags: ['sound'] }
+    - { role: aws, tags: ['aws'] }
     #    - { role: firejail, tags: ['firejail'] }
     #    - { role: tor, tags: ['tor'], when: "tor is defined" }
     #    - { role: unbound, tags: ['unbound'] }
@@ -60,7 +61,6 @@
     #    - { role: formd, tags: ['formd'] }
     #    - { role: postgresql, tags: ['postgresql'] }
     #    - { role: calibre, tags: ['calibre'] }
-    #    - { role: aws, tags: ['aws'] }
     #    - { role: parcimonie, tags: ['parcimonie'], when: "tor is defined" }
     #    - { role: localtime, tags: ['localtime'], when: "localtime is defined" }
     #    - { role: wormhole, tags: ['wormhole'] }
