@@ -20,3 +20,5 @@
   when: dotfiles is defined
   become: yes
   become_user: "{{ user.name }}"
+  tags:
+    - aur
