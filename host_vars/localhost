@@ -37,7 +37,6 @@ base_packages:
     - strace
     - lsof
     - arch-wiki-lite
-    - arch-wiki-docs
     - jq
     - python-docs
     - python2-docs
