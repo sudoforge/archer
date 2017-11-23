@@ -1,4 +1,11 @@
 ---
+- stat: path=/boot/EFI/systemd/systemd-bootx64.efi
+  register: systemd_boot_efi
+
+- name: Install systemd-boot binaries
+  command: bootctl --path=/boot install
+  when: systemd_boot_efi.stat.exists == False
+
 - name: Copy systemd-boot loader configuration
   copy: src=loader.conf dest=/boot/loader/loader.conf mode=644
 
