@@ -50,7 +50,6 @@ aur:
         - google-cloud-sdk
         - firefox-developer
         - polybar
-        - rcm
         - systemd-boot-pacman-hook
         - zplug
 
