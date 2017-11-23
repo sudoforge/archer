@@ -1,13 +1,13 @@
 ---
+- import_playbook: init.yml
+
 - hosts: localhost
   become: yes
   roles:
     - { role: base, tags: ['base'] }
     - { role: gnupg, tags: ['gnupg'] }
     - { role: cron, tags: ['cron'] }
-    - { role: microcode, tags: ['microcode'], when: "'GenuineIntel' in ansible_processor" }
     - { role: hardened, tags: ['hardened'] }
-    - { role: systemd-boot, tags: ['systemd-boot'] }
     - { role: ssh, tags: ['ssh'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: ssd, tags: ['ssd'] }

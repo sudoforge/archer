@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - { role: microcode, tags: ['microcode'], when: "'GenuineIntel' in ansible_processor" }
+    - { role: systemd-boot, tags: ['systemd-boot'] }
