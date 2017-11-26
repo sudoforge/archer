@@ -2,6 +2,7 @@
 - hosts: localhost
   become: yes
   roles:
+    - { role: timezone, tags: ['timezone'] }
     - { role: mkinitcpio, tags: ['mkinitcpio'] }
     - { role: lvm, tags: ['lvm'] }
     - { role: microcode, tags: ['microcode'], when: "'GenuineIntel' in ansible_processor" }

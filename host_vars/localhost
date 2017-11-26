@@ -1,3 +1,8 @@
+timezone:
+    hwclock: UTC
+    region: America
+    city: Los_Angeles
+
 user:
     name: bddenhartog
     uid: 1000
