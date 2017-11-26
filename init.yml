@@ -2,6 +2,7 @@
 - hosts: localhost
   become: yes
   roles:
+    - { role: ntp, tags: ['ntp'] }
     - { role: timezone, tags: ['timezone'] }
     - { role: mkinitcpio, tags: ['mkinitcpio'] }
     - { role: lvm, tags: ['lvm'] }
