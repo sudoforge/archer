@@ -3,6 +3,11 @@ timezone:
     region: America
     city: Los_Angeles
 
+locale:
+    system: en_US.UTF-8
+    generate:
+        - en_US.UTF-8
+
 user:
     name: bddenhartog
     uid: 1000
