@@ -1,0 +1,10 @@
+---
+- name: Set the system hostname
+  hostname: name={{ hostname }}
+
+- name: Set system hostname entry in the hosts file
+  lineinfile:
+    path: /etc/hosts
+    line: "127.0.0.1 {{ hostname }}.localdomain {{ hostname }}"
+    create: yes
+    state: present
