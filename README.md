@@ -11,7 +11,7 @@ These playbooks have been made with the following goals in mind:
 * Make it easy to use
 * Don't make assumptions
 
-If you find that someething is not working for you, or that one or more of the
+If you find that something is not working for you, or that one or more of the
 above goals is not being met, please [open an issue][3].
 
 ## ARCHER IS IN PROGRESS
