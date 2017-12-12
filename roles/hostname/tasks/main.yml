@@ -1,6 +1,6 @@
 ---
 - name: Set the system hostname
-  hostname: name={{ hostname }}
+  template: src=hostname.j2 dest=/etc/hostname mode=0644
 
 - name: Set system hostname entry in the hosts file
   lineinfile:
