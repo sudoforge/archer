@@ -1,5 +1,5 @@
 ---
-- import_playbook: init.yml
+- import_playbook: chroot.yml
 
 - hosts: localhost
   become: yes

@@ -27,7 +27,7 @@ for each supported playbook.
 
 | Playbook          | Use cases |
 | ----------------- | --------- |
-| `init.yml`        | Set up a basic environment with root shell access. **Run this first.** |
+| `chroot.yml       | Set up a basic environment with root shell access. **Run this first.** |
 | `workstation.yml` | General purpose machine used for anything from programming to watching videos. |
 | `thin-client.yml` | A machine primarily used to access the workstation remotely. |
 
