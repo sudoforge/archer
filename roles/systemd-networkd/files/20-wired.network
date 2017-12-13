@@ -2,7 +2,7 @@
 Name=en*
 
 [Network]
-DHCP=all
+DHCP=yes
 
 [DHCP]
 RouteMetric=10
