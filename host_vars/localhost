@@ -56,7 +56,6 @@ aur:
     packages:
         - aura-bin
         - downgrade
-        - google-cloud-sdk
         - polybar
         - systemd-boot-pacman-hook
         - zplug
