@@ -4,6 +4,7 @@
 - hosts: localhost
   become: yes
   roles:
+    - { role: systemd-networkd, tags: ['network'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: base, tags: ['base'] }
     - { role: gnupg, tags: ['gnupg'] }
