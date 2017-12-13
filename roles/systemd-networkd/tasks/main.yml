@@ -16,3 +16,6 @@
 
 - name: Start and enable network services
   systemd: name={{ item }} state=started enabled=yes
+  with_items:
+    - systemd-networkd.service
+    - systemd-resolved.service
