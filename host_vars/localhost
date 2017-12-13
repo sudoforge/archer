@@ -64,7 +64,7 @@ aur:
 
 ssh:
     port: 22
-    user_key: /mnt/pny-1/ssh/id_rsa
+    user_key: /tmp/ssh/id_rsa
     enable_sshd: False
 
 gnupg:
