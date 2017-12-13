@@ -9,7 +9,6 @@
     - { role: base, tags: ['base'] }
     - { role: gnupg, tags: ['gnupg'] }
     - { role: cron, tags: ['cron'] }
-    - { role: hardened, tags: ['hardened'] }
     - { role: ssh, tags: ['ssh'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: ssd, tags: ['ssd'] }
@@ -24,6 +23,7 @@
     - { role: nettools, tags: ['nettools'] }
     - { role: sound, tags: ['sound'] }
     - { role: aws, tags: ['aws'] }
+    #    - { role: hardened, tags: ['hardened'] }
     #    - { role: firejail, tags: ['firejail'] }
     #    - { role: tor, tags: ['tor'], when: "tor is defined" }
     #    - { role: unbound, tags: ['unbound'] }
