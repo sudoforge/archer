@@ -33,6 +33,7 @@
       - cantarell-fonts
       - noto-fonts
       - ttf-dejavu
+      - ttf-font-awesome
       - ttf-liberation
       - ttf-symbola
       - gsfonts
