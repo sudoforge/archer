@@ -1,0 +1,18 @@
+---
+- name: Remove netctl
+  pacman: name=netctl state=absent
+
+- name: Push wired network configuration file
+  copy:
+    src: 20-wired.network
+    dest: /etc/systemd/network/20-wired.network
+    mode: 0644
+
+- name: Push wireless network configuration file
+  copy:
+    src: 25-wireless.network
+    dest: /etc/systemd/network/25-wireless.network
+    mode: 0644
+
+- name: Start and enable network services
+  systemd: name={{ item }} state=started enabled=yes
