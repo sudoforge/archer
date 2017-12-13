@@ -1,4 +1,0 @@
----
-- name: Build intramfs image
-  command: mkinitcpio -p linux
-  when: bootloader == "systemd-boot"
