@@ -23,6 +23,7 @@
     - { role: nettools, tags: ['nettools'] }
     - { role: sound, tags: ['sound'] }
     - { role: aws, tags: ['aws'] }
+    - { role: runescape, tags: ['runescape'] }
     #    - { role: hardened, tags: ['hardened'] }
     #    - { role: firejail, tags: ['firejail'] }
     #    - { role: tor, tags: ['tor'], when: "tor is defined" }
