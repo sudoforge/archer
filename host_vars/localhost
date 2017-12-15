@@ -45,6 +45,7 @@ base_packages:
     - reflector
     - ranger
     - strace
+    - htop
     - lsof
     - arch-wiki-lite
     - jq
