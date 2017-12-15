@@ -58,6 +58,7 @@ aur:
     packages:
         - aura-bin
         - downgrade
+        - google-chrome
         - polybar
         - systemd-boot-pacman-hook
         - zplug
