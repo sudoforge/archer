@@ -42,6 +42,7 @@ base_packages:
     - rsync
     - glances
     - coreutils
+    - maim
     - reflector
     - ranger
     - strace
