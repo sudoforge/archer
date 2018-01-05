@@ -1,0 +1,8 @@
+---
+- name: Install GPG key for discord
+  become: yes
+  become_user: "{{ user.name }}"
+  command: gpg --recv-keys 11E521D646982372EB577A1F8F0871F202119294
+
+- name: Install discord
+  aur: name=discord user={{ user.name }}  
