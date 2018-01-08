@@ -194,8 +194,8 @@ cryptshot:
           interval: 3
 
 udisks:
-    auto_mount: False
-    shared_mount: True
+    auto_mount: True
+    shared_mount: False
 
 hostsctl:
     url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts

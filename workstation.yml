@@ -25,6 +25,7 @@
     - { role: aws, tags: ['aws'] }
     - { role: discord, tags: ['discord'] }
     - { role: runescape, tags: ['runescape'] }
+    - { role: udisks, tags: ['udisks'] }
     #    - { role: hardened, tags: ['hardened'] }
     #    - { role: firejail, tags: ['firejail'] }
     #    - { role: tor, tags: ['tor'], when: "tor is defined" }
@@ -32,7 +33,6 @@
     #    - { role: editors, tags: ['editors'] }
     #    - { role: filesystems, tags: ['filesystems'] }
     #    - { role: archive, tags: ['archive'] }
-    #    - { role: udisks, tags: ['udisks'] }
     #    - { role: spell, tags: ['spell'] }
     #    - { role: browsers, tags: ['browsers'] }
     #    - { role: yubikey, tags: ['yubikey'] }
