@@ -16,6 +16,13 @@
     mode: 0644
   notify: restart network services
 
+- name: Create symlink to systemd's resolvconf at /etc/resolv.conf
+  file:
+    force: yes
+    path: /etc/resolv.conf
+    state: link
+    src: /etc/systemd/resolved.conf
+
 - name: Enable network services
   systemd: name={{ item }} enabled=yes
   with_items:
