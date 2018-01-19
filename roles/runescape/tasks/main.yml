@@ -1,8 +1,0 @@
----
-- name: Install GPG key for runescape-launcher
-  become: yes
-  become_user: "{{ user.name }}"
-  command: gpg --recv-keys AAC9264309E4D717441DB9527373B12CE03BEB4B
-
-- name: Install runescape-launcher
-  aur: name=runescape-launcher user={{ user.name }}  
