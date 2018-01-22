@@ -17,6 +17,7 @@
     - { role: lightdm, tags: ['lightdm'] }
     - { role: rofi, tags: ['rofi'] }
     - { role: bspwm, tags: ['bspwm'] }
+    - { role: screensaver, tags: ['screensaver'] }
     - { role: urxvt, tags: ['urxvt'] }
     - { role: pass, tags: ['pass'] }
     - { role: iptables, tags: ['iptables'] }
@@ -39,7 +40,6 @@
     #    - { role: mpv, tags: ['mpv'] }
     #    - { role: pianobar, tags: ['pianobar'] }
     #    - { role: laptop, tags: ['laptop'] }
-    #    - { role: screensaver, tags: ['screensaver'] }
     #    - { role: bitlbee, tags: ['bitlbee'] }
     #    - { role: weechat, tags: ['weechat'] }
     #    - { role: taskwarrior, tags: ['taskwarrior'] }
