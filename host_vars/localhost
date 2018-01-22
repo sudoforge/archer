@@ -52,7 +52,6 @@ base_packages:
     - jq
     - python-docs
     - python2-docs
-    - obs-studio
 
 aur:
     dir: aur
