@@ -25,6 +25,7 @@
     - { role: sound, tags: ['sound'] }
     - { role: aws, tags: ['aws'] }
     - { role: udisks, tags: ['udisks'] }
+    - { role: docker, tags: ['docker'] }
     #    - { role: hardened, tags: ['hardened'] }
     #    - { role: firejail, tags: ['firejail'] }
     #    - { role: tor, tags: ['tor'], when: "tor is defined" }
