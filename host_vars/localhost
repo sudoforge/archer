@@ -158,7 +158,7 @@ firejail:
         - ~/.offlineimaprc
         - ~/.password-store
         - ~/.vdirsyncer
-        - ~/library/ledger
+        - ~/library
 
 cryptshot:
     - name: alta

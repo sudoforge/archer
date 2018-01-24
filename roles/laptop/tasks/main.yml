@@ -6,3 +6,9 @@
 
 - name: Copy logind configuration file
   copy: src=logind.conf dest=/etc/systemd/logind.conf
+
+- name: Install light
+  aur: name=light user={{ user.name }}
+  tags:
+    - aur
+    - light

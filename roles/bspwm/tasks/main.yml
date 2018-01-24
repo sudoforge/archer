@@ -13,4 +13,4 @@
               line='[Default Applications]'
               insertbefore=BOF
   tags:
-      - debug
+    - debug
