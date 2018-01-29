@@ -7,10 +7,10 @@
 %wheel ALL=(ALL) NOPASSWD:{{ entry }}
 {% endfor %}
 
+{% if passwordless_sudo.user == True %}
 #
 # User privilege specification
 #
 root ALL=(ALL) ALL
-{% for entry in passwordless_sudo.users %}
-{{ entry }} ALL=(ALL) NOPASSWD:ALL
-{% endfor %}
+{{ user.name }} ALL=(ALL) NOPASSWD:ALL
+{% endif %}

@@ -30,8 +30,7 @@ journal:
     max_size: 500M
 
 passwordless_sudo:
-    users:
-        - bddenhartog
+    user: True
     commands:
         - /usr/bin/openvpn*
 
