@@ -33,7 +33,6 @@
       - cantarell-fonts
       - noto-fonts
       - ttf-dejavu
-      - ttf-font-awesome
       - ttf-liberation
       - ttf-symbola
       - gsfonts
@@ -51,6 +50,7 @@
       - ttf-opensans
       - ttf-merriweather-sans
       - ttf-merriweather
+      - ttf-font-awesome-4
       - ttf-carlito
       - ttf-caladea
       - ttf-courier-prime

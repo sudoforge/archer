@@ -61,6 +61,7 @@ aur:
         - google-chrome
         - polybar
         - systemd-boot-pacman-hook
+        - ttf-font-awesome-4
         - zplug
 
 ssh:
