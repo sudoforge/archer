@@ -34,8 +34,6 @@ base_packages:
     - lsof
     - arch-wiki-lite
     - jq
-    - python-docs
-    - python2-docs
 
 aur:
     dir: aur
