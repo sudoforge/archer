@@ -4,3 +4,6 @@
 
 - name: Add user to docker group
   user: name={{ user.name }} groups=docker append=yes
+
+- name: Enable and start the docker service
+  systemd: name=docker.service enabled=yes started=yes 
