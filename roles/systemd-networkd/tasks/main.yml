@@ -21,7 +21,7 @@
     force: yes
     path: /etc/resolv.conf
     state: link
-    src: /etc/systemd/resolved.conf
+    src: /run/systemd/resolved/stub-resolv.conf
 
 - name: Enable network services
   systemd: name={{ item }} enabled=yes
