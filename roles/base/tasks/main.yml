@@ -5,10 +5,6 @@
 - name: Refresh pacman mirrors
   pacman: update_cache=yes
 
-- name: Set the hostname
-  hostname: name={{ hostname }}
-  when: hostname is defined
-
 - import_tasks: shell.yml
 - import_tasks: user.yml
 - import_tasks: sudo.yml
