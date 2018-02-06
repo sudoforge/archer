@@ -23,6 +23,7 @@ base_packages:
     - base-devel
     - tmux
     - git
+    - dunst
     - rsync
     - glances
     - coreutils
