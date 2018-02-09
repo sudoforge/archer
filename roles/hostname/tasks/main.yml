@@ -1,6 +1,6 @@
 ---
 - name: Set the hostname for the current session
-  hostname: {{ hostname }}
+  hostname: "{{ hostname }}"
 
 - name: Create the hostname file from template
   template: src=hostname.j2 dest=/etc/hostname mode=0644
