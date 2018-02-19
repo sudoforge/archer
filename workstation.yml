@@ -28,6 +28,7 @@
     - { role: udisks, tags: ['udisks'] }
     - { role: docker, tags: ['docker'] }
     - { role: bluetooth, tags: ['bluetooth'], when: "bluetooth is defined" }
+    - { role: rust, tags: ['rust'] }
     #    - { role: hardened, tags: ['hardened'] }
     #    - { role: firejail, tags: ['firejail'] }
     #    - { role: tor, tags: ['tor'], when: "tor is defined" }
