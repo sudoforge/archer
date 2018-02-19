@@ -51,6 +51,9 @@ gnupg:
     enable_agent: False
     emulate_ssh: True
 
+bluetooth:
+    disable: False
+
 #mail:
 #    sync_tool: isync
 #    sync_pim: True
@@ -119,9 +122,6 @@ gnupg:
 #    - 8.8.8.8       # Google
 #    - 209.244.0.3   # Level 3
 #    - 74.82.42.42   # Hurricane Electric
-
-#bluetooth:
-#    disable: False
 
 #firejail:
 #    blacklist:
