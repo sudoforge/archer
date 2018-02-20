@@ -35,6 +35,7 @@ base_packages:
     - lsof
     - arch-wiki-lite
     - jq
+    - terraform
 
 aur:
     dir: aur
