@@ -55,6 +55,13 @@ gnupg:
 bluetooth:
     disable: False
 
+video_drivers:
+    - libva-intel-driver
+
+udisks:
+    auto_mount: True
+    shared_mount: False
+
 #mail:
 #    sync_tool: isync
 #    sync_pim: True
@@ -77,9 +84,6 @@ bluetooth:
 
 #editors:
 #    - gvim
-
-#video_drivers:
-#    - libva-intel-driver
 
 #filesystem_packages:
 #    - dosfstools
@@ -168,10 +172,6 @@ bluetooth:
 #          interval: 6
 #        - level: monthly
 #          interval: 3
-
-#udisks:
-#    auto_mount: True
-#    shared_mount: False
 
 #hostsctl:
 #    url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
