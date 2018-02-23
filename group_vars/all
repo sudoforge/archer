@@ -42,6 +42,7 @@ aur:
         - aura-bin
         - downgrade
         - google-chrome
+        - paperkey
         - polybar
         - systemd-boot-pacman-hook
         - ttf-font-awesome-4
