@@ -8,8 +8,6 @@ locale:
     generate:
         - en_US.UTF-8
 
-bootloader: systemd-boot
-
 journal:
     max_size: 500M
 
