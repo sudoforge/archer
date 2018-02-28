@@ -14,7 +14,14 @@ dotfiles:
             - name: origin
               uri: git@github.com:bddenhartog/dotfiles.git
 
+lvm:
+    enable: True
+
 ssh:
     port: 22
     user_key: /tmp/ssh/id_rsa
     enable_sshd: False
+
+systemd:
+    boot:
+      root_device: /dev/fs/home

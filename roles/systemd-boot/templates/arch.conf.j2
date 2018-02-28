@@ -4,4 +4,4 @@ linux /vmlinuz-linux
 initrd /intel-ucode.img
 {% endif %}
 initrd /initramfs-linux.img
-options root=/dev/nvme0n1p3 rw
+options root={{ systemd.boot.root_device }} rw
