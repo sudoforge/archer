@@ -17,6 +17,7 @@ passwordless_sudo:
         - /usr/bin/openvpn*
 
 base_packages:
+    - aws-cli
     - base-devel
     - tmux
     - git
