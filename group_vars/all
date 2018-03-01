@@ -40,6 +40,7 @@ aur:
         - aura-bin
         - downgrade
         - google-chrome
+        - google-cloud-sdk
         - paperkey
         - polybar
         - systemd-boot-pacman-hook
