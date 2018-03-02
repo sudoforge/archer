@@ -28,6 +28,7 @@
     - { role: docker, tags: ['docker'] }
     - { role: bluetooth, tags: ['bluetooth'], when: "bluetooth is defined" }
     - { role: rust, tags: ['rust'] }
+    - { role: hostsctl, tags: ['hostsctl'], when: "hostsctl is defined" }
     #    - { role: hardened, tags: ['hardened'] }
     #    - { role: firejail, tags: ['firejail'] }
     #    - { role: tor, tags: ['tor'], when: "tor is defined" }
@@ -68,7 +69,6 @@
     #    - { role: localtime, tags: ['localtime'], when: "localtime is defined" }
     #    - { role: wormhole, tags: ['wormhole'] }
     #    - { role: wttr, tags: ['wttr'] }
-    #    - { role: hostsctl, tags: ['hostsctl'], when: "hostsctl is defined" }
     #    - { role: himawaripy, tags: ['himawaripy'], when: "himawaripy is defined" }
     #    - { role: kiwix, tags: ['kiwix'] }
   vars_prompt:

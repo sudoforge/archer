@@ -63,6 +63,9 @@ udisks:
     auto_mount: True
     shared_mount: False
 
+hostsctl:
+    url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+
 #mail:
 #    sync_tool: isync
 #    sync_pim: True
@@ -173,8 +176,5 @@ udisks:
 #          interval: 6
 #        - level: monthly
 #          interval: 3
-
-#hostsctl:
-#    url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 
 #middle_click_scroll: True
