@@ -24,4 +24,4 @@ ssh:
 
 systemd:
     boot:
-      root_device: /dev/fs/home
+      root_device: /dev/fs/root
