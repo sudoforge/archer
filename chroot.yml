@@ -6,7 +6,7 @@
     - { role: locale, tags: ['locale'] }
     - { role: hostname, tags: ['hostname'], when: "hostname is defined and hostname != ''" }
     - { role: mkinitcpio, tags: ['mkinitcpio'] }
-    - { role: lvm, tags: ['lvm'], when: "lvm.eneabled is True" }
+    - { role: lvm, tags: ['lvm'], when: "lvm is defined and lvm.enabled == True" }
     - { role: microcode, tags: ['microcode'], when: "'GenuineIntel' in ansible_processor" }
     - { role: systemd-boot, tags: ['systemd-boot'] }
   vars_prompt:

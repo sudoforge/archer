@@ -15,7 +15,7 @@ dotfiles:
               uri: git@github.com:bddenhartog/dotfiles.git
 
 lvm:
-    enable: True
+    enabled: True
 
 ssh:
     port: 22
