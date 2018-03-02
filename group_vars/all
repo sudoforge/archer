@@ -54,7 +54,7 @@ gnupg:
     emulate_ssh: True
 
 bluetooth:
-    disable: False
+    disable: True
 
 video_drivers:
     - libva-intel-driver
