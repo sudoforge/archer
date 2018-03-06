@@ -19,18 +19,6 @@ above goals is not being met, please [open an issue][3].
 Please avoid forking, or using the playbook(s) within this repository until
 this message is removed.
 
-## Use cases
-
-The playbooks included in this repository utilize different roles to configure
-machines for different purposes. Below is a quick overview of some of use cases
-for each supported playbook.
-
-| Playbook          | Use cases |
-| ----------------- | --------- |
-| `chroot.yml       | Set up a basic environment with root shell access. **Run this first.** |
-| `workstation.yml` | General purpose machine used for anything from programming to watching videos. |
-| `thin-client.yml` | A machine primarily used to access the workstation remotely. |
-
 [0]: https://www.ansible.com "Ansible"
 [1]: https://www.archlinux.org "Arch Linux"
 [2]: https://github.com/pigmonkey/spark "Spark"
