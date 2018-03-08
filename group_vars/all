@@ -18,6 +18,7 @@ passwordless_sudo:
 
 base_packages:
     - aws-cli
+    - ansible-lint
     - base-devel
     - tmux
     - git
