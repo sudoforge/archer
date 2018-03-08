@@ -1,7 +1,7 @@
 # Archer
 
 **Archer** is a collection of [Ansible][0] playbooks meant to provision
-machines running [Arch Linux][1]. It is forked from the excellent
+machines running [Arch Linux][1]. It is heavily based on the excellent
 [`pigmonkey/spark`][2], with various improvements for my own environment and
 workflows.
 
