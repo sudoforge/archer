@@ -43,6 +43,7 @@ aur:
         - downgrade
         - google-chrome
         - google-cloud-sdk
+        - jam-git
         - paperkey
         - polybar
         - systemd-boot-pacman-hook
