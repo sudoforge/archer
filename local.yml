@@ -23,7 +23,6 @@
     - { role: iptables, tags: ['iptables'] }
     - { role: nettools, tags: ['nettools'] }
     - { role: sound, tags: ['sound'] }
-    - { role: runescape, tags: ['runescape'] }
     - { role: udisks, tags: ['udisks'] }
     - { role: docker, tags: ['docker'] }
     - { role: bluetooth, tags: ['bluetooth'], when: "bluetooth is defined" }
