@@ -1,5 +1,0 @@
----
-- name: Install Inkscape
-  pacman: name=inkscape state=present
-  tags:
-    - inkscape

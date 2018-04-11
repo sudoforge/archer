@@ -1,5 +1,0 @@
----
-- name: Install darktable
-  pacman: name=darktable state=present
-  tags:
-    - darktable

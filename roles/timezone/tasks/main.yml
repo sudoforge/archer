@@ -1,10 +1,26 @@
 ---
-- name: Set the timezone
+- debug:
+    var: timezone.name
+
+- name: Set the time zone
   file:
-    force: yes
-    path: /etc/localtime
+    force: "yes"
     state: link
-    src: /usr/share/zoneinfo/{{ timezone.region }}/{{ timezone.city }}
+    path: /etc/localtime
+    src: /usr/share/zoneinfo/{{ timezone.name }}
+  tags:
+    - chroot
+
+- name: Check /etc/adjtime
+  stat: path=/etc/adjtime
+  register: adjtime
+  tags:
+    - chroot
+    - notest
 
 - name: Generate /etc/adjtime
   command: hwclock --systohc
+  when: timezone.hwclock == 'UTC' and adjtime.stat.exists == False
+  tags:
+    - chroot
+    - notest

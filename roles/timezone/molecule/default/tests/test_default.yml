@@ -1,0 +1,8 @@
+---
+file:
+  /etc/localtime:
+    exists: true
+    owner: root
+    group: root
+    filetype: symlink
+    linked-to: /usr/share/zoneinfo/America/Los_Angeles

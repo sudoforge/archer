@@ -1,6 +1,0 @@
----
-- name: Install borg
-  pacman: name={{ item }} state=present
-  with_items:
-    - python-llfuse
-    - borg

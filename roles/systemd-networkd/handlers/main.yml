@@ -1,6 +1,0 @@
----
-- name: restart network services
-  systemd: name={{ item }} state=restarted
-  with_items:
-    - systemd-networkd.service
-    - systemd-resolved.service

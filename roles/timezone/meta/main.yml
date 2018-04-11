@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Archer
+  description: >
+    Configure the timezone without a bus connection.
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    - archer
+    - archlinux
+    - clock
+    - hwclock
+    - time
+    - timezone
+dependencies: []

@@ -1,24 +1,129 @@
-# Archer
+# Archer [![Build Status][travis-build]][travis-url]
 
-**Archer** is a collection of [Ansible][0] playbooks meant to provision
-machines running [Arch Linux][1]. It is heavily based on the excellent
-[`pigmonkey/spark`][2], with various improvements for my own environment and
-workflows.
+**Archer** provides [Ansible][ansible-web] roles for use in provisioning a
+machine running [Arch Linux][al-web]. It can be used directly after the [Chroot
+step][al-guide-chroot] of the [Installation Guide][al-guide] or at any other
+point in time during the machine's life cycle.
 
-These playbooks have been made with the following goals in mind:
+## IMPORTANT: ARCHER IS IN PROGRESS
 
-* Keep it simple
-* Make it easy to use
-* Don't make assumptions
+PLEASE AVOID FORKING OR USING THE PLAYBOOK(S) WITHIN THIS REPOSITORY UNTIL THIS
+MESSAGE IS REMOVED.
 
-If you find that something is not working for you, or that one or more of the
-above goals is not being met, please [open an issue][3].
+The `develop` branch is effectively a rewrite of the project from the ground
+up. It will likely receive force pushes, rebases, and other tomfoolery. It will
+eventually be promoted to `master`. When this happens, the git history will be
+overwritten. From the beginning. We'll have a new "initial commit".
 
-## ARCHER IS UNDERGOING A MAJOR REWRITE
+You have been warned.
 
-See the develop branch.
+## Usage
 
-[0]: https://www.ansible.com "Ansible"
-[1]: https://www.archlinux.org "Arch Linux"
-[2]: https://github.com/pigmonkey/spark "Spark"
-[3]: https://github.com/bddenhartog/archer/issues "view or create issues"
+Archer aims to automate various steps of administering an Arch Linux
+installation: initial machine configuration during the chroot step, and
+post-installation configuration both during the initial setup and ongoing
+maintenance. Due to its flexibility and easy per-host customisation, you might
+consider Archer as a framework of sorts.
+
+By default, Archer simply provides a few sane default settings:
+
+* Boot loading with `systemd-boot`
+* Network management with `systemd-networkd` and `wpa_supplicant`
+* Some system configuration, e.g. timezone and hosts
+
+To take advantage of the suite of roles contained in this project, see
+[**Customising the build**](#customising-the-build).
+
+To report a bug or request a new feature, please [search the issues][issues]
+and create a new issue if one does not already exist.
+
+### Requirements
+
+* [Arch Linux][al-web] (ARM not yet supported)
+* [`ansible`][pkg-ansible]
+
+To install the requirements:
+
+```
+pacman -S ansible
+```
+
+### Customising your environment
+
+Archer subscribes to an *opt-in* philosophy. Many of the roles you see in this
+repository **will not run by default**. Instead, you need to enable them by
+configuring them for your host machine. This is to allow consumers of this
+project to selectively choose the software and tools their machine is
+configured with, instead of installing an opinionated collection of tools.
+
+To do this, download `host_vars/localhost.example` from this repository:
+
+```
+curl --create-dirs -o /etc/ansible/host_vars/localhost https://git.io/vpe28
+```
+
+> The url `https://git.io/vpe28` expands to
+> `https://raw.githubusercontent.com/bddenhartog/archer/master/localhost.example`
+> and is used for brevity.
+
+Next, open the file with an editor. Look through the file and change the
+`enabled: False` property to `enabled: True` for roles which you want to
+enable. You can remove sections that relate to roles you do not want to
+install. Once you have configured the file as you wish, it is recommended to
+save this in your own version-controlled repository.
+
+It is recommended to do this as early as possible, for example, directly after
+entering `arch-chroot` during the initial installation of your machine.
+
+### Running Archer
+
+The recommended way to execute Archer is with `ansible-pull`. By default, this
+will clone the project repository to `$HOME/.ansible/pull`. There are different
+options you will want to use based on your current context. Please read the
+following section carefully.
+
+
+#### Standard execution
+
+```
+ansible-pull -U https://github.com/bddenhartog/archer.git [OPTIONS]
+```
+
+#### Significant options
+
+Pass any relevant options to the command displayed above.
+
+| Option      | Use case                                    |
+|-------------|---------------------------------------------|
+| `-t chroot` | Running Archer in a chroot jail             |
+| `-K`        | Running Archer as a non-root user           |
+| `-o`        | Only run if the repository has been updated |
+
+#### Running as a cron job
+
+Because Archer is idempotent, you can safely run it on a schedule via `cron`.
+The cron task must run as root. See the [Cron article][awiki-cron] on the Arch
+Wiki for more information.
+
+Archer recommends the following command when running automatically:
+
+```
+/usr/bin/ansible-pull -U https://github.com/bddenhartog/archer.git -o
+```
+
+### Contributing
+
+Please see [`CONTRIBUTING.md`][contributing].
+
+[ansible-web]: https://www.ansible.com "Ansible"
+[al-web]: https://www.archlinux.org "Arch Linux"
+[al-guide]: https://wiki.archlinux.org/index.php/Installation_guide
+[al-guide-chroot]: https://wiki.archlinux.org/index.php/Installation_guide#Chroot
+[pkg-ansible]: https://www.archlinux.org/packages/community/any/ansible
+[pkg-git]: https://www.archlinux.org/packages/extra/x86_64/git
+[molecule-docs]: https://molecule.readthedocs.io "Molecule Documentation"
+[awikie-cron]: https://wiki.archlinux.org/index.php/Cron
+[contributing]: CONTRIBUTING.md
+[issues]: https://github.com/bddenhartog/archer/issues "view or create issues"
+[travis-build]: https://travis-ci.org/bddenhartog/archer.svg?branch=develop
+[travis-url]: https://travis-ci.org/bddenhartog/archer

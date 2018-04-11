@@ -1,9 +1,0 @@
----
-- name: Install systemd-boot binaries
-  command: bootctl --path=/boot install
-
-- name: Copy systemd-boot loader configuration
-  copy: src=loader.conf dest=/boot/loader/loader.conf mode=644
-
-- name: Copy systemd-boot entry configuration
-  template: src=arch.conf.j2 dest=/boot/loader/entries/arch.conf mode=644

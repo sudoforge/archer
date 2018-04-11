@@ -1,3 +1,0 @@
----
-- name: reload systemd config
-  command: systemctl daemon-reload

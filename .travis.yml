@@ -4,3 +4,24 @@ sudo: required
 language: python
 python:
   - "2.7"
+
+services:
+  - docker
+
+install:
+  - pip install pipenv
+  - pipenv install --dev --system
+
+script:
+  - yamllint .
+  - make test
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#archer-builds"
+    template:
+      - "%{repository_slug}#%{build_number} (%{branch} - %{commit} - %{author}) : %{message}"
+      - "Changeset: %{compare_url}"
+      - "Build details: %{build_url}"
+    on_success: change

@@ -1,7 +1,0 @@
-title Arch Linux
-linux /vmlinuz-linux
-{% if 'GenuineIntel' in ansible_processor %}
-initrd /intel-ucode.img
-{% endif %}
-initrd /initramfs-linux.img
-options root={{ systemd.boot.root_device }} rw

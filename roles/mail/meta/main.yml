@@ -1,5 +1,0 @@
----
-dependencies:
-  - { role: systemd }
-  - { role: cron }
-  - { role: firejail }

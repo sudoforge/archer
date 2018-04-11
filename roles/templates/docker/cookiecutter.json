@@ -1,0 +1,13 @@
+{
+  "role_name": "",
+  "description": "description of the role",
+  "tags": "archer archlinux",
+  "_copy_without_render": [
+    "molecule/*/tests/",
+    "molecule/*/Dockerfile.j2",
+    "molecule/*/create.yml",
+    "molecule/*/destroy.yml",
+    "molecule/*/prepare.yml",
+    "molecule/*/verify.yml"
+  ]
+}

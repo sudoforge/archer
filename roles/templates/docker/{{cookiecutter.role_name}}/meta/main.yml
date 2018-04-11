@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Archer
+  description: >
+    {{ cookiecutter.description }}
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    {%- set tags = ["archer", "archlinux"] %}
+    {%- for tag in cookiecutter.tags.split() %}
+    {%-   set tags = tags.append(tag) %}
+    {%- endfor %}
+    {%- for tag in tags | unique | sort(case_sensitive=False) %}
+    - {{ tag }}
+    {%- endfor %}
+dependencies: []

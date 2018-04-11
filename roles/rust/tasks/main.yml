@@ -1,8 +1,0 @@
----
-- name: Install rustup
-  pacman: name=rustup state=present
-
-- name: Install the stable toolchain
-  become: yes
-  become_user: "{{ user.name }}"
-  command: rustup install stable

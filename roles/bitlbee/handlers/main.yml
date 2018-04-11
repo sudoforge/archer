@@ -1,3 +1,0 @@
----
-- name: restart bitlbee
-  service: name=bitlbee state=restarted

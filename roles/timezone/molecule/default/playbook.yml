@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: timezone
+  vars:
+    timezone:
+      hwclock: UTC
+      name: America/Los_Angeles

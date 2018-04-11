@@ -1,3 +1,0 @@
----
-- name: restart cryptshot
-  service: name=cryptshot.timer state=restarted
