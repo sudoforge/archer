@@ -14,10 +14,9 @@ These playbooks have been made with the following goals in mind:
 If you find that something is not working for you, or that one or more of the
 above goals is not being met, please [open an issue][3].
 
-## ARCHER IS IN PROGRESS
+## ARCHER IS UNDERGOING A MAJOR REWRITE
 
-Please avoid forking, or using the playbook(s) within this repository until
-this message is removed.
+See the develop branch.
 
 [0]: https://www.ansible.com "Ansible"
 [1]: https://www.archlinux.org "Arch Linux"
