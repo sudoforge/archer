@@ -1,7 +1,4 @@
 ---
-- debug:
-    var: timezone.name
-
 - name: Set the time zone
   file:
     force: "yes"
