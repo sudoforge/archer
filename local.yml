@@ -4,3 +4,4 @@
   become: "yes"
   roles:
     - { role: timezone, tags: ['timezone'] }
+    - { role: locale, tags: ['locale'] }
