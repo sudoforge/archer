@@ -1,3 +1,9 @@
+---
 timezone:
   hwclock: UTC
   name: America/Los_Angeles
+
+locale:
+  system: en_US.UTF-8
+  localizations:
+    - en_US.UTF-8

@@ -1,0 +1,16 @@
+---
+- name: Generate system locales
+  locale_gen:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ locale.localizations }}"
+  tags:
+    - chroot
+
+- name: Apply template for /etc/locale.conf
+  template:
+    src: locale.conf.j2
+    dest: /etc/locale.conf
+    mode: 0644
+  tags:
+    - chroot

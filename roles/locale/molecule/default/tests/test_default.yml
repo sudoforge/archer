@@ -1,0 +1,20 @@
+---
+file:
+
+  /etc/locale.gen:
+    exists: true
+    owner: root
+    group: root
+    mode: 0644
+    filetype: file
+    contains:
+      - "en_US.UTF-8"
+      - "en_GB.UTF-8"
+
+  /etc/locale.conf:
+    exists: true
+    owner: root
+    group: root
+    mode: 0644
+    filetype: file
+    contains: "en_US.UTF-8"
