@@ -1,7 +1,7 @@
 {
   "role_name": "",
   "description": "description of the role",
-  "tags": "archer archlinux",
+  "galaxy_tags": "archer archlinux",
   "_copy_without_render": [
     "molecule/*/tests/",
     "molecule/*/Dockerfile.j2",
