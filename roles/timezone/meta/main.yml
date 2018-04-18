@@ -2,7 +2,7 @@
 galaxy_info:
   author: Archer
   description: >
-    Configure the timezone without a bus connection.
+    Configure the timezone with or without a bus connection.
   license: MIT
   min_ansible_version: 1.2
   platforms:
