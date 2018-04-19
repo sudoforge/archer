@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  become: "yes"
+  roles:
+    - role: hostname
+  vars:
+    hostname:
+      name: archer
+      aliases:
+        - zeus
+        - orion

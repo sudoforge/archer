@@ -1,0 +1,83 @@
+---
+- name: Set the hostname for the current session
+  hostname:
+    name: "{{ hostname.name }}"
+  when: ansible_hostname != hostname.name
+  tags:
+    - chroot
+    - notest
+
+- name: Apply template for /etc/hostname
+  template:
+    src: hostname.j2
+    dest: /etc/hostname
+    mode: 0644
+  tags:
+    - chroot
+    - notest
+
+- name: Remove default comments from /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item }}"
+    state: absent
+  with_items:
+    - "# Static table lookup for hostnames."
+    - "# See hosts(5) for details."
+  tags:
+    - chroot
+    - notest
+
+- name: Create the default hostname entries list
+  set_fact:
+    default_hostname_entries:
+      - "localhost"
+      - "{{ hostname.name }}"
+      - "{{ hostname.name }}.localdomain"
+  tags:
+    - chroot
+
+- name: Merge the default hostname entries list with any aliases
+  set_fact:
+    merged_hostname_entries: "{{ default_hostname_entries }} + {{ hostname.aliases }}"
+  tags:
+    - chroot
+
+- name: Generate the final localhost reference string
+  set_fact:
+    localhost_assignments: "127.0.0.1 {{ merged_hostname_entries | unique | sort() | join(' ') }}"
+  tags:
+    - chroot
+
+- name: Check for existing 127.0.0.1 assignments
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ localhost_assignments }}"
+    state: present
+  check_mode: "yes"
+  register: existing_localhost_assignments
+  tags:
+    - chroot
+    - notest
+
+- name: Remove existing 127.0.0.1 assignments from /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: "^127.0.0.1"
+    state: absent
+  when: existing_localhost_assignments is changed or existing_localhost_assignments is failed
+  tags:
+    - chroot
+    - notest
+
+- name: Add hostname entries to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ localhost_assignments }}"
+    insertbefore: BOF
+    state: present
+    mode: 0644
+  when: existing_localhost_assignments is changed or existing_localhost_assignments is failed
+  tags:
+    - chroot
+    - notest

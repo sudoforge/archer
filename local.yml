@@ -5,3 +5,4 @@
   roles:
     - { role: timezone, tags: ['timezone'] }
     - { role: locale, tags: ['locale'] }
+    - { role: hostname, tags: ['hostname'] }
