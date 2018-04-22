@@ -63,7 +63,7 @@ curl --create-dirs -o /etc/ansible/host_vars/localhost https://git.io/vpe28
 ```
 
 > The url `https://git.io/vpe28` expands to
-> `https://raw.githubusercontent.com/bddenhartog/archer/master/localhost.example`
+> `https://raw.githubusercontent.com/sudoforge/archer/master/localhost.example`
 > and is used for brevity.
 
 Next, open the file with an editor. Look through the file and change the
@@ -86,7 +86,7 @@ following section carefully.
 #### Standard execution
 
 ```
-ansible-pull -U https://github.com/bddenhartog/archer.git [OPTIONS]
+ansible-pull -U https://github.com/sudoforge/archer.git [OPTIONS]
 ```
 
 #### Significant options
@@ -108,7 +108,7 @@ Wiki for more information.
 Archer recommends the following command when running automatically:
 
 ```
-/usr/bin/ansible-pull -U https://github.com/bddenhartog/archer.git -o
+/usr/bin/ansible-pull -U https://github.com/sudoforge/archer.git -o
 ```
 
 ### Contributing
@@ -124,6 +124,6 @@ Please see [`CONTRIBUTING.md`][contributing].
 [molecule-docs]: https://molecule.readthedocs.io "Molecule Documentation"
 [awikie-cron]: https://wiki.archlinux.org/index.php/Cron
 [contributing]: CONTRIBUTING.md
-[issues]: https://github.com/bddenhartog/archer/issues "view or create issues"
-[travis-build]: https://travis-ci.org/bddenhartog/archer.svg?branch=develop
-[travis-url]: https://travis-ci.org/bddenhartog/archer
+[issues]: https://github.com/sudoforge/archer/issues "view or create issues"
+[travis-build]: https://travis-ci.org/sudoforge/archer.svg?branch=develop
+[travis-url]: https://travis-ci.org/sudoforge/archer
