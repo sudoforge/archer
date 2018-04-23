@@ -19,10 +19,10 @@
     "develop": {
         "ansible": {
             "hashes": [
-                "sha256:714ede4b0f5455eb2dd2536d8cabb42ab439f52b5ac902308ad027b46f68e6dc"
+                "sha256:51f0c9411344741fb4f6dd8757e0fb6a52c4dcf53a1bfbbfee413e067e65001a"
             ],
             "index": "pypi",
-            "version": "==2.5.0"
+            "version": "==2.5.1"
         },
         "ansible-lint": {
             "hashes": [
@@ -154,6 +154,7 @@
                 "sha256:edabd457cd23a02965166026fd9bfd196f4324fe6032e866d0f3bd0301cd486f",
                 "sha256:fdf1c1dc5bafc32bc5d08b054f94d659422b05aba244d6be4ddc1c72d9aa70fb"
             ],
+            "markers": "platform_python_implementation != 'pypy'",
             "version": "==1.11.5"
         },
         "chardet": {
