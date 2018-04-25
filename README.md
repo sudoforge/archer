@@ -2,7 +2,7 @@
 
 **Archer** provides [Ansible][ansible-web] roles for use in provisioning a
 machine running [Arch Linux][al-web]. It can be used directly after the [Chroot
-step][al-guide-chroot] of the [Installation Guide][al-guide] or at any other
+step][awiki-chroot] of the [Installation Guide][awiki-install] or at any other
 point in time during the machine's life cycle.
 
 ## IMPORTANT: ARCHER IS IN PROGRESS
@@ -117,12 +117,12 @@ Please see [`CONTRIBUTING.md`][contributing].
 
 [ansible-web]: https://www.ansible.com "Ansible"
 [al-web]: https://www.archlinux.org "Arch Linux"
-[al-guide]: https://wiki.archlinux.org/index.php/Installation_guide
-[al-guide-chroot]: https://wiki.archlinux.org/index.php/Installation_guide#Chroot
+[awiki-install]: https://wiki.archlinux.org/index.php/Installation_guide
+[awiki-chroot]: https://wiki.archlinux.org/index.php/Installation_guide#Chroot
 [pkg-ansible]: https://www.archlinux.org/packages/community/any/ansible
 [pkg-git]: https://www.archlinux.org/packages/extra/x86_64/git
 [molecule-docs]: https://molecule.readthedocs.io "Molecule Documentation"
-[awikie-cron]: https://wiki.archlinux.org/index.php/Cron
+[awiki-cron]: https://wiki.archlinux.org/index.php/Cron
 [contributing]: CONTRIBUTING.md
 [issues]: https://github.com/sudoforge/archer/issues "view or create issues"
 [travis-build]: https://travis-ci.org/sudoforge/archer.svg?branch=develop
