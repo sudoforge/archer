@@ -31,7 +31,7 @@ None
 - name: Playbook for {{ cookiecutter.role_name }}
   hosts: all
   roles:
-    - { role: {{ cookiecutter.role_name }}, tags: ['{{ cookiecutter.role_name }}'] i}
+    - { role: {{ cookiecutter.role_name }}, tags: ['{{ cookiecutter.role_name }}'] }
 ```
 
 ## License
