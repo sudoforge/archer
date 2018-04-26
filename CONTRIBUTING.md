@@ -26,6 +26,10 @@ $ cd path/to/archer
 $ pipenv shell
 ```
 
+> If this is your first time running `pipenv shell`, or there has been an
+> update to the `Pipfile` or `Pipfile.lock`, you should run `pipenv install
+> --dev` to ensure you have all of the development dependencies.
+
 Next, navigate to the directory of the role you wish to test...
 
 ```
