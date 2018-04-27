@@ -3,7 +3,7 @@
   locale_gen:
     name: "{{ item }}"
     state: present
-  with_items: "{{ locale.localizations }}"
+  with_items: "{{ locale.list }}"
   tags:
     - chroot
 

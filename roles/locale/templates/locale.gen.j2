@@ -1,4 +1,4 @@
 # {{ ansible_managed }}
-{% for locale in locale.localizations %}
+{% for locale in locale.list %}
 {{ locale }}
 {% endfor %}

@@ -20,7 +20,7 @@ None
 locale:
   # required variables
   system: value
-  localizations: []
+  list: []
 ```
 
 ## Playbook example

@@ -6,6 +6,6 @@
   vars:
     locale:
       system: en_US.UTF-8
-      localizations:
+      list:
         - en_US.UTF-8
         - en_GB.UTF-8
