@@ -19,9 +19,14 @@ None
 ---
 locale:
   # required variables
-  system: value
-  list: []
+  system: string
+  list: string[]
 ```
+
+| Variable        | Description                                    |
+| --------------- | ---------------------------------------------- |
+| `locale.system` | The default system language. Determines `LANG` |
+| `locale.list`   | The list of locales to generate for the system |
 
 ## Playbook example
 

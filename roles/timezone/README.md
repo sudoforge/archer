@@ -24,6 +24,11 @@ timezone:
   zoneinfo: string
 ```
 
+| Variable            | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| `timezone.hwclock`  | If set to `UTC`, generates `/etc/adjtime`      |
+| `timezone.zoneinfo` | The zoneinfo value, e.g. `America/Los_Angeles` |
+
 ## Playbook example
 
 ```

@@ -24,11 +24,16 @@ None
 ---
 hostname:
   # required variables
-  name: value
+  name: string
 
   # optional variables
-  aliases: []
+  aliases: string[]
 ```
+
+| Variable           | Description                              |
+| ------------------ | ---------------------------------------- |
+| `hostname.name`    | The hostname to set for the machine      |
+| `hostname.aliases` | Any aliases to also point to `127.0.0.1` |
 
 ## Playbook example
 
