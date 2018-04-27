@@ -6,4 +6,4 @@
   vars:
     timezone:
       hwclock: UTC
-      name: America/Los_Angeles
+      zoneinfo: America/Los_Angeles

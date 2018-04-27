@@ -4,7 +4,7 @@
     force: "yes"
     state: link
     path: /etc/localtime
-    src: /usr/share/zoneinfo/{{ timezone.name }}
+    src: /usr/share/zoneinfo/{{ timezone.zoneinfo }}
   tags:
     - chroot
 

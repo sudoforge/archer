@@ -20,8 +20,8 @@ None
 ---
 timezone:
   # required variables
-  hwclock: UTC
-  name: Zone/Region
+  hwclock: string
+  zoneinfo: string
 ```
 
 ## Playbook example
