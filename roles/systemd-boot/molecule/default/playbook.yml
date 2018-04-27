@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: systemd-boot
+  vars:
+    systemd:
+      boot:
+        enabled: true
+        device: /dev/sda2

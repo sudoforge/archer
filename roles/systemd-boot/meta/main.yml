@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Archer
+  description: >
+    Configure systemd-boot
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    - archer
+    - archlinux
+    - boot
+    - bootloader
+    - loader
+    - systemd
+    - systemd-boot
+dependencies: []

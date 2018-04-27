@@ -1,0 +1,15 @@
+---
+file:
+  /boot/loader/loader.conf:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+    filetype: file
+
+  /boot/loader/entries/archlinux.conf:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+    filetype: file

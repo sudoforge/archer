@@ -26,3 +26,8 @@ initramfs:
     - filesystems
     - keyboard
     - fsck
+
+systemd:
+  boot:
+    enabled: False
+    device: /dev/sda2

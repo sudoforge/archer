@@ -1,0 +1,47 @@
+---
+- name: Check for boot loader
+  stat:
+    path: /boot/EFI/systemd/systemd-bootx64.efi
+  register: systemd_boot_loader
+  when:
+    - systemd is defined
+    - systemd.boot is defined
+    - systemd.boot.enabled == true
+  tags:
+    - chroot
+    - notest
+
+- name: Install boot loader
+  command: bootctl --path=/boot install
+  when:
+    - systemd is defined
+    - systemd.boot is defined
+    - systemd.boot.enabled == true
+    - systemd_boot_loader.stat.exists == false
+  tags:
+    - chroot
+    - notest
+
+- name: Copy boot loader configuration
+  copy:
+    src: loader.conf
+    dest: /boot/loader/loader.conf
+    mode: 0644
+  when:
+    - systemd is defined
+    - systemd.boot is defined
+    - systemd.boot.enabled == true
+  tags:
+    - chroot
+
+- name: Apply the Arch Linux boot entry template
+  template:
+    src: archlinux.conf.j2
+    dest: /boot/loader/entries/archlinux.conf
+    mode: 0644
+  when:
+    - systemd is defined
+    - systemd.boot is defined
+    - systemd.boot.enabled == true
+  tags:
+    - chroot
