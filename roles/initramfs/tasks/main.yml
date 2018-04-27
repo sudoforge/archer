@@ -1,0 +1,26 @@
+---
+- name: Install mkinitcpio
+  pacman:
+    name: mkinitcpio
+    state: present
+  tags:
+    - chroot
+
+- name: Install supplementary packages
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ initramfs.packages }}"
+  when: initramfs.packages | length
+  tags:
+    - chroot
+
+- name: Apply template for /etc/mkinitcpio.conf
+  template:
+    src: mkinitcpio.conf.j2
+    dest: /etc/mkinitcpio.conf
+    mode: 0644
+  notify: generate initramfs image
+  tags:
+    - chroot
+    - notest

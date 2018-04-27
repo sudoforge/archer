@@ -1,0 +1,12 @@
+---
+initramfs:
+  packages: []
+  hooks:
+    - base
+    - udev
+    - autodetect
+    - modconf
+    - block
+    - filesystems
+    - keyboard
+    - fsck

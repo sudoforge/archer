@@ -13,3 +13,17 @@ hostname:
   aliases:
     - foo
     - bar
+
+initramfs:
+  packages:
+    - lvm2
+  hooks:
+    - base
+    - udev
+    - autodetect
+    - modconf
+    - block
+    - lvm2
+    - filesystems
+    - keyboard
+    - fsck

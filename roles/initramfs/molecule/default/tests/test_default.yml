@@ -1,0 +1,14 @@
+---
+package:
+  mkinitcpio:
+    installed: true
+  lvm2:
+    installed: true
+
+file:
+  /etc/mkinitcpio.conf:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+    filetype: file

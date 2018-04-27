@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Archer
+  description: >
+    Configures and generates an initramfs image
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    - archer
+    - archlinux
+    - chroot
+    - initramfs
+dependencies: []

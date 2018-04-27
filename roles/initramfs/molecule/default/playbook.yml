@@ -1,0 +1,19 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: initramfs
+  vars:
+    initramfs:
+      packages:
+        - lvm2
+      hooks:
+        - base
+        - udev
+        - autodetect
+        - modconf
+        - block
+        - lvm2
+        - filesystems
+        - keyboard
+        - fsck
