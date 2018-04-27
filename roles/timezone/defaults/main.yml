@@ -1,0 +1,4 @@
+---
+timezone:
+  hwclock: UTC
+  zoneinfo: America/Los_Angeles
