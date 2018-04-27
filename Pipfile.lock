@@ -19,10 +19,10 @@
     "develop": {
         "ansible": {
             "hashes": [
-                "sha256:51f0c9411344741fb4f6dd8757e0fb6a52c4dcf53a1bfbbfee413e067e65001a"
+                "sha256:a95483f3b33e0f97d03badaad073392ed03a2b2f526bec4ddf598edfc1c03ae5"
             ],
             "index": "pypi",
-            "version": "==2.5.1"
+            "version": "==2.5.2"
         },
         "ansible-lint": {
             "hashes": [
@@ -154,7 +154,6 @@
                 "sha256:edabd457cd23a02965166026fd9bfd196f4324fe6032e866d0f3bd0301cd486f",
                 "sha256:fdf1c1dc5bafc32bc5d08b054f94d659422b05aba244d6be4ddc1c72d9aa70fb"
             ],
-            "markers": "platform_python_implementation != 'pypy'",
             "version": "==1.11.5"
         },
         "chardet": {
@@ -231,10 +230,10 @@
         },
         "docker-pycreds": {
             "hashes": [
-                "sha256:408ae6ec2b97345e02cbb3a05e0055443a27969e5b61d6773c733b534a40845b",
-                "sha256:c7ab85de2894baff6ee8f15160cbbfa2fd3a04e56f0372c5793d24060687b299"
+                "sha256:764a7ea2f6484bc5de5bf0c060f08b41a1118cf1acb987626b3ff45f3cc40dac",
+                "sha256:e3732a03610a00461a716997670c7010bf1c214a3edc440f7d6a2a3a830ecd9d"
             ],
-            "version": "==0.2.2"
+            "version": "==0.2.3"
         },
         "enum34": {
             "hashes": [
@@ -243,7 +242,7 @@
                 "sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79",
                 "sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1"
             ],
-            "markers": "python_version < '3.4'",
+            "markers": "python_version < '3'",
             "version": "==1.1.6"
         },
         "fasteners": {
@@ -499,10 +498,10 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:6266f87ab64692112e5477eba395cfedda53b1933ccd29478e671e73b420c19c",
-                "sha256:fae491d1874f199537fd5872b5e1f0e74a009b979df9d53d1553fd03da1703e1"
+                "sha256:54713b26c97538db6ff0703a12b19aeaeb60b5e599de542e7fca0ec83b9038e8",
+                "sha256:829230122facf05a5f81a6d4dfe6454a04978ea3746853b2b84567ecf8e5c526"
             ],
-            "version": "==3.5.0"
+            "version": "==3.5.1"
         },
         "python-dateutil": {
             "hashes": [
