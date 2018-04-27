@@ -67,10 +67,10 @@ curl --create-dirs -o /etc/ansible/host_vars/localhost https://git.io/vpe28
 > and is used for brevity.
 
 Next, open the file with an editor. Look through the file and change the
-`enabled: False` property to `enabled: True` for roles which you want to
-enable. You can remove sections that relate to roles you do not want to
-install. Once you have configured the file as you wish, it is recommended to
-save this in your own version-controlled repository.
+`enabled` property from `false` to `true` for roles which you want to enable.
+You can remove sections that relate to roles you do not want to install. Once
+you have configured the file as you wish, it is recommended to save this in
+your own version-controlled repository.
 
 It is recommended to do this as early as possible, for example, directly after
 entering `arch-chroot` during the initial installation of your machine.
