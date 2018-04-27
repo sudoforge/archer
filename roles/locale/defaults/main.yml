@@ -1,5 +1,4 @@
 ---
 locale:
   system: en_US.UTF-8
-  list:
-    - en_US.UTF-8 UTF-8
+  additional: []

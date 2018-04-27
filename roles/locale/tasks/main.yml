@@ -3,7 +3,9 @@
   locale_gen:
     name: "{{ item }}"
     state: present
-  with_items: "{{ locale.list }}"
+  with_items:
+    - "{{ locale.primary}}"
+    - "{{ locale.extra }}"
   tags:
     - chroot
 

@@ -1,12 +1,11 @@
 ---
 timezone:
   hwclock: UTC
-  name: America/Los_Angeles
+  zoneinfo: America/Los_Angeles
 
 locale:
-  system: en_US.UTF-8
-  localizations:
-    - en_US.UTF-8
+  primary: en_US.UTF-8
+  extra: []
 
 hostname:
   name: archer
