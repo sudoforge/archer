@@ -1,12 +1,4 @@
 ---
-- name: Set the hostname for the current session
-  hostname:
-    name: "{{ hostname.name }}"
-  when: ansible_hostname != hostname.name
-  tags:
-    - chroot
-    - notest
-
 - name: Apply template for /etc/hostname
   template:
     src: hostname.j2
