@@ -22,6 +22,19 @@
     - chroot
     - notest
 
+- name: Install intel-ucode for microcode updates
+  pacman:
+    name: intel-ucode
+    state: present
+  when:
+    - systemd is defined
+    - systemd.boot is defined
+    - systemd.boot.enabled == true
+    - 'GenuineIntel' in ansible_processor
+  tags:
+    - chroot
+    - notest
+
 - name: Copy boot loader configuration
   copy:
     src: loader.conf
