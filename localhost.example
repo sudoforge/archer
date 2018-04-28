@@ -9,9 +9,7 @@ locale:
 
 hostname:
   name: archer
-  aliases:
-    - foo
-    - bar
+  aliases: []
 
 initramfs:
   packages:
