@@ -30,7 +30,7 @@
     - systemd is defined
     - systemd.boot is defined
     - systemd.boot.enabled == true
-    - 'GenuineIntel' in ansible_processor
+    - "'GenuineIntel' in ansible_processor"
   tags:
     - chroot
     - notest
