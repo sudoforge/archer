@@ -28,4 +28,7 @@ initramfs:
 systemd:
   boot:
     enabled: False
-    device: /dev/sda2
+    options:
+      - root=/dev/sda2
+      - quiet
+      - rw

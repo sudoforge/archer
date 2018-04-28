@@ -13,3 +13,5 @@ file:
     group: root
     mode: "0644"
     filetype: file
+    contains:
+      - "options root=/dev/sda2 rw"

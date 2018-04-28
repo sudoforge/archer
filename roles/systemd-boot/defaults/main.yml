@@ -2,4 +2,4 @@
 systemd:
   boot:
     enabled: false
-    device: /dev/sda2
+    options: []

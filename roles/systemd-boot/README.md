@@ -21,13 +21,13 @@ systemd:
   boot:
     # required variables
     enabled: boolean
-    device: string
+    options: string[]
 ```
 
-| Variable               | Description                                   |
-| ---------------------- | --------------------------------------------- |
-| `systemd.boot.enabled` | Whether or not to run the tasks in this role  |
-| `systemd.boot.device`  | The `LABEL` or `PARTUUID` for the root device |
+| Variable               | Description                                  |
+| ---------------------- | -------------------------------------------- |
+| `systemd.boot.enabled` | Whether or not to run the tasks in this role |
+| `systemd.boot.options` | Kernel parameter options                     |
 
 ## Playbook example
 

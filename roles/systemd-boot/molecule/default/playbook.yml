@@ -7,4 +7,6 @@
     systemd:
       boot:
         enabled: true
-        device: /dev/sda2
+        options:
+          - root=/dev/sda2
+          - rw
