@@ -39,7 +39,7 @@ and create a new issue if one does not already exist.
 
 ### Requirements
 
-* [Arch Linux][al-web] (ARM not yet supported)
+* [Arch Linux][al-web] (ARM not tested or supported)
 * [`ansible`][pkg-ansible]
 
 To install the requirements:
