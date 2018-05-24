@@ -2,10 +2,10 @@
 - name: Converge
   hosts: all
   roles:
-    - role: systemd-boot
+    - role: bootloader
   vars:
-    systemd:
-      boot:
+    bootloader:
+      systemd:
         enabled: true
         options:
           - root=/dev/sda2

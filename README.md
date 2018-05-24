@@ -32,7 +32,7 @@ By default, Archer simply provides a few sane default settings:
 * Some system configuration, e.g. timezone and hosts
 
 To take advantage of the suite of roles contained in this project, see
-[**Customising the build**](#customising-the-build).
+[**Customizing the build**](#customizing-the-build).
 
 To report a bug or request a new feature, please [search the issues][issues]
 and create a new issue if one does not already exist.
@@ -48,7 +48,7 @@ To install the requirements:
 pacman -S ansible
 ```
 
-### Customising your environment
+### Customizing the build
 
 Archer subscribes to an *opt-in* philosophy. Many of the roles you see in this
 repository **will not run by default**. Instead, you need to enable them by
@@ -59,28 +59,36 @@ configured with, instead of installing an opinionated collection of tools.
 To do this, download `host_vars/localhost.example` from this repository:
 
 ```
-curl --create-dirs -o /etc/ansible/host_vars/localhost https://git.io/vpe28
+curl --create-dirs -o /etc/ansible/host_vars/localhost \
+    https://raw.githubusercontent.com/sudoforge/archer/develop/localhost.example
 ```
 
-> The url `https://git.io/vpe28` expands to
-> `https://raw.githubusercontent.com/sudoforge/archer/master/localhost.example`
-> and is used for brevity.
+Open the file with an editor. Look through the file and change the `enabled`
+property from `false` to `true` for roles which you want to enable. You can
+remove sections that relate to roles you do not want to install. Once you have
+configured the file as you wish, it is recommended to save this in your own
+version-controlled repository.
 
-Next, open the file with an editor. Look through the file and change the
-`enabled` property from `false` to `true` for roles which you want to enable.
-You can remove sections that relate to roles you do not want to install. Once
-you have configured the file as you wish, it is recommended to save this in
-your own version-controlled repository.
+#### IMPORTANT
 
-It is recommended to do this as early as possible, for example, directly after
-entering `arch-chroot` during the initial installation of your machine.
+At a bare minimum, you should ensure that you set the proper
+values for the `bootloader` and `initramfs` roles. Without doing this, it is
+possible that your system will not boot, unless:
+
+- The root filesystem is located at `/dev/sda2`
+- The machine is _not_ configured with `LVM`
+- `/etc/mkinitcpio.conf` contains the appropriate `HOOKS`
+
+Because users may prepare their machines in drastically different ways, Archer
+is unable to provide a one-size-fits-all default.
 
 ### Running Archer
 
 The recommended way to execute Archer is with `ansible-pull`. By default, this
 will clone the project repository to `$HOME/.ansible/pull`. There are different
-options you will want to use based on your current context. Please read the
-following section carefully.
+options you will want to use based on your current context.
+
+_Please read the following section carefully!_
 
 
 #### Standard execution

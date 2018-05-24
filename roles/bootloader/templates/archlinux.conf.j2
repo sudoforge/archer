@@ -4,4 +4,4 @@ linux /vmlinuz-linux
 initrd /intel-ucode.img
 {% endif %}
 initrd /initramfs-linux.img
-options {{ systemd.boot.options | join(' ') }}
+options {{ bootloader.systemd.options | join(' ') }}

@@ -2,11 +2,10 @@
 - name: Check for boot loader
   stat:
     path: /boot/EFI/systemd/systemd-bootx64.efi
-  register: systemd_boot_loader
+  register: systemd_loader
   when:
-    - systemd is defined
-    - systemd.boot is defined
-    - systemd.boot.enabled == true
+    - bootloader.systemd is defined
+    - bootloader.systemd.enabled == true
   tags:
     - chroot
     - notest
@@ -14,10 +13,9 @@
 - name: Install boot loader
   command: bootctl --path=/boot install
   when:
-    - systemd is defined
-    - systemd.boot is defined
-    - systemd.boot.enabled == true
-    - systemd_boot_loader.stat.exists == false
+    - bootloader.systemd is defined
+    - bootloader.systemd.enabled == true
+    - systemd_loader.stat.exists == false
   tags:
     - chroot
     - notest
@@ -27,9 +25,8 @@
     name: intel-ucode
     state: present
   when:
-    - systemd is defined
-    - systemd.boot is defined
-    - systemd.boot.enabled == true
+    - bootloader.systemd is defined
+    - bootloader.systemd.enabled == true
     - "'GenuineIntel' in ansible_processor"
   tags:
     - chroot
@@ -41,9 +38,8 @@
     dest: /boot/loader/loader.conf
     mode: 0644
   when:
-    - systemd is defined
-    - systemd.boot is defined
-    - systemd.boot.enabled == true
+    - bootloader.systemd is defined
+    - bootloader.systemd.enabled == true
   tags:
     - chroot
 
@@ -53,8 +49,7 @@
     dest: /boot/loader/entries/archlinux.conf
     mode: 0644
   when:
-    - systemd is defined
-    - systemd.boot is defined
-    - systemd.boot.enabled == true
+    - bootloader.systemd is defined
+    - bootloader.systemd.enabled == true
   tags:
     - chroot

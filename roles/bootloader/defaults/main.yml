@@ -1,5 +1,5 @@
 ---
-systemd:
-  boot:
+bootloader:
+  systemd:
     enabled: false
     options: []

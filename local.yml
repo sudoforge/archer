@@ -7,4 +7,4 @@
     - { role: locale, tags: ['locale'] }
     - { role: hostname, tags: ['hostname'] }
     - { role: initramfs, tags: ['initramfs'] }
-    - { role: systemd-boot, tags: ['systemd-boot'] }
+    - { role: bootloader, tags: ['bootloader'] }

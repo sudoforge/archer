@@ -25,9 +25,9 @@ initramfs:
     - keyboard
     - fsck
 
-systemd:
-  boot:
-    enabled: False
+bootloader:
+  systemd:
+    enabled: false
     options:
       - root=/dev/sda2
       - quiet
