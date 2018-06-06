@@ -35,3 +35,5 @@ scenario:
     - destroy
 verifier:
   name: goss
+  lint:
+    name: yamllint
