@@ -39,7 +39,7 @@ and create a new issue if one does not already exist.
 
 ### Requirements
 
-* [Arch Linux][al-web] (ARM not tested or supported)
+* [Arch Linux][al-web] or [Arch Linux ARM][alarm-web]
 * [`ansible`][pkg-ansible]
 
 To install the requirements:
@@ -125,6 +125,7 @@ Please see [`CONTRIBUTING.md`][contributing].
 
 [ansible-web]: https://www.ansible.com "Ansible"
 [al-web]: https://www.archlinux.org "Arch Linux"
+[alarm-web]: https://www.archlinuxarm.org "Arch Linux ARM"
 [awiki-install]: https://wiki.archlinux.org/index.php/Installation_guide
 [awiki-chroot]: https://wiki.archlinux.org/index.php/Installation_guide#Chroot
 [pkg-ansible]: https://www.archlinux.org/packages/community/any/ansible
