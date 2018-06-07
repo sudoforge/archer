@@ -15,25 +15,27 @@ To install all of the requirements at once:
 pacman -S git docker make python-pipenv
 ```
 
-## Testing
+## Activating the development environment
 
-Roles in Archer are tested using [`molecule`][molecule-docs]. To test a role,
-first change to the project directory and then activate the virtual
-environment:
+The development environment contains a few useful tools. Before testing or
+working on Archer, the development environment should be activated. This will
+ensure you have access to the development tools.
 
 ```
 $ cd path/to/archer
 $ pipenv shell
+
+# Do this on first run, or if Pipfile.lock has changed
+$ pipenv sync --dev
 ```
 
-> If this is your first time running `pipenv shell`, or there has been an
-> update to the `Pipfile` or `Pipfile.lock`, you should run `pipenv install
-> --dev` to ensure you have all of the development dependencies.
+## Testing
 
-Next, navigate to the directory of the role you wish to test...
+Roles in Archer are tested using [`molecule`][molecule-docs]. To test a role,
+navigate to the directory of the role you wish to test...
 
 ```
-cd roles/timezone
+cd roles/foo
 ```
 
 ...and run the test(s):
@@ -42,7 +44,9 @@ cd roles/timezone
 molecule test
 ```
 
-To test all of the roles at once from the project root:
+A `Makefile` is included with a target defined to test every role without
+having to manually change into each directory. To use this, simply ensure that
+you are in the project root, and excecute the following command:
 
 ```
 make test
