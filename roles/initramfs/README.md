@@ -22,10 +22,10 @@ initramfs:
   hooks: string[]
 ```
 
-| Variable             | Description                                  |
-| -------------------- | -------------------------------------------- |
-| `initramfs.packages` | List of supplementary packages (e.g. `lvm2`) |
-| `initramfs.hooks`    | The hooks to set in `mkinitcpio.conf`        |
+| Variable   | Description                                  |
+| ---------- | -------------------------------------------- |
+| `packages` | List of supplementary packages (e.g. `lvm2`) |
+| `hooks`    | The hooks to set in `mkinitcpio.conf`        |
 
 ## Playbook example
 
