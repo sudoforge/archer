@@ -20,12 +20,14 @@ initramfs:
   # required variables
   packages: string[]
   hooks: string[]
+  preset: string
 ```
 
-| Variable   | Description                                  |
-| ---------- | -------------------------------------------- |
-| `packages` | List of supplementary packages (e.g. `lvm2`) |
-| `hooks`    | The hooks to set in `mkinitcpio.conf`        |
+| Variable   | Description                                              |
+| ---------- | -------------------------------------------------------- |
+| `packages` | List of supplementary packages (e.g. `lvm2`)             |
+| `hooks`    | The hooks to set in `mkinitcpio.conf`                    |
+| `preset`   | The name of the preset to build from `/etc/mkinitcpio.d` |
 
 ## Playbook example
 

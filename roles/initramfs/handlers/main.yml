@@ -1,3 +1,3 @@
 ---
 - name: generate initramfs image
-  command: mkinitcpio -p linux
+  command: mkinitcpio -p {{ initramfs.preset }}

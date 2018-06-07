@@ -12,6 +12,8 @@ hostname:
   aliases: []
 
 initramfs:
+  preset:
+    - linux
   packages:
     - lvm2
   hooks:
