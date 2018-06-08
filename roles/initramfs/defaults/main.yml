@@ -1,5 +1,6 @@
 ---
 initramfs:
+  enabled: false
   preset: linux
   packages: []
   hooks:

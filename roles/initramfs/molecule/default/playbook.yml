@@ -5,6 +5,7 @@
     - role: initramfs
   vars:
     initramfs:
+      enabled: true
       packages:
         - lvm2
       hooks:
