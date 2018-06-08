@@ -69,18 +69,8 @@ remove sections that relate to roles you do not want to install. Once you have
 configured the file as you wish, it is recommended to save this in your own
 version-controlled repository.
 
-#### IMPORTANT
-
-At a bare minimum, you should ensure that you set the proper
-values for the `bootloader` and `initramfs` roles. Without doing this, it is
-possible that your system will not boot, unless:
-
-- The root filesystem is located at `/dev/sda2`
-- The machine is _not_ configured with `LVM`
-- `/etc/mkinitcpio.conf` contains the appropriate `HOOKS`
-
-Because users may prepare their machines in drastically different ways, Archer
-is unable to provide a one-size-fits-all default.
+**IMPORTANT**
+Without customizing this file, every task will be skipped.
 
 ### Running Archer
 
@@ -94,7 +84,7 @@ _Please read the following section carefully!_
 #### Standard execution
 
 ```
-ansible-pull -U https://github.com/sudoforge/archer.git [OPTIONS]
+ansible-pull -U https://github.com/sudoforge/archer.git -C develop [OPTIONS]
 ```
 
 #### Significant options
