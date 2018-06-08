@@ -5,6 +5,7 @@ timezone:
   zoneinfo: America/Los_Angeles
 
 locale:
+  enabled: false
   primary: en_US.UTF-8
   extra: []
 

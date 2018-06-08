@@ -5,6 +5,7 @@
     - role: locale
   vars:
     locale:
+      enabled: true
       primary: en_US.UTF-8
       extra:
         - en_GB.UTF-8

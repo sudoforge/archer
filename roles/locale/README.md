@@ -19,14 +19,16 @@ None
 ---
 locale:
   # required variables
+  enabled: boolean
   primary: string
   extra: string[]
 ```
 
-| Variable         | Description                           |
-| ---------------- | ------------------------------------- |
-| `locale.primary` | The default locale. Determines `LANG` |
-| `locale.extra`   | Additional locales to generate        |
+| Variable  | Default       | Description                           |
+| --------- | ------------- | ------------------------------------- |
+| `enabled` | `false`       | Whether or not enable this role       |
+| `primary` | `en_US.UTF-8` | The default locale. Determines `LANG` |
+| `extra`   | `[]`          | Additional locales to generate        |
 
 ## Playbook example
 

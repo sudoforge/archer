@@ -1,4 +1,5 @@
 ---
 locale:
+  enabled: false
   system: en_US.UTF-8
   additional: []
