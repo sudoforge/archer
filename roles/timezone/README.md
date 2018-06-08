@@ -20,14 +20,16 @@ None
 ---
 timezone:
   # required variables
+  enabled: boolean
   hwclock: string
   zoneinfo: string
 ```
 
-| Variable            | Description                                    |
-| ------------------- | ---------------------------------------------- |
-| `timezone.hwclock`  | If set to `UTC`, generates `/etc/adjtime`      |
-| `timezone.zoneinfo` | The zoneinfo value, e.g. `America/Los_Angeles` |
+| Variable   | Default | Description                                    |
+| ---------- | ------- | ---------------------------------------------- |
+| `enabled`  | `false` | Whether or not this role is enabled            |
+| `hwclock`  | `UTC`   | If set to `UTC`, generates `/etc/adjtime`      |
+| `zoneinfo` | `UTC`   | The zoneinfo value, e.g. `America/Los_Angeles` |
 
 ## Playbook example
 
