@@ -3,6 +3,8 @@
   pacman:
     name: mkinitcpio
     state: present
+  when:
+    - initramfs.enabled == true
   tags:
     - chroot
 
@@ -11,7 +13,9 @@
     name: "{{ item }}"
     state: present
   with_items: "{{ initramfs.packages }}"
-  when: initramfs.packages | length
+  when:
+    - initramfs.enabled == true
+    - initramfs.packages | length
   tags:
     - chroot
 
@@ -21,6 +25,8 @@
     dest: /etc/mkinitcpio.conf
     mode: 0644
   notify: generate initramfs image
+  when:
+    - initramfs.enabled == true
   tags:
     - chroot
     - notest

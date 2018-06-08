@@ -4,6 +4,8 @@
     src: hostname.j2
     dest: /etc/hostname
     mode: 0644
+  when:
+    - hostname.enabled == true
   tags:
     - chroot
     - notest
@@ -16,6 +18,8 @@
   with_items:
     - "# Static table lookup for hostnames."
     - "# See hosts(5) for details."
+  when:
+    - hostname.enabled == true
   tags:
     - chroot
     - notest
@@ -26,18 +30,24 @@
       - "localhost"
       - "{{ hostname.name }}"
       - "{{ hostname.name }}.localdomain"
+  when:
+    - hostname.enabled == true
   tags:
     - chroot
 
 - name: Merge the default hostname entries list with any aliases
   set_fact:
     merged_hostname_entries: "{{ default_hostname_entries }} + {{ hostname.aliases }}"
+  when:
+    - hostname.enabled == true
   tags:
     - chroot
 
 - name: Generate the final localhost reference string
   set_fact:
     localhost_assignments: "127.0.0.1 {{ merged_hostname_entries | unique | sort() | join(' ') }}"
+  when:
+    - hostname.enabled == true
   tags:
     - chroot
 
@@ -48,6 +58,8 @@
     state: present
   check_mode: "yes"
   register: existing_localhost_assignments
+  when:
+    - hostname.enabled == true
   tags:
     - chroot
     - notest
@@ -57,7 +69,9 @@
     path: /etc/hosts
     regexp: "^127.0.0.1"
     state: absent
-  when: existing_localhost_assignments is changed or existing_localhost_assignments is failed
+  when:
+    - hostname.enabled == true
+    - existing_localhost_assignments is changed or existing_localhost_assignments is failed
   tags:
     - chroot
     - notest
@@ -69,7 +83,9 @@
     insertbefore: BOF
     state: present
     mode: 0644
-  when: existing_localhost_assignments is changed or existing_localhost_assignments is failed
+  when:
+    - hostname.enabled == true
+    - existing_localhost_assignments is changed or existing_localhost_assignments is failed
   tags:
     - chroot
     - notest

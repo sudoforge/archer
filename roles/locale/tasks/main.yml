@@ -6,6 +6,8 @@
   with_items:
     - "{{ locale.primary }}"
     - "{{ locale.extra }}"
+  when:
+    - locale.enabled == true
   tags:
     - chroot
 
@@ -14,5 +16,7 @@
     src: locale.conf.j2
     dest: /etc/locale.conf
     mode: 0644
+  when:
+    - locale.enabled == true
   tags:
     - chroot
