@@ -50,7 +50,7 @@ pacman -S ansible
 
 ### Customizing the build
 
-Archer subscribes to an *opt-in* philosophy. Many of the roles you see in this
+Archer subscribes to an *opt-in* philosophy. The roles you see in this
 repository **will not run by default**. Instead, you need to enable them by
 configuring them for your host machine. This is to allow consumers of this
 project to selectively choose the software and tools their machine is
@@ -60,7 +60,7 @@ To do this, download `host_vars/localhost.example` from this repository:
 
 ```
 curl --create-dirs -o /etc/ansible/host_vars/localhost \
-    https://raw.githubusercontent.com/sudoforge/archer/develop/localhost.example
+    https://raw.githubusercontent.com/sudoforge/archer/develop/localhost.example.yml
 ```
 
 Open the file with an editor. Look through the file and change the `enabled`
