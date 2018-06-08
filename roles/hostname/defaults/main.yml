@@ -1,4 +1,5 @@
 ---
 hostname:
+  enabled: false
   name: archer
   aliases: []

@@ -24,16 +24,18 @@ None
 ---
 hostname:
   # required variables
+  enabled: boolean
   name: string
 
   # optional variables
   aliases: string[]
 ```
 
-| Variable           | Description                              |
-| ------------------ | ---------------------------------------- |
-| `hostname.name`    | The hostname to set for the machine      |
-| `hostname.aliases` | Any aliases to also point to `127.0.0.1` |
+| Variable  | Default  | Description                              |
+| --------- | -------- | ---------------------------------------- |
+| `enabled` | `false`  | Whether or not this role is enabled      |
+| `name`    | `archer` | The hostname to set for the machine      |
+| `aliases` | `[]`     | Any aliases to also point to `127.0.0.1` |
 
 ## Playbook example
 
