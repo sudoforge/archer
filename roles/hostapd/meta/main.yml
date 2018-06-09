@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Archer
+  description: >
+    Installs and configures hostapd
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    - access
+    - archer
+    - archlinux
+    - hostapd
+    - networking
+    - point
+    - router
+    - wifi
+    - wireless
+dependencies: []

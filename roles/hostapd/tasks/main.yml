@@ -1,0 +1,21 @@
+---
+- name: Install hostapd
+  pacman:
+    name: hostapd
+    state: present
+  when:
+    - hostapd is defined
+    - hostapd.enabled == true
+  tags:
+    - chroot
+
+- name: Apply template for /etc/hostapd/hostapd.conf
+  template:
+    src: hostapd.conf.j2
+    dest: /etc/hostapd/hostapd.conf
+    mode: 0644
+  when:
+    - hostapd is defined
+    - hostapd.enabled == true
+  tags:
+    - chroot

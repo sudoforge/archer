@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+interface={{ hostapd.interface }}
+bridge={{ hostapd.bridge }}
+ssid={{ hostapd.ssid }}
+driver={{ hostapd.driver }}
+country_code=US
+hw_mode=g
+channel={{ hostapd.channel }}
+max_num_sta=5
+wpa=2
+auth_algs=1
+rsn_pairwise={{ hostapd.pairwise }}
+wpa_key_mgmt=WPA-PSK
+wpa_passphrase={{ hostapd.passphrase }}
+logger_stdout=-1
+logger_stdout_level=2
