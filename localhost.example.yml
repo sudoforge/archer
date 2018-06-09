@@ -18,6 +18,9 @@ hostapd:
   driver: nl80211
   channel: 7
   pairwise: CCMP
+  service:
+    started: false
+    enabled: false
 
 hostname:
   enabled: false

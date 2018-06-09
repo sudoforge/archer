@@ -27,6 +27,9 @@ hostapd:
   driver: string
   channel: integer
   pairwise: string
+  service:
+    started: boolean
+    enabled: boolean
 ```
 
 ## Playbook example
@@ -39,16 +42,18 @@ hostapd:
     - { role: hostapd, tags: ['hostapd'] }
 ```
 
-| Variable     | Default       | Description                                 |
-| ------------ | ------------- | ------------------------------------------- |
-| `enabled`    | `false`       | Whether or not to configure `hostapd`       |
-| `ssid`       | `archer-wifi` | The name of the wireless network            |
-| `passphrase` | `archerwifi`  | The passphrase for the wireless network     |
-| `interface`  | `wlan0`       | The name of the interface to broadcast from |
-| `bridge`     | `br0`         | The name of the bridge                      |
-| `driver`     | `nl80211`     | The name of the driver                      |
-| `channel`    | `7`           | The channel to broadcast on                 |
-| `pairwise`   | `CCMP`        | WPA2's data encryption                      |
+| Variable     | Default       | Description                                  |
+| ------------ | ------------- | -------------------------------------------- |
+| `enabled`         | `false`       | Whether or not to configure `hostapd`        |
+| `ssid`            | `archer-wifi` | The name of the wireless network             |
+| `passphrase`      | `archerwifi`  | The passphrase for the wireless network      |
+| `interface`       | `wlan0`       | The name of the interface to broadcast from  |
+| `bridge`          | `br0`         | The name of the bridge                       |
+| `driver`          | `nl80211`     | The name of the driver                       |
+| `channel`         | `7`           | The channel to broadcast on                  |
+| `pairwise`        | `CCMP`        | WPA2's data encryption                       |
+| `service.started` | `false`       | Whether or not the service should be started |
+| `service.enabled` | `false`       | Whether or not the service should be enabled |
 
 ## License
 

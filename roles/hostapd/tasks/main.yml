@@ -19,3 +19,27 @@
     - hostapd.enabled == true
   tags:
     - chroot
+
+- name: Start the service unit hostapd.service
+  systemd:
+    name: hostapd.service
+    state: started
+  when:
+    - hostapd is defined
+    - hostapd.enabled == true
+    - hostapd.service is defined
+    - hostapd.service.started == true
+  tags:
+    - chroot
+
+- name: Enable the service unit hostapd.service
+  systemd:
+    name: hostapd.service
+    enabled: yes
+  when:
+    - hostapd is defined
+    - hostapd.enabled == true
+    - hostapd.service is defined
+    - hostapd.service.enabled == true
+  tags:
+    - chroot
