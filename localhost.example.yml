@@ -29,8 +29,7 @@ hostname:
 
 initramfs:
   enabled: false
-  preset:
-    - linux
+  preset: linux
   packages: []
   hooks:
     - base
