@@ -35,7 +35,7 @@
 - name: Enable the service unit hostapd.service
   systemd:
     name: hostapd.service
-    enabled: yes
+    enabled: "yes"
   when:
     - hostapd is defined
     - hostapd.enabled == true
