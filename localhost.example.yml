@@ -9,19 +9,6 @@ locale:
   primary: en_US.UTF-8
   extra: []
 
-hostapd:
-  enabled: false
-  ssid: archer-wifi
-  passphrase: archerwifi
-  interface: wlan0
-  bridge: br0
-  driver: nl80211
-  channel: 7
-  pairwise: CCMP
-  service:
-    started: false
-    enabled: false
-
 hostname:
   enabled: false
   name: archer
