@@ -34,9 +34,9 @@ None
     - { role: {{ cookiecutter.role_name }}, tags: ['{{ cookiecutter.role_name }}'] }
 ```
 
-| Variable | Description |
-| -------- | ----------- |
-| | |
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| | | |
 
 ## License
 
