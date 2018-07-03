@@ -24,12 +24,12 @@ initramfs:
   hooks: string[]
 ```
 
-| Variable   | Default   | Description                                              |
-| ---------- | --------- | -------------------------------------------------------- |
-| `enabled`  | `false`   | Whether or not this role is enabled                      |
-| `preset`   | `linux`   | The name of the preset to build from `/etc/mkinitcpio.d` |
-| `packages` | `[]`      | List of supplementary packages (e.g. `lvm2`)             |
-| `hooks`    | see below | The hooks to set in `mkinitcpio.conf`                    |
+| Variable   | Default     | Description                                              |
+| ---------- | ----------- | -------------------------------------------------------- |
+| `enabled`  | `false`     | Whether or not this role is enabled                      |
+| `preset`   | `linux`     | The name of the preset to build from `/etc/mkinitcpio.d` |
+| `packages` | `[]`        | List of supplementary packages (e.g. `lvm2`)             |
+| `hooks`    | _see below_ | The hooks to set in `mkinitcpio.conf`                    |
 
 `hooks` default items:
 
