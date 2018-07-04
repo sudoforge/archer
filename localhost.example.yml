@@ -35,3 +35,11 @@ bootloader:
       - root=/dev/sda2
       - quiet
       - rw
+
+network:
+  enabled: false
+  profiles:
+    - ethernet
+    - wireless
+  systemd:
+    enabled: false

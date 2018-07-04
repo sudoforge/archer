@@ -1,0 +1,56 @@
+---
+- name: Remove netctl
+  pacman: name=netctl state=absent
+  when:
+    - network.enabled == true
+    - network.systemd.enabled == true
+  tags:
+    - chroot
+
+- name: Apply the wired network configuration template
+  template:
+    src: 20-wired.network.j2
+    dest: /etc/systemd/network/20-wired.network
+    mode: 0644
+  notify: restart systemd network services
+  when:
+    - network.enabled == true
+    - network.systemd.enabled == true
+    - '"ethernet" in network.profiles'
+  tags:
+    - chroot
+
+- name: Apply the wireless network configuration template
+  template:
+    src: 25-wireless.network.j2
+    dest: /etc/systemd/network/25-wireless.network
+    mode: 0644
+  notify: restart systemd network services
+  when:
+    - network.enabled == true
+    - network.systemd.enabled == true
+    - '"wireless" in network.profiles'
+  tags:
+    - chroot
+
+- name: Create symlink to systemd's resolvconf at /etc/resolv.conf
+  file:
+    force: "yes"
+    path: /etc/resolv.conf
+    state: link
+    src: /run/systemd/resolve/stub-resolv.conf
+  when:
+    - network.enabled == true
+    - network.systemd.enabled == true
+  tags:
+    - chroot
+    - notest
+
+- name: Enable systemd's network services
+  systemd: name={{ item }} enabled=yes
+  with_items:
+    - systemd-networkd.service
+    - systemd-resolved.service
+  when:
+    - network.enabled == true
+    - network.systemd.enabled == true
