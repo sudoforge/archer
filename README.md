@@ -70,6 +70,7 @@ configured the file as you wish, it is recommended to save this in your own
 version-controlled repository.
 
 **IMPORTANT**
+
 Without customizing this file, every task will be skipped.
 
 ### Running Archer
@@ -106,7 +107,7 @@ Wiki for more information.
 Archer recommends the following command when running automatically:
 
 ```
-/usr/bin/ansible-pull -U https://github.com/sudoforge/archer.git -o
+/usr/bin/ansible-pull -U https://github.com/sudoforge/archer.git -C develop -o
 ```
 
 ### Contributing
