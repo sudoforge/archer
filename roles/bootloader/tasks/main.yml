@@ -1,4 +1,14 @@
 ---
+- name: Install systemd
+  pacman:
+    name: systemd
+    state: present
+  when:
+    - bootloader.systemd is defined
+    - bootloader.systemd.enabled == true
+  tags:
+    - chroot
+
 - name: Check for boot loader
   stat:
     path: /boot/EFI/systemd/systemd-bootx64.efi

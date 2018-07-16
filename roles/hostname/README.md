@@ -2,8 +2,7 @@
 
 This role performs the following functions:
 
-- Set the system hostname for the current session
-    - _If it differs from the current hostname_
+- Set the desired hostname in `/etc/hostname`
 - Edit `/etc/hosts`, and ensure the following values are the only values
   assigned to `127.0.0.1`:
     - `{{ hostname.name }}`
@@ -23,25 +22,24 @@ None
 ```
 ---
 hostname:
-  # required variables
+  # Whether or not this role is enabled 
+  # Default: false
   enabled: boolean
+
+  # Detremine the hostname for the machine
+  # Default: archer
   name: string
 
-  # optional variables
+  # Additional hostname entries in /etc/hosts
+  # Default: []
   aliases: string[]
 ```
-
-| Variable  | Default  | Description                              |
-| --------- | -------- | ---------------------------------------- |
-| `enabled` | `false`  | Whether or not this role is enabled      |
-| `name`    | `archer` | The hostname to set for the machine      |
-| `aliases` | `[]`     | Any aliases to also point to `127.0.0.1` |
 
 ## Playbook example
 
 ```
 ---
-- name: My Playbook
+- name: Playbook for hostname
   hosts: all
   roles:
     - { role: hostname, tags: ['hostname'] }

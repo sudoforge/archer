@@ -2,4 +2,4 @@
 timezone:
   enabled: false
   hwclock: UTC
-  zoneinfo: America/Los_Angeles
+  zoneinfo: UTC

@@ -2,7 +2,7 @@
 
 This role performs the following functions:
 
-- Generate the system locales
+- Generate locales for the system
 - Apply a template to `/etc/locale.conf`
 
 ## Requirements
@@ -18,17 +18,28 @@ None
 ```
 ---
 locale:
-  # required variables
+  # Whether or not this role should be enabled
+  # Default: false
   enabled: boolean
-  primary: string
-  extra: string[]
-```
 
-| Variable  | Default       | Description                           |
-| --------- | ------------- | ------------------------------------- |
-| `enabled` | `false`       | Whether or not enable this role       |
-| `primary` | `en_US.UTF-8` | The default locale. Determines `LANG` |
-| `extra`   | `[]`          | Additional locales to generate        |
+  # Determines the LANG variable
+  # Default: en_US.UTF-8
+  lang: string
+
+  # Determines the LC_TIME variable
+  # Default: en_DK.UTF-8
+  lc_time: string
+
+  # Determines the LC_COLLATE variable
+  # Default: C
+  lc_collate: string
+
+  # Determines which locales to generate. The value of the 'lang' variable is
+  # included implicitly, and does not need to be defined in this list.
+  #
+  # Default: []
+  locales: string[]
+```
 
 ## Playbook example
 

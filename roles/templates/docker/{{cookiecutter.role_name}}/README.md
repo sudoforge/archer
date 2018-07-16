@@ -6,7 +6,10 @@ This role performs the following functions:
 
 ## Requirements
 
-None
+This role is tested on [Arch Linux][0], but should work on any machine as long
+as the following requirements are met.
+
+-
 
 ## Dependencies
 
@@ -41,3 +44,5 @@ None
 ## License
 
 MIT
+
+[0]: https://www.archlinux.org "Arch Linux"

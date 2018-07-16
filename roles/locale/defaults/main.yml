@@ -1,5 +1,8 @@
 ---
 locale:
   enabled: false
-  system: en_US.UTF-8
-  additional: []
+  lang: en_US.UTF-8
+  lc_time: en_DK.UTF-8
+  lc_collate: C
+  locales:
+    - en_US.UTF-8

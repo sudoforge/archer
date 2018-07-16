@@ -17,10 +17,21 @@ None
 ```
 ---
 network:
-  enabled: true
+  # Whether or not this role is enabled
+  # Default: false
+  enabled: boolean
+
+  # The types of connections to configure
+  # Default:
+  #  - ethernet
+  #  - wireless
   profiles: string[]
+
+  # systemd-boot variables
   systemd:
-    enabled: bool
+    # Whether or not to install and configure systemd-boot
+    # Default: false
+    enabled: boolean
 ```    
 
 ## Playbook example
@@ -32,12 +43,6 @@ network:
   roles:
     - { role: network, tags: ['network'] }
 ```
-
-| Variable          | Default                | Description                              |
-| ----------------- | ---------------------- | ---------------------------------------- |
-| `enabled`         | `false`                | Whether or not this role is enabled      |
-| `profiles`        | `[ethernet, wireless]` | The types of connections to set up       |
-| `systemd.enabled` | `false`                | Whether or not to use `systemd-networkd` |
 
 ## License
 

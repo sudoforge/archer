@@ -1,4 +1,8 @@
 ---
+package:
+  systemd:
+    installed: true
+
 file:
   /boot/loader/loader.conf:
     exists: true

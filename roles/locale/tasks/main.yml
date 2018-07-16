@@ -1,11 +1,19 @@
 ---
+- name: Generate a merged list of locales
+  set_fact:
+    merged_locales:
+      - "{{ locale.lang }}"
+      - "{{ locale.locales }}"
+  when:
+    - locale.enabled == true
+  tags:
+    - chroot
+
 - name: Generate system locales
   locale_gen:
     name: "{{ item }}"
     state: present
-  with_items:
-    - "{{ locale.primary }}"
-    - "{{ locale.extra }}"
+  with_items: "{{ merged_locales | unique | sort() }}"
   when:
     - locale.enabled == true
   tags:
