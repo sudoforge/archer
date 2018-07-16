@@ -1,13 +1,8 @@
 ---
-timezone:
-  enabled: false
-  hwclock: UTC
-  zoneinfo: America/Los_Angeles
-
-locale:
-  enabled: false
-  primary: en_US.UTF-8
-  extra: []
+bootloader:
+  systemd:
+    enabled: false
+    options: []
 
 hostname:
   enabled: false
@@ -28,13 +23,13 @@ initramfs:
     - keyboard
     - fsck
 
-bootloader:
-  systemd:
-    enabled: false
-    options:
-      - root=/dev/sda2
-      - quiet
-      - rw
+locale:
+  enabled: false
+  lang: en_US.UTF-8
+  lc_time: en_DK.UTF-8
+  lc_collate: C
+  locales:
+    - en_US.UTF-8
 
 network:
   enabled: false
@@ -43,3 +38,8 @@ network:
     - wireless
   systemd:
     enabled: false
+
+timezone:
+  enabled: false
+  hwclock: UTC
+  zoneinfo: UTC
