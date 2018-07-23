@@ -6,7 +6,6 @@ lint:
 platforms:
   - name: archer
     image: terencewestphal/archlinux:latest
-    pull: false
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     tmpfs:
@@ -23,7 +22,7 @@ provisioner:
   options:
     skip-tags: notest
 scenario:
-  name: default
+  name: without_fallback
   test_sequence:
     - lint
     - destroy
@@ -32,6 +31,7 @@ scenario:
     - converge
     - idempotence
     - verify
+    - destroy
 verifier:
   name: goss
   lint:

@@ -21,16 +21,15 @@ network:
   # Default: false
   enabled: boolean
 
-  # The types of connections to configure
+  # The types of connections to set up
   # Default:
-  #  - ethernet
-  #  - wireless
-  profiles: string[]
+  #   - ethernet
+  #   - wireless
+  profiles: ENUM[ethernet, wireless]
 
-  # systemd-boot variables
+  # Whether or not to use systemd-networkd
+  # Default: false
   systemd:
-    # Whether or not to install and configure systemd-boot
-    # Default: false
     enabled: boolean
 ```    
 

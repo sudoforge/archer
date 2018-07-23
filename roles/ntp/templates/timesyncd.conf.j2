@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+[Time]
+NTP={{ ntp.primary | join(' ') }}
+{% if ntp.fallback | length %}
+FallbackNTP={{ ntp.fallback | join(' ') }}
+{% endif %}

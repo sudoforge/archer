@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ntp
+  vars:
+    ntp:
+      enabled: true
+      primary:
+        - foo.fakepool.ntp.org
+        - bar.fakepool.ntp.org
+      fallback:
+        - baz.fakepool.ntp.org
+        - zap.fakepool.ntp.org

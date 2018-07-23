@@ -6,3 +6,4 @@ locale:
   lc_collate: C
   locales:
     - en_US.UTF-8
+    - en_DK.UTF-8

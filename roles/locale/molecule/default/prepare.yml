@@ -2,8 +2,8 @@
 - name: Prepare
   hosts: all
   tasks:
-    - name: Add missing locale to locale.gen
-      lineinfile:
-        path: /etc/locale.gen
-        line: "en_GB.UTF-8 UTF-8"
-        state: present
+    - name: Copy locale.gen
+      copy:
+        src: locale.gen
+        dest: /etc/locale.gen
+        mode: 0644

@@ -6,6 +6,7 @@ lint:
 platforms:
   - name: archer
     image: terencewestphal/archlinux:latest
+    pull: false
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     tmpfs:

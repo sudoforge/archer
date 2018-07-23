@@ -1,0 +1,11 @@
+---
+file:
+  /etc/systemd/timesyncd.conf:
+    exists: true
+    owner: root
+    group: root
+    mode: "0644"
+    filetype: file
+    contains:
+      - "NTP=foo.fakepool.ntp.org bar.fakepool.ntp.org"
+      - "!/FallbackNTP.*/i"

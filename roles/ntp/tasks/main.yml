@@ -1,0 +1,19 @@
+---
+- name: Apply template for /etc/systemd/timesyncd.conf
+  template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    mode: 0644
+  when:
+    - ntp.enabled == true
+  tags:
+    - chroot
+
+- name: Enable and start systemd-timesyncd service
+  systemd:
+    name: systemd-timesyncd.service
+    enabled: "yes"
+  when:
+    - ntp.enabled == true
+  tags:
+    - chroot

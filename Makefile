@@ -6,7 +6,7 @@ TEST_DIRS=$(shell find roles -maxdepth 2 -name 'molecule' -type d -printf '%h ')
 test:
 	@for d in $(TEST_DIRS); do \
 		cd "$$d" && \
-		if ! command molecule test; then \
+		if ! command molecule test --all; then \
 			exit 1 ; \
 		fi && \
 		cd ../../; \

@@ -39,6 +39,18 @@ network:
   systemd:
     enabled: false
 
+ntp:
+  enabled: false
+  primary:
+    - 0.arch.pool.ntp.org
+    - 1.arch.pool.ntp.org
+    - 2.arch.pool.ntp.org
+    - 3.arch.pool.ntp.org
+  fallback:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    - 0.us.pool.ntp.org
+
 timezone:
   enabled: false
   hwclock: UTC
