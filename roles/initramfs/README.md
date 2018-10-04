@@ -25,9 +25,10 @@ initramfs:
   # Default: false
   enabled: boolean
 
-  # The name of the preset to build from /etc/mkinitcpio.d
-  # Default: linux
-  preset: string
+  # The name of the preset(s) to build from /etc/mkinitcpio.d
+  # Default:
+  #   - linux
+  preset: string[]
 
   # List of supplementary packages to install, e.g. lvm2 if using LVM
   # Default: []
