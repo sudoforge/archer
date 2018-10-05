@@ -10,7 +10,7 @@ services:
 
 install:
   - pip install pipenv
-  - pipenv install --dev --system
+  - pipenv install --system
 
 script:
   - yamllint .

@@ -6,7 +6,7 @@ name = "pypi"
 [requires]
 python_version = '2.7'
 
-[dev-packages]
+[packages]
 ansible = '*'
 docker = "*"
 molecule = "*"
