@@ -1,11 +1,10 @@
 ---
 .test:
   services:
-    - docker:stable-dind
+    - docker:dind
   script:
     - pip install pipenv
-    - pipenv run pip install pip==18.0
-    - pipenv install
+    - pipenv install --system
     - make test
 
 test:python3.7:
@@ -14,8 +13,4 @@ test:python3.7:
 
 test:python3.6:
   image: python:3.6
-  extends: .test
-
-test:python2.7:
-  image: python:2.7
   extends: .test

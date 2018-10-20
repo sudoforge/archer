@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [requires]
-python_version = '3'
+python_version = '>= 3.6'
 
 [packages]
 ansible = '>=2.7.0, <3.0.0'
