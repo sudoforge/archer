@@ -7,7 +7,7 @@ test:
 	@for d in $(TEST_DIRS); do \
 		grep "$$(basename $$d)" local.yml > /dev/null 2>&1 || continue; \
 		cd "$$d" && \
-		if ! command molecule test --all; then \
+		if ! command molecule --debug test --all; then \
 			exit 1 ; \
 		fi && \
 		cd ../../; \

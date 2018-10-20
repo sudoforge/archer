@@ -1,15 +1,19 @@
 ---
 .test:
   variables:
+    DOCKER_VERSION: 18.06.1
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
   services:
-    - docker:dind
+    - docker:stable-dind
   before_script:
+    - cat /etc/hosts
+    - curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}-ce.tgz
+    - tar xzvf docker-${DOCKER_VERSION}-ce.tgz --strip 1 -C /usr/local/bin docker/docker
+    - rm docker-${DOCKER_VERSION}-ce.tgz
     - docker info
     - pip install pipenv
-    - pipenv shell
-    - pipenv sync --dev
+    - pipenv install --system
   script:
     - make test
 
