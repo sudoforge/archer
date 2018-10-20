@@ -3,9 +3,6 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[requires]
-python_version = '>= 3.6'
-
 [packages]
 ansible = '>=2.7.0, <3.0.0'
 docker = ">=3.5.1, <4.0.0"
