@@ -23,15 +23,10 @@ Archer aims to automate various steps of administering an Arch Linux
 installation: initial machine configuration during the chroot step, and
 post-installation configuration both during the initial setup and ongoing
 maintenance. Due to its flexibility and easy per-host customisation, you might
-consider Archer as a framework of sorts.
+consider Archer a framework of sorts.
 
-By default, Archer simply provides a few sane default settings:
-
-* Boot loading with `systemd-boot`
-* Network management with `systemd-networkd` and `wpa_supplicant`
-* Some system configuration, e.g. timezone and hosts
-
-To take advantage of the suite of roles contained in this project, see
+By default, no roles will execute and no changes will occur on the system. To
+take advantage of the suite of roles contained in this project, see
 [**Customizing the build**](#customizing-the-build).
 
 To report a bug or request a new feature, please [search the issues][issues]
