@@ -15,5 +15,3 @@
     enabled: "yes"
   when:
     - ntp.enabled == true
-  tags:
-    - chroot
