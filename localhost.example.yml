@@ -52,6 +52,10 @@ ntp:
     - 1.pool.ntp.org
     - 0.us.pool.ntp.org
 
+sxhkd:
+  enabled: false
+  service: false
+
 timezone:
   enabled: false
   hwclock: UTC

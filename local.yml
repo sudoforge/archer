@@ -9,3 +9,4 @@
     - { role: initramfs, tags: ['initramfs'] }
     - { role: bootloader, tags: ['bootloader'] }
     - { role: network, tags: ['network'] }
+    - { role: sxhkd, tags: ['sxhkd'] }

@@ -1,0 +1,4 @@
+---
+sxhkd:
+  enabled: false
+  service: false

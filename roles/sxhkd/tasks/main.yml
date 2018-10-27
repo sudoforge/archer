@@ -1,0 +1,28 @@
+---
+- name: Install sxhkd
+  pacman:
+    name: sxhkd
+    status: present
+  when:
+    - sxhkd.enabled == true
+  tags:
+    - chroot
+
+- name: Copy sxhkd.service to global userspace directory
+  copy:
+    src: sxhkd.service
+    dest: /usr/lib/systemd/user
+    mode: 0644
+  when:
+    - sxhkd.enabled == true
+  tags:
+    - chroot
+
+- name: Enable sxhkd.service in the global userspace
+  systemd:
+    name: sxhkd.service
+    enabled: "yes"
+    scope: global
+  when:
+    - sxhkd.enabled == true
+    - sxhkd.service == true
