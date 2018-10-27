@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Archer
+  description: >
+    Install and configure a desktop manager
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    - archer
+    - archlinux
+    - desktop
+    - lightdm
+    - manager
+dependencies: []

@@ -4,6 +4,15 @@ bootloader:
     enabled: false
     options: []
 
+desktop:
+  lightdm:
+    enabled: false
+    greeter:
+      enabled: false
+      gtk_theme: "Adwaita:dark"
+      background: red-mountains.png
+      hide_user_image: true
+
 hostname:
   enabled: false
   name: archer
@@ -31,6 +40,7 @@ locale:
   lc_collate: C
   locales:
     - en_US.UTF-8
+    - en_DK.UTF-8
 
 network:
   enabled: false

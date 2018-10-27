@@ -1,0 +1,62 @@
+---
+- name: Create directory for background images
+  file:
+    path: /usr/share/backgrounds
+    state: directory
+  tags:
+    - chroot
+
+- name: Copy background image 'red-mountains.png'
+  copy:
+    src: red-mountains.png
+    dest: /usr/share/backgrounds/red-mountains.png
+  tags:
+    - chroot
+
+- name: Install lightdm
+  pacman:
+    name: lightdm
+    status: present
+  when:
+    - desktop.lightdm.enabled == true
+  tags:
+    - chroot
+
+- name: Install lightdm-gtk-greeter
+  pacman:
+    name: lightdm-gtk-greeter
+    status: present
+  when:
+    - desktop.lightdm.enabled == true
+    - desktop.lightdm.greeter.enabled == true
+  tags:
+    - chroot
+
+- name: Apply the lightdm-gtk-greeter.conf template
+  template:
+    src: lightdm-gtk-greeter.conf.j2
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+    mode: 0644
+  when:
+    - desktop.lightdm.enabled == true
+    - desktop.lightdm.greeter.enabled == true
+  tags:
+    - chroot
+
+- name: Apply the lightdm-gtk-greeter.desktop template
+  template:
+    src: lightdm-gtk-greeter.desktop.j2
+    dest: /usr/share/xgreeters/lightdm-gtk-greeter.desktop
+  when:
+    - desktop.lightdm.enabled == true
+    - desktop.lightdm.greeter.enabled == true
+  tags:
+    - chroot
+
+- name: Enable lightdm.service
+  systemd:
+    name: lightdm.service
+    enabled: "yes"
+  when:
+    - desktop.lightdm.enabled == true
+    - desktop.lightdm.service == true
