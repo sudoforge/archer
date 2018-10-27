@@ -9,7 +9,7 @@
   tags:
     - chroot
 
-- name: Enable and start systemd-timesyncd service
+- name: Enable systemd-timesyncd service
   systemd:
     name: systemd-timesyncd.service
     enabled: "yes"
