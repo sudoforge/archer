@@ -1,0 +1,15 @@
+---
+- name: Install sudo
+  pacman:
+    name: sudo
+    state: present
+  tags:
+    - sudoforge.sudo
+
+- name: Copy sudo configuration
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers
+    validate: 'visudo -cf %s'
+  tags:
+    - sudoforge.sudo

@@ -1,0 +1,19 @@
+---
+sudoforge_lightdm:
+  enable_service: false
+  greeter:
+    package: false
+    config: []
+
+# which greeter to install, e.g. 'gtk' or 'webkit2'
+# set to false to disable
+sudoforge_lightdm_greeter: false
+
+# options to set in the greeter configuration file
+# lightdm_greeter_config:
+#   - key: background
+#     value: /path/to/image.jpg
+sudoforge_lightdm_greeter_config: []
+
+# enable lightdm.service
+sudoforge_lightdm_enable_service: false

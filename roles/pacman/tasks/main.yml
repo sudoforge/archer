@@ -1,0 +1,73 @@
+---
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - findutils       # pacdiff
+    - mlocate         # pacdiff
+    - pacman-contrib  # paccache utility
+    - reflector       # pacman-mirrorlist update hook
+  tags:
+    - sudoforge.pacman
+
+- name: Create pacman hook directory
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+  tags:
+    - sudoforge.pacman
+
+- name: Push pacman mirror list update hook
+  copy:
+    src: mirrorlist.hook
+    dest: /etc/pacman.d/hooks/mirrorlist.hook
+  tags:
+    - sudoforge.pacman
+
+- name: Copy pacman configuration file
+  copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+  tags:
+    - sudoforge.pacman
+
+- name: Push pacman cache cleanup service
+  copy:
+    src: paccache.service
+    dest: /etc/systemd/system/paccache.service
+  notify:
+    - reload systemd daemon
+  tags:
+    - sudoforge.pacman
+
+- name: Push pacman cache cleanup timer
+  copy:
+    src: paccache.timer
+    dest: /etc/systemd/system/paccache.timer
+  notify:
+    - reload systemd config
+    - restart paccache
+  tags:
+    - sudoforge.pacman
+
+- name: Enable and start pacman cache cleanup timer
+  service:
+    name: paccache.timer
+    state: started
+    enabled: "yes"
+  tags:
+    - sudoforge.pacman
+ 
+- name: Refresh pacman mirrors
+  pacman:
+    update_cache: "yes"
+  tags:
+    - sudoforge.pacman
+
+- name: Install packages
+  pacman:
+    name: "{{ sudoforge_pacman_packages }}"
+    state: present
+  tags:
+    - sudoforge.pacman

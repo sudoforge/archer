@@ -7,7 +7,7 @@
   when:
     - ntp.enabled == true
   tags:
-    - chroot
+    - sudoforge.ntp
 
 - name: Enable systemd-timesyncd service
   systemd:
@@ -15,3 +15,5 @@
     enabled: "yes"
   when:
     - ntp.enabled == true
+  tags:
+    - sudoforge.ntp

@@ -1,0 +1,12 @@
+---
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - zsh
+    - zsh-autosuggestions
+    - zsh-completions
+    - zsh-syntax-highlighting
+  tags:
+    - sudoforge.zsh

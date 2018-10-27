@@ -1,0 +1,21 @@
+## {{ ansible_managed }}
+#
+# Group privilege specification
+#
+{% for group in sudoforge_sudo_groups %}
+{% for entry in group.entries %}
+%{{ group.name }} ALL=(ALL) {{ entry }}
+{% endfor %}
+{% endfor %}
+
+#
+# User privilege specification
+#
+root ALL=(ALL) ALL
+{% for user in sudoforge_user_list %}
+{% if user.sudo is defined %}
+{% for entry in user.sudo %}
+{{ user.username }} ALL=(ALL) {{ entry }}
+{% endfor %}
+{% endif %}
+{% endfor %}

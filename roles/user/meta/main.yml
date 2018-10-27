@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    create and manage users and groups
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - group
+    - user
+dependencies : []

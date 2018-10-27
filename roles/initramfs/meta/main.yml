@@ -12,6 +12,5 @@ galaxy_info:
   galaxy_tags:
     - archer
     - archlinux
-    - chroot
     - initramfs
 dependencies: []

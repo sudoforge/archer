@@ -1,0 +1,4 @@
+---
+sudoforge_sudo_groups:
+  - name: wheel
+    nopasswd: []

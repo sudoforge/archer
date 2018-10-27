@@ -6,7 +6,7 @@
   when:
     - initramfs.enabled == true
   tags:
-    - chroot
+    - sudoforge.initramfs
 
 - name: Install supplementary packages
   pacman:
@@ -16,7 +16,7 @@
     - initramfs.enabled == true
     - initramfs.packages | length
   tags:
-    - chroot
+    - sudoforge.initramfs
 
 - name: Apply template for /etc/mkinitcpio.conf
   template:
@@ -27,5 +27,5 @@
   when:
     - initramfs.enabled == true
   tags:
-    - chroot
     - notest
+    - sudoforge.initramfs

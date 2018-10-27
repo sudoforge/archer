@@ -1,0 +1,11 @@
+---
+sudoforge_pacman_repositories:
+  - name: core
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: extra
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: community
+    config:
+      - Include = /etc/pacman.d/mirrorlist

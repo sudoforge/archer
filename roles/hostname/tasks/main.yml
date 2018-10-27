@@ -7,8 +7,8 @@
   when:
     - hostname.enabled == true
   tags:
-    - chroot
     - notest
+    - sudoforge.hostname
 
 - name: Remove default comments from /etc/hosts
   lineinfile:
@@ -21,8 +21,8 @@
   when:
     - hostname.enabled == true
   tags:
-    - chroot
     - notest
+    - sudoforge.hostname
 
 - name: Generate a merged list of hostnames
   set_fact:
@@ -32,7 +32,7 @@
   when:
     - hostname.enabled == true
   tags:
-    - chroot
+    - sudoforge.hostname
 
 - name: Merge aliases into the generated list
   set_fact:
@@ -40,7 +40,7 @@
   when:
     - hostname.enabled == true
   tags:
-    - chroot
+    - sudoforge.hostname
 
 - name: Remove undefined 127.0.0.1 assignments from /etc/hosts
   lineinfile:
@@ -50,8 +50,8 @@
   when:
     - hostname.enabled == true
   tags:
-    - chroot
     - notest
+    - sudoforge.hostname
 
 - name: Add hostname entries to /etc/hosts
   lineinfile:
@@ -63,5 +63,5 @@
   when:
     - hostname.enabled == true
   tags:
-    - chroot
     - notest
+    - sudoforge.hostname

@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    configures pacman, and installations additional user-defined packages
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - packages
+    - pacman
+dependencies : []

@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    installs and configures lightdm
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - desktop-manager
+    - lightdm
+dependencies : []

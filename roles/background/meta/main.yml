@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    Downloads user-specified images to a system background directory
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+    - name: GenericLinux
+      versions:
+        - all
+  tags:
+    - background
+    - image
+dependencies : []

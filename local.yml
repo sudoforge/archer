@@ -8,5 +8,12 @@
     - { role: hostname, tags: ['hostname'] }
     - { role: initramfs, tags: ['initramfs'] }
     - { role: bootloader, tags: ['bootloader'] }
-    - { role: network, tags: ['network'] }
+    - networkd
     - { role: sxhkd, tags: ['sxhkd'] }
+    - { role: andrewrothstein.bash, tags: ['andrewrothstein.bash'] }
+    - zsh
+    - background
+    - lightdm
+    - user
+    - sudo
+    - repo

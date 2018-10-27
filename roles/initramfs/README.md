@@ -34,6 +34,14 @@ initramfs:
   # Default: []
   packages: string[]
 
+  # The modules to set in mkinitcpio.conf
+  # Default: []
+  modules: string[]
+
+  # The binaries to set in mkinitcpio.conf
+  # Default: []
+  binaries: string[]
+
   # The hooks to set in mkinitcpio.conf
   # Default:
   #   - base

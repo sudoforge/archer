@@ -1,0 +1,52 @@
+---
+- name: Create unique list of groups
+  set_fact:
+    merged_group_list: "{{ merged_group_list|default([]) + item.groups | unique | sort }}"
+  with_items:
+    - "{{ sudoforge_user_list }}"
+  tags:
+    - sudoforge.user
+
+- name: Create groups from merged list
+  group:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ merged_group_list }}"
+  tags:
+    - sudoforge.user
+
+- name: Create users and assign to groups
+  user:
+    create_home: "{{ item.create_home }}"
+    group: "{{ item.primary_group }}"
+    groups: "{{ item.groups }}"
+    home: "{{ item.home }}"
+    move_home: "yes"
+    name: "{{ item.username }}"
+    shell: "{{ item.shell | default('/usr/bin/bash') }}"
+    uid: "{{ item.uid }}"
+  with_items:
+    - "{{ sudoforge_user_list }}"
+  tags:
+    - sudoforge.user
+
+- name: Create user log directories
+  file:
+    path: "/var/log/user/{{ item.username }}"
+    state: directory
+    owner: "{{ item.username }}"
+    group: "{{ item.primary_group }}"
+  with_items:
+    - "{{ sudoforge_user_list }}"
+  tags:
+    - sudoforge.user
+
+- name: Push logrotate config for user logs
+  template:
+    src: logrotate.j2
+    dest: "/etc/logrotate.d/user.{{ item.username }}"
+  with_items:
+    - "{{ sudoforge_user_list }}"
+  tags:
+    - sudoforge.user

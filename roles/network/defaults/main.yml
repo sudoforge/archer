@@ -1,8 +1,0 @@
----
-network:
-  enabled: false
-  profiles:
-    - ethernet
-    - wireless
-  systemd:
-    enabled: false

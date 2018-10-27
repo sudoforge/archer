@@ -4,6 +4,8 @@ initramfs:
   presets:
     - linux
   packages: []
+  modules: []
+  binaries: []
   hooks:
     - base
     - udev

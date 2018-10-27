@@ -6,6 +6,7 @@
   vars:
     initramfs:
       enabled: true
+      modules: []
       packages:
         - lvm2
       hooks:

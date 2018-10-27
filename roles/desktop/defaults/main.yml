@@ -1,9 +1,0 @@
----
-desktop:
-  lightdm:
-    enabled: false
-    greeter:
-      enabled: false
-      gtk_theme: "Adwaita:dark"
-      background: red-mountains.png
-      hide_user_image: true

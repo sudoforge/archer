@@ -7,7 +7,7 @@
     - bootloader.systemd is defined
     - bootloader.systemd.enabled == true
   tags:
-    - chroot
+    - sudoforge.bootloader
 
 - name: Check for boot loader
   stat:
@@ -17,7 +17,7 @@
     - bootloader.systemd is defined
     - bootloader.systemd.enabled == true
   tags:
-    - chroot
+    - sudoforge.bootloader
     - notest
 
 - name: Install boot loader
@@ -27,7 +27,7 @@
     - bootloader.systemd.enabled == true
     - systemd_loader.stat.exists == false
   tags:
-    - chroot
+    - sudoforge.bootloader
     - notest
 
 - name: Install intel-ucode for microcode updates
@@ -39,7 +39,7 @@
     - bootloader.systemd.enabled == true
     - "'GenuineIntel' in ansible_processor"
   tags:
-    - chroot
+    - sudoforge.bootloader
     - notest
 
 - name: Copy boot loader configuration
@@ -51,7 +51,7 @@
     - bootloader.systemd is defined
     - bootloader.systemd.enabled == true
   tags:
-    - chroot
+    - sudoforge.bootloader
 
 - name: Apply the Arch Linux boot entry template
   template:
@@ -62,4 +62,4 @@
     - bootloader.systemd is defined
     - bootloader.systemd.enabled == true
   tags:
-    - chroot
+    - sudoforge.bootloader

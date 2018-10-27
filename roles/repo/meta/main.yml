@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    clone git repositories as a user and optionally run commands in the repo context
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - git
+    - repo
+    - repos
+    - repository
+    - repositories
+dependencies:
+  - user

@@ -119,7 +119,6 @@ special cases defined below.
 
 | Tag name | Use case                                 |
 | ---------|----------------------------------------- |
-| `chroot` | The task can be run in a chroot jail     |
 | `aur`    | The task relates to an AUR package       |
 | `notest` | This task should be skipped during tests |
 

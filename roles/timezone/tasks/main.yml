@@ -5,17 +5,15 @@
     state: link
     path: /etc/localtime
     src: /usr/share/zoneinfo/{{ timezone.zoneinfo }}
-  when: timezone.enabled == true
   tags:
-    - chroot
+    - sudoforge.timezone
 
 - name: Check /etc/adjtime
   stat: path=/etc/adjtime
   register: adjtime
-  when: timezone.enabled == true
   tags:
-    - chroot
     - notest
+    - sudoforge.timezone
 
 - name: Generate /etc/adjtime
   command: hwclock --systohc
@@ -23,5 +21,5 @@
     - timezone.enabled == true
     - timezone.hwclock == 'UTC' and adjtime.stat.exists == false
   tags:
-    - chroot
     - notest
+    - sudoforge.timezone

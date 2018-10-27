@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
-MODULES=()
-BINARIES=()
+MODULES=({{ initramfs.modules | join(' ') }})
+BINARIES=({{ initramfs.binaries | join(' ') }})
 FILES=()
 HOOKS=({{ initramfs.hooks | join(' ') }})
 COMPRESSION="gzip"

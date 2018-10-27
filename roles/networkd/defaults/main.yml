@@ -1,0 +1,11 @@
+---
+sudoforge_networkd_profiles:
+  - name: wired
+    priority: 20
+    config:
+      Match:
+        - Name=en*
+      Network:
+        - DHCP=yes
+      DHCP:
+        - RouteMetric=10

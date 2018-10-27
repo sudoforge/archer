@@ -1,0 +1,22 @@
+---
+- name: Install wpa_supplicant
+  package:
+    name: wpa_supplicant
+    state: present
+  tags:
+    - sudoforge.wpa_supplicant
+    - chroot
+
+- name: Apply template for /etc/wpa_supplicant/wpa_supplicant.conf
+  template:
+    src: wpa_supplicant.conf.j2
+    dest: "/etc/wpa_supplicant/wpa_supplicant-{{ item }}.conf"
+  with_items:
+    - sudoforge_wpa_supplicant_configs
+  tags:
+    - sudoforge.wpa_supplicant
+    - chroot
+
+- name: Enable wpa_supplicant.service
+  service:
+    name: wpa_supplicant.ser

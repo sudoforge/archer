@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+{% for section in item.config.keys() %}
+[{{ section }}]
+{% for option in item.config[section] %}
+{{ option }}
+{% endfor %}
+{%- if not loop.last %}
+
+{% endif %}
+{% endfor %}

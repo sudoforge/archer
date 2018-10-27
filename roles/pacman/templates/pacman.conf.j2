@@ -1,0 +1,21 @@
+# {{ ansible_managed }}
+
+[options]
+HoldPkg       = pacman glibc
+Architecture = auto
+CheckSpace
+SigLevel    = Required DatabaseOptional
+LocalFileSigLevel = Optional
+
+{% for repo in sudoforge_pacman_repositories %}
+[{{ repo.name }}]
+{% for line in repo.config %}Include = /etc/pacman.d/mirrorlist
+{{ line }}
+{% endfor %}
+{% endfor %}
+
+[extra]
+Include = /etc/pacman.d/mirrorlist
+
+[community]
+Include = /etc/pacman.d/mirrorlist

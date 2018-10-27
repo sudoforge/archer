@@ -1,0 +1,36 @@
+---
+- name: Install lightdm
+  pacman:
+    name: lightdm
+    state: present
+  tags:
+    - sudoforge.lightdm
+
+- name: Install user-specified greeter
+  pacman:
+    name: "lightdm-{{ sudoforge_lightdm_greeter }}-greeter"
+    state: present
+  when:
+    - sudoforge_lightdm_greeter != false
+  tags:
+    - sudoforge.lightdm
+
+- name: Set lightm greeter options
+  lineinfile:
+    dest: "/etc/lightdm/lightdm-{{ sudoforge_lightdm_greeter }}-greeter.conf"
+    regexp: "^#?{{ item.key }}="
+    state: present
+    line: "{{ item.key}}={{ item.value }}"
+  with_items:
+    - "{{ sudoforge_lightdm_greeter_config }}"
+  when:
+    - sudoforge_lightdm_greeter != false
+  tags:
+    - sudoforge.lightdm
+
+- name: Enable or disable lightdm.service
+  systemd:
+    name: lightdm.service
+    enabled: "{{ 'yes' if sudoforge_lightdm_enable_service == true else 'no' }}"
+  tags:
+    - sudoforge.lightdm

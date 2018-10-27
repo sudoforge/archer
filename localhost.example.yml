@@ -1,17 +1,11 @@
 ---
+sudoforge_background_directory: /usr/share/backgrounds
+sudoforge_background_images: []
+
 bootloader:
   systemd:
     enabled: false
     options: []
-
-desktop:
-  lightdm:
-    enabled: false
-    greeter:
-      enabled: false
-      gtk_theme: "Adwaita:dark"
-      background: red-mountains.png
-      hide_user_image: true
 
 hostname:
   enabled: false
@@ -23,6 +17,8 @@ initramfs:
   presets:
     - linux
   packages: []
+  modules: []
+  binaries: []
   hooks:
     - base
     - udev
@@ -33,6 +29,24 @@ initramfs:
     - keyboard
     - fsck
 
+sudoforge_lightdm:
+  enable_service: false
+  greeter:
+    package: false
+    config: []
+# which greeter to install, e.g. 'gtk' or 'webkit2'
+# set to false to disable
+sudoforge_lightdm_greeter: false
+
+# options to set in the greeter configuration file
+# lightdm_greeter_config:
+#   - key: background
+#     value: /path/to/image.jpg
+sudoforge_lightdm_greeter_config: []
+
+# enable lightdm.service
+sudoforge_lightdm_enable_service: false
+
 locale:
   enabled: false
   lang: en_US.UTF-8
@@ -42,13 +56,8 @@ locale:
     - en_US.UTF-8
     - en_DK.UTF-8
 
-network:
-  enabled: false
-  profiles:
-    - ethernet
-    - wireless
-  systemd:
-    enabled: false
+sudoforge_networkd_profiles:
+  - ethernet
 
 ntp:
   enabled: false
@@ -62,6 +71,23 @@ ntp:
     - 1.pool.ntp.org
     - 0.us.pool.ntp.org
 
+sudoforge_pacman_repositories:
+  - name: core
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: extra
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: community
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+
+dotfiles:
+
+sudoforge_sudo_groups:
+  - name: wheel
+    nopasswd: []
+
 sxhkd:
   enabled: false
   service: false
@@ -70,3 +96,7 @@ timezone:
   enabled: false
   hwclock: UTC
   zoneinfo: UTC
+
+sudoforge_user_list: []
+
+wpa_supplicant:

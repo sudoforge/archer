@@ -6,7 +6,7 @@
   when:
     - sxhkd.enabled == true
   tags:
-    - chroot
+    - sudoforge.sxhkd
 
 - name: Copy sxhkd.service to global userspace directory
   copy:
@@ -16,7 +16,7 @@
   when:
     - sxhkd.enabled == true
   tags:
-    - chroot
+    - sudoforge.sxhkd
 
 - name: Enable sxhkd.service in the global userspace
   systemd:
@@ -26,3 +26,5 @@
   when:
     - sxhkd.enabled == true
     - sxhkd.service == true
+  tags:
+    - sudoforge.sxhkd

@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Archer
+  author: sudoforge
   description: >
     {{ cookiecutter.description }}
   license: MIT
@@ -9,12 +9,19 @@ galaxy_info:
     - name: ArchLinux
       versions:
         - all
-  galaxy_tags:
-    {%- set tags = ["archer", "archlinux"] %}
-    {%- for tag in cookiecutter.galaxy_tags.split() %}
-    {%-   set tags = tags.append(tag) %}
-    {%- endfor %}
-    {%- for tag in tags | unique | sort(case_sensitive=False) %}
+  {%- if not cookiecutter.tags | length %}
+  tags: []
+  {%- else %}
+  tags:
+    {%- for tag in cookiecutter.tags.split() | unique | sort(case_sensitive=False) %}
     - {{ tag }}
     {%- endfor %}
-dependencies: []
+  {%- endif %}
+{%- if not cookiecutter.dependencies | length %}
+dependencies : []
+{%- else %}
+dependencies:
+{%- for dep in cookiecutter.dependencies.split() | unique | sort(case_sensitive=False) %}
+  - {{ dep }}
+{%- endfor %}
+{%- endif %}
