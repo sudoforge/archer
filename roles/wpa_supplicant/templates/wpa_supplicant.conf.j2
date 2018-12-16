@@ -1,0 +1,11 @@
+{% for option in item.options %}
+{{ option }}
+{% endfor %}
+{% for network in item.networks %}
+
+network={
+{% for key in network.keys() %}
+  {{ key }}={{ network[key] }}
+{% endfor %}
+}
+{% endfor %}

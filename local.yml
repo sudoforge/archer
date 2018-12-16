@@ -9,6 +9,7 @@
     - { role: initramfs, tags: ['initramfs'] }
     - { role: bootloader, tags: ['bootloader'] }
     - networkd
+    - wpa_supplicant
     - { role: sxhkd, tags: ['sxhkd'] }
     - { role: andrewrothstein.bash, tags: ['andrewrothstein.bash'] }
     - zsh
