@@ -19,3 +19,4 @@
     - sudo
     - repo
     - pacman
+    - journald

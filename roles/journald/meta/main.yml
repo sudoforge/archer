@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    configure systemd journal
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - journal
+    - journald
+    - log
+    - logs
+    - systemd
+dependencies : []
