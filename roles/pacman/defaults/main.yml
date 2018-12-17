@@ -1,4 +1,10 @@
 ---
+sudoforge_pacman_config:
+  - HoldPkg = pacman glibc
+  - Architecture = auto
+  - CheckSpace
+  - SigLevel = Required DatabaseOptional
+  - LocalFileSigLevel = Optional
 sudoforge_pacman_repositories:
   - name: core
     config:
@@ -9,3 +15,4 @@ sudoforge_pacman_repositories:
   - name: community
     config:
       - Include = /etc/pacman.d/mirrorlist
+sudoforge_pacman_packages: []

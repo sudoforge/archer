@@ -25,9 +25,9 @@
   tags:
     - sudoforge.pacman
 
-- name: Copy pacman configuration file
-  copy:
-    src: pacman.conf
+- name: apply template for /etc/pacman.conf
+  template:
+    src: pacman.conf.j2
     dest: /etc/pacman.conf
   tags:
     - sudoforge.pacman
@@ -46,7 +46,7 @@
     src: paccache.timer
     dest: /etc/systemd/system/paccache.timer
   notify:
-    - reload systemd config
+    - reload systemd daemon
     - restart paccache
   tags:
     - sudoforge.pacman
@@ -64,6 +64,7 @@
     update_cache: "yes"
   tags:
     - sudoforge.pacman
+    - notest
 
 - name: Install packages
   pacman:

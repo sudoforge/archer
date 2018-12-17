@@ -1,5 +1,5 @@
 [Unit]
-Description=Clean-up Old Pacman Files
+Description=cleanup old pacman files
 
 [Service]
 Type=oneshot
