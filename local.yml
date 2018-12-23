@@ -10,6 +10,7 @@
     - { role: bootloader, tags: ['bootloader'] }
     - networkd
     - wpa_supplicant
+    - unbound
     - { role: sxhkd, tags: ['sxhkd'] }
     - { role: andrewrothstein.bash, tags: ['andrewrothstein.bash'] }
     - zsh

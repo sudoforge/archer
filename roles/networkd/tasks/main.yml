@@ -16,23 +16,10 @@
   tags:
     - sudoforge.networkd
 
-- name: Create symlink to systemd's resolvconf at /etc/resolv.conf
-  file:
-    force: "yes"
-    path: /etc/resolv.conf
-    state: link
-    src: /run/systemd/resolve/stub-resolv.conf
-  tags:
-    - notest
-    - sudoforge.networkd
-
-- name: Enable and start systemd's network services
+- name: Enable and start systemd-networkd.service
   systemd:
-    name: "{{ item }}"
+    name: systemd-networkd.service
     enabled: yes
     state: started
-  loop:
-    - systemd-networkd.service
-    - systemd-resolved.service
   tags:
     - sudoforge.networkd

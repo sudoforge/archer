@@ -5,4 +5,3 @@
     state: restarted
   with_items:
     - systemd-networkd.service
-    - systemd-resolved.service

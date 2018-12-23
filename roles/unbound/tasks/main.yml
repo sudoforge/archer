@@ -1,0 +1,53 @@
+---
+- name: install unbound
+  pacman:
+    name: unbound
+    state: present
+  tags:
+    - sudoforge.unbound
+
+- name: push root hints
+  copy:
+    src: root.hints
+    dest: /etc/unbound/root.hints
+  tags:
+    - sudoforge.unbound
+
+- name: apply template for /etc/unbound/unbound.conf
+  template:
+    src: unbound.conf.j2
+    dest: /etc/unbound/unbound.conf
+  notify:
+    - restart unbound
+  tags:
+    - sudoforge.unbound
+
+- name: enable and start unbound
+  service:
+    name: unbound.service
+    enabled: yes
+    state: started
+  tags:
+    - sudoforge.unbound
+
+- name: copy root.hints update service file
+  copy:
+    src: roothints.service
+    dest: /etc/systemd/system/roothints.service
+  tags:
+    - sudoforge.unbound
+
+- name: copy root.hints timer file
+  copy:
+    src: roothints.timer
+    dest: /etc/systemd/system/roothints.timer
+  tags:
+    - sudoforge.unbound
+
+- name: enable and start roothints.timer
+  service:
+    name: roothints.timer
+    enabled: yes
+    state: started
+  tags:
+    - sudoforge.unbound
