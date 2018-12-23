@@ -7,4 +7,4 @@ Target = pacman-mirrorlist
 Description = Updating mirror list...
 When = PostTransaction
 Depends = reflector
-Exec = /usr/bin/sh -c "[ -f /etc/pacman.d/mirrolist.pacnew ] && /usr/bin/mv /etc/pacman.d/mirrorlist.pacnew /etc/pacman.d/mirrorlist ; /usr/bin/reflector --latest 15 --sort rate --save /etc/pacman.d/mirrorlist"
+Exec = /usr/bin/sh -c "[ -f /etc/pacman.d/mirrorlist.pacnew ] && /usr/bin/mv /etc/pacman.d/mirrorlist.pacnew /etc/pacman.d/mirrorlist ; /usr/bin/reflector --latest 15 --sort rate --save /etc/pacman.d/mirrorlist"

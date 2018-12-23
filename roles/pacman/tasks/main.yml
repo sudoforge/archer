@@ -59,13 +59,6 @@
   tags:
     - sudoforge.pacman
  
-- name: Refresh pacman mirrors
-  pacman:
-    update_cache: "yes"
-  tags:
-    - sudoforge.pacman
-    - notest
-
 - name: Install packages
   pacman:
     name: "{{ sudoforge_pacman_packages }}"
