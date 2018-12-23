@@ -7,6 +7,18 @@ bootloader:
     enabled: false
     options: []
 
+sudoforge_firejail_blacklist:
+  - ~/.calendars
+  - ~/.config/vdirsyncer
+  - ~/.contacts
+  - ~/.keys
+  - ~/.mbsyncrc
+  - ~/.offlineimap
+  - ~/.offlineimaprc
+  - ~/.password-store
+  - ~/.vdirsyncer
+  - ~/library
+
 hostname:
   enabled: false
   name: archer
@@ -29,11 +41,14 @@ initramfs:
     - keyboard
     - fsck
 
+sudoforge_journald_max_size: 500M
+
 sudoforge_lightdm:
   enable_service: false
   greeter:
     package: false
     config: []
+
 # which greeter to install, e.g. 'gtk' or 'webkit2'
 # set to false to disable
 sudoforge_lightdm_greeter: false
@@ -57,7 +72,15 @@ locale:
     - en_DK.UTF-8
 
 sudoforge_networkd_profiles:
-  - ethernet
+  - name: wired
+    priority: 20
+    config:
+      Match:
+        - Name=en*
+      Network:
+        - DHCP=yes
+      DHCP:
+        - RouteMetric=10
 
 ntp:
   enabled: false
@@ -71,6 +94,12 @@ ntp:
     - 1.pool.ntp.org
     - 0.us.pool.ntp.org
 
+sudoforge_pacman_config:
+  - HoldPkg = pacman glibc
+  - Architecture = auto
+  - CheckSpace
+  - SigLevel = Required DatabaseOptional
+  - LocalFileSigLevel = Optional
 sudoforge_pacman_repositories:
   - name: core
     config:
@@ -81,6 +110,7 @@ sudoforge_pacman_repositories:
   - name: community
     config:
       - Include = /etc/pacman.d/mirrorlist
+sudoforge_pacman_packages: []
 
 dotfiles:
 
@@ -97,6 +127,13 @@ timezone:
   hwclock: UTC
   zoneinfo: UTC
 
+sudoforge_unbound_nameservers:
+  - 1.1.1.1     # Cloudflare DNS over HTTPS
+  - 1.0.0.1     # Cloudflare DNS over HTTPS
+  - 8.8.8.8     # Google
+  - 209.244.0.3 # Level 3
+  - 74.82.42.42 # Hurricane Electric
+
 sudoforge_user_list: []
 
-wpa_supplicant:
+sudoforge_wpa_supplicant_configs: []
