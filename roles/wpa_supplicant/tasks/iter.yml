@@ -1,15 +1,25 @@
 ---
-- name: Apply template for /etc/wpa_supplicant/wpa_supplicant.conf
+- name: "Apply template for /etc/wpa_supplicant/wpa_supplicant-{{ item.interface }}.conf"
   template:
     src: wpa_supplicant.conf.j2
     dest: "/etc/wpa_supplicant/wpa_supplicant-{{ item.interface }}.conf"
+  register: template
   tags:
     - sudoforge.wpa_supplicant
     - chroot
 
-- name: Enable systemd services
+- name: "Enable systemd service: wpa_supplicant@{{ item.interface }}.service"
   service:
     name: "wpa_supplicant@{{ item.interface }}.service"
     enabled: true
+  tags:
+    - sudoforge.wpa_supplicant
+
+- name: "Restart systemd service: wpa_supplicant@{{ item.interface }}.service"
+  service:
+    name: "wpa_supplicant@{{ item.interface }}.service"
+    state: restarted
+  when:
+    - template.changed
   tags:
     - sudoforge.wpa_supplicant
