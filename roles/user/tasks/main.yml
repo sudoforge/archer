@@ -2,8 +2,7 @@
 - name: Create unique list of groups
   set_fact:
     merged_group_list: "{{ merged_group_list|default([]) + item.groups | unique | sort }}"
-  with_items:
-    - "{{ sudoforge_user_list }}"
+  loop: "{{ sudoforge_user_list }}"
   tags:
     - sudoforge.user
 
@@ -11,8 +10,7 @@
   group:
     name: "{{ item }}"
     state: present
-  with_items:
-    - "{{ merged_group_list }}"
+  loop: "{{ merged_group_list }}"
   tags:
     - sudoforge.user
 
@@ -26,8 +24,7 @@
     name: "{{ item.username }}"
     shell: "{{ item.shell | default('/usr/bin/bash') }}"
     uid: "{{ item.uid }}"
-  with_items:
-    - "{{ sudoforge_user_list }}"
+  loop: "{{ sudoforge_user_list }}"
   tags:
     - sudoforge.user
 
@@ -37,8 +34,7 @@
     state: directory
     owner: "{{ item.username }}"
     group: "{{ item.primary_group }}"
-  with_items:
-    - "{{ sudoforge_user_list }}"
+  loop: "{{ sudoforge_user_list }}"
   tags:
     - sudoforge.user
 
@@ -46,7 +42,6 @@
   template:
     src: logrotate.j2
     dest: "/etc/logrotate.d/user.{{ item.username }}"
-  with_items:
-    - "{{ sudoforge_user_list }}"
+  loop: "{{ sudoforge_user_list }}"
   tags:
     - sudoforge.user
