@@ -1,9 +1,4 @@
 ---
-- debug:
-    msg: "{{ repo.1 }}"
-  tags:
-    - sudoforge.repo
-
 - name: install dependencies
   package:
     name: "{{ item }}"
