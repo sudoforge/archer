@@ -45,3 +45,15 @@
   loop: "{{ sudoforge_user_list }}"
   tags:
     - sudoforge.user
+
+- name: manage systemd services
+  become: yes
+  become_user: "{{ item.0.username }}"
+  service:
+    scope: user
+    name: "{{ item.1.name }}"
+    enabled: "{{ item.1.enabled }}"
+    state: "{{ item.1.state }}"
+  loop: "{{ sudoforge_user_list | subelements('services') }}"
+  tags:
+    - sudoforge.user
