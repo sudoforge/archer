@@ -1,0 +1,15 @@
+---
+- name: Install cronie
+  package:
+    name: cronie
+    state: present
+  tags:
+    - sudoforge.cronie
+
+- name: Start and enable cronie.service
+  service:
+    name: cronie.service
+    enabled: yes
+    state: started
+  tags:
+    - sudoforge.cronie

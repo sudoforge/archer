@@ -21,3 +21,4 @@
     - repo
     - pacman
     - journald
+    - cronie
