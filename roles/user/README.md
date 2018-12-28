@@ -20,7 +20,7 @@ See `defaults/main.yml`
 ---
 - hosts: all
   roles:
-    - sudoforge.users
+    - sudoforge.user
 ```
 
 ## License
