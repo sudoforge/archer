@@ -1,0 +1,15 @@
+---
+- name: install optional dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ sudoforge_glances_optdeps }}"
+  tags:
+    - sudoforge.glances
+
+- name: install glances
+  package:
+    name: glances
+    state: present
+  tags:
+    - sudoforge.glances

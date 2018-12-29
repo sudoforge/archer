@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    install glances and optional dependencies
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - glances
+    - monitoring
+    - performance
+    - system
+    - usage
+dependencies : []

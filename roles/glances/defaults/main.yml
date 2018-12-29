@@ -1,0 +1,8 @@
+---
+sudoforge_glances_optdeps:
+  - hddtemp
+  - python-bottle
+  - python-docker
+  - python-matplotlib
+  - python-netifaces
+  - python-zeroconf

@@ -22,3 +22,4 @@
     - pacman
     - journald
     - cronie
+    - glances
