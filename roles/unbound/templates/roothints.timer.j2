@@ -1,0 +1,9 @@
+[Unit]
+Description=Update root.hints on a schedule
+
+[Timer]
+OnCalendar={{ sudoforge_unbound_roothints_timer }}
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -37,9 +37,9 @@
   tags:
     - sudoforge.unbound
 
-- name: copy root.hints timer file
-  copy:
-    src: roothints.timer
+- name: apply template for /etc/systemd/system/roothints.timer
+  template:
+    src: roothints.timer.j2
     dest: /etc/systemd/system/roothints.timer
   tags:
     - sudoforge.unbound
