@@ -1,0 +1,43 @@
+---
+- name: "create user '{{ user.username }}'"
+  user:
+    create_home: "{{ user.create_home }}"
+    group: "{{ user.primary_group }}"
+    groups: "{{ user.groups }}"
+    home: "{{ user.home }}"
+    move_home: "yes"
+    name: "{{ user.username }}"
+    shell: "{{ user.shell | default('/usr/bin/bash') }}"
+    uid: "{{ user.uid }}"
+  tags:
+    - sudoforge.user
+
+- name: Create user log directory
+  file:
+    path: "/var/log/user/{{ user.username }}"
+    state: directory
+    owner: "{{ user.username }}"
+    group: "{{ user.primary_group }}"
+  when:
+    - sudoforge_user.users is defined
+  tags:
+    - sudoforge.user
+
+- name: apply template for logrotate configuration
+  template:
+    src: logrotate.j2
+    dest: "/etc/logrotate.d/user.{{ user.username }}"
+  tags:
+    - sudoforge.user
+
+- name: manage services
+  become: yes
+  become_user: "{{ user.username }}"
+  service:
+    scope: user
+    name: "{{ item.name }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.state }}"
+  loop: "{{ user.services }}"
+  tags:
+    - sudoforge.user

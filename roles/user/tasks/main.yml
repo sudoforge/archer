@@ -1,8 +1,10 @@
 ---
 - name: Create unique list of groups
   set_fact:
-    merged_group_list: "{{ merged_group_list|default([]) + item.groups | unique | sort }}"
-  loop: "{{ sudoforge_user_list }}"
+    merged_group_list: "{{ merged_group_list|default([]) + [item.primary_group] + item.groups | unique | sort }}"
+  loop: "{{ sudoforge_user.users }}"
+  when:
+    - sudoforge_user.users is defined
   tags:
     - sudoforge.user
 
@@ -11,49 +13,16 @@
     name: "{{ item }}"
     state: present
   loop: "{{ merged_group_list }}"
+  when:
+    - sudoforge_user.users is defined
   tags:
     - sudoforge.user
 
-- name: Create users and assign to groups
-  user:
-    create_home: "{{ item.create_home }}"
-    group: "{{ item.primary_group }}"
-    groups: "{{ item.groups }}"
-    home: "{{ item.home }}"
-    move_home: "yes"
-    name: "{{ item.username }}"
-    shell: "{{ item.shell | default('/usr/bin/bash') }}"
-    uid: "{{ item.uid }}"
-  loop: "{{ sudoforge_user_list }}"
-  tags:
-    - sudoforge.user
-
-- name: Create user log directories
-  file:
-    path: "/var/log/user/{{ item.username }}"
-    state: directory
-    owner: "{{ item.username }}"
-    group: "{{ item.primary_group }}"
-  loop: "{{ sudoforge_user_list }}"
-  tags:
-    - sudoforge.user
-
-- name: Push logrotate config for user logs
-  template:
-    src: logrotate.j2
-    dest: "/etc/logrotate.d/user.{{ item.username }}"
-  loop: "{{ sudoforge_user_list }}"
-  tags:
-    - sudoforge.user
-
-- name: manage systemd services
-  become: yes
-  become_user: "{{ item.0.username }}"
-  service:
-    scope: user
-    name: "{{ item.1.name }}"
-    enabled: "{{ item.1.enabled }}"
-    state: "{{ item.1.state }}"
-  loop: "{{ sudoforge_user_list | subelements('services') }}"
+- include_tasks: user.yml
+  loop: "{{ sudoforge_user.users }}"
+  loop_control:
+    loop_var: user
+  when:
+    - sudoforge_user.users is defined
   tags:
     - sudoforge.user

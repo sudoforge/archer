@@ -1,8 +1,9 @@
 # {{ ansible_managed }}
 
-/var/log/user/{{ item.username }}/*.log {
-    missingok
-    noolddir
-    {% if item.logrotate is defined %}rotate {{ item.logrotate }}
-    {% endif %}
+/var/log/user/{{ user.username }}/*.log {
+  missingok
+  noolddir
+{% if user.logrotate is defined %}
+  rotate {{ user.logrotate }}
+{% endif %}
 }

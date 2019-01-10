@@ -1,2 +1,4 @@
 ---
-sudoforge_user_list: []
+sudoforge_user:
+  # a list of users
+  users: []

@@ -1,0 +1,9 @@
+---
+- name: restart sshd.socket
+  service:
+    name: sshd.socket
+    state: restarted
+  when:
+    - sudoforge_ssh_enable_sshd == True
+  tags:
+    - sudoforge.ssh
