@@ -1,5 +1,5 @@
 ---
-- name: Install dependencies
+- name: install dependencies
   package:
     name: "{{ item }}"
     state: present
@@ -11,7 +11,7 @@
   tags:
     - sudoforge.pacman
 
-- name: Create pacman hook directory
+- name: create pacman hook directory
   file:
     path: /etc/pacman.d/hooks
     state: directory
@@ -61,7 +61,7 @@
  
 - name: Install packages
   pacman:
-    name: "{{ sudoforge_pacman_packages }}"
+    name: "{{ pacman_packages }}"
     state: present
   tags:
     - sudoforge.pacman

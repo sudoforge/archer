@@ -1,7 +1,7 @@
 ---
 - name: Create unique list of groups
   set_fact:
-    merged_group_list: "{{ merged_group_list|default([]) + [item.primary_group] + item.groups | unique | sort }}"
+    merged_group_list: "{{ merged_group_list|default([]) + [item.primary_group | default(item.username)] + (item.groups | default([])) | unique | sort }}"
   loop: "{{ sudoforge_user.users }}"
   when:
     - sudoforge_user.users is defined

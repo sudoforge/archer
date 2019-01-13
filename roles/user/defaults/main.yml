@@ -2,3 +2,13 @@
 sudoforge_user:
   # a list of users
   users: []
+  #  # an example user
+  #  - username: foobar
+  #    uid: 1000
+  #
+  #    # optional parameters
+  #    services:
+  #     - service: foo.service
+  #       state: enabled
+  #       started: false
+  #    git:

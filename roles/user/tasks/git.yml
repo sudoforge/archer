@@ -1,0 +1,33 @@
+---
+- name: install dependencies
+  become: yes
+  become_user: root
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ repo.dependencies }}"
+  when:
+    - repo.dependencies is defined
+  tags:
+    - sudoforge.repo
+
+- name: clone repository
+  git:
+    repo: "{{ repo.source }}"
+    dest: "{{ repo.destination }}"
+    key_file: "{{ repo.keyfile | default() }}"
+    update: "{{ repo.update | bool }}"
+  register: clone
+  tags:
+    - sudoforge.repo
+
+- name: run commands in repository context
+  command: "{{ item }}"
+  args:
+    chdir: "{{ repo.destination }}"
+  loop: "{{ repo.commands }}"
+  when:
+    - repo.commands is defined
+    - clone.changed
+  tags:
+    - sudoforge.repo

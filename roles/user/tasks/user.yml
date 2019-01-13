@@ -1,43 +1,67 @@
 ---
-- name: "create user '{{ user.username }}'"
+- name: "{{ user.username }} : create user"
   user:
-    create_home: "{{ user.create_home }}"
-    group: "{{ user.primary_group }}"
-    groups: "{{ user.groups }}"
-    home: "{{ user.home }}"
+    create_home: "{{ user.create_home | default('no') }}"
+    group: "{{ user.primary_group | default(user.username) }}"
+    groups: "{{ user.groups | default([]) }}"
+    home: "{{ user.home | default() }}"
     move_home: "yes"
     name: "{{ user.username }}"
     shell: "{{ user.shell | default('/usr/bin/bash') }}"
     uid: "{{ user.uid }}"
+    state: present
+    system: "no"
   tags:
     - sudoforge.user
 
-- name: Create user log directory
+- name: "{{ user.username }} : create user log directory"
   file:
     path: "/var/log/user/{{ user.username }}"
     state: directory
     owner: "{{ user.username }}"
-    group: "{{ user.primary_group }}"
+    group: "{{ user.primary_group | default(user.username) }}"
   when:
-    - sudoforge_user.users is defined
+    - user.uid >= 1000
   tags:
     - sudoforge.user
 
-- name: apply template for logrotate configuration
+- name: "{{ user.username }} : apply template for logrotate configuration"
   template:
     src: logrotate.j2
     dest: "/etc/logrotate.d/user.{{ user.username }}"
   tags:
     - sudoforge.user
 
-- name: manage services
+- name: "{{ user.username }} : apply template for /etc/sudoers.d/{{ user.username }}"
+  template:
+    src: sudoers.j2
+    dest: "/etc/sudoers.d/00_user_{{ user.username }}"
+  when:
+    - user.sudo is defined
+    - user.sudo.config is defined
+  tags:
+    - sudoforge.user
+
+- name: "{{ user.username }} : mangae git repositories"
+  include_tasks: git.yml
+  become: yes
+  become_user: "{{ user.username }}"
+  loop: "{{ user.git.repositories | default([]) }}"
+  loop_control:
+    loop_var: repo
+  when:
+    - user.git is defined
+  tags:
+    - sudoforge.user
+
+- name: "{{ user.username }} : manage services"
   become: yes
   become_user: "{{ user.username }}"
   service:
     scope: user
-    name: "{{ item.name }}"
+    name: "{{ item.unit }}"
     enabled: "{{ item.enabled }}"
     state: "{{ item.state }}"
-  loop: "{{ user.services }}"
+  loop: "{{ user.services | default([]) }}"
   tags:
     - sudoforge.user

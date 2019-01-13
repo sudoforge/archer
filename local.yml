@@ -18,7 +18,6 @@
     - lightdm
     - user
     - sudo
-    - repo
     - pacman
     - journald
     - cronie

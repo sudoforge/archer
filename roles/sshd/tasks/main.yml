@@ -1,20 +1,4 @@
 ---
-- name: determine role facts
-  set_fact:
-    sudoforge_sshd:
-      service:
-        enabled: "{{ sudoforge_sshd.service.enabled if sudoforge_sshd is defined and sudoforge_sshd.service is defined else 'false' }}"
-      config:
-        port: "{{ sudoforge_sshd.config.port if sudoforge_sshd is defined and sudoforge_sshd.config is defined and sudoforge_sshd.config.port is defined else '22' }}"
-        allowusers: "{{ sudoforge_sshd.config.allowusers if sudoforge_sshd is defined and sudoforge_sshd.config is defined and sudoforge_sshd.config.allowusers is defined else '' }}"
-  tags:
-    - sudoforge.sshd
-
-- debug:
-    var: sudoforge_sshd
-  tags:
-    - sudoforge.sshd
-
 - name: install openssh
   package:
     name: openssh
@@ -49,7 +33,7 @@
 - name: manage sshd.socket service
   service:
     name: sshd.socket
-    enabled: "{{ 'yes' if sudoforge_sshd.service.enabled == true else 'no' }}"
-    state: "{{ 'started' if sudoforge_sshd.service.enabled == true else 'stopped' }}"
+    enabled: "{{ 'yes' if sshd_service_enabled == true else 'no' }}"
+    state: "{{ 'started' if sshd_service_enabled == true else 'stopped' }}"
   tags:
     - sudoforge.sshd

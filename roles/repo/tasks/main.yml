@@ -1,7 +1,0 @@
----
-- include_tasks: repo.yml
-  loop: "{{ sudoforge_user_list | subelements('repos', skip_missing=True) }}"
-  loop_control:
-    loop_var: repo
-  tags:
-    - sudoforge.repo

@@ -1,4 +1,8 @@
 ---
-sudoforge_sudo_groups:
-  - name: wheel
-    nopasswd: []
+sudoforge_sudo:
+  config: |-
+    # group privilege specification
+    %wheel ALL=(ALL) ALL
+
+    # user privilege specification
+    root ALL=(ALL) ALL

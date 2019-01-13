@@ -1,18 +1,3 @@
 # {{ ansible_managed }}
 
-[options]
-{% for option in sudoforge_pacman_config %}
-{{ option }}
-{% endfor %}
-{% if sudoforge_pacman_repositories | length %}
-
-{% endif %}
-{% for repo in sudoforge_pacman_repositories %}
-[{{ repo.name }}]
-{% for line in repo.config %}
-{{ line }}
-{% endfor %}
-{%- if not loop.last %}
-
-{% endif %}
-{% endfor %}
+{{ pacman_config }}
