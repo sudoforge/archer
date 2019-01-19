@@ -1,0 +1,4 @@
+---
+aur_user: aurmgr
+aur_repo_name: aur
+aur_repo_root: /var/cache/pacman/aur

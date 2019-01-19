@@ -1,0 +1,29 @@
+---
+- name: create aur user
+  user:
+    name: "{{ aur_user }}"
+    create_home: "no"
+    system: "yes"
+    state: present
+  tags:
+    - sudoforge.aur
+
+- name: create repository root
+  file:
+    path: "{{ aur_repo_root }}"
+    state: directory
+    owner: "{{ aur_user }}"
+    group: root
+  tags:
+    - sudoforge.aur
+
+- name: create repository database
+  become: "yes"
+  become_user: "{{ aur_user }}"
+  command: "/usr/bin/repo-add {{ [aur_repo_root, aur_repo_name] | join('/') }}.db.tar"
+  register: create_repo
+  tags:
+    - sudoforge.aur
+
+# get package(s)
+# add to repository

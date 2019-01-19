@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    install aurutils and create a local AUR repository
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - archlinux
+    - aur
+    - pacman
+dependencies : []
