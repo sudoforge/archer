@@ -1,4 +1,8 @@
 ---
+aur_user: aurmgr
+aur_repo_name: aur
+aur_repo_root: /var/cache/pacman/aur
+
 sudoforge_background_directory: /usr/share/backgrounds
 sudoforge_background_images: []
 
@@ -18,6 +22,14 @@ sudoforge_firejail_blacklist:
   - ~/.password-store
   - ~/.vdirsyncer
   - ~/library
+
+sudoforge_glances_optdeps:
+  - hddtemp
+  - python-bottle
+  - python-docker
+  - python-matplotlib
+  - python-netifaces
+  - python-zeroconf
 
 hostname:
   enabled: false
@@ -94,29 +106,59 @@ ntp:
     - 1.pool.ntp.org
     - 0.us.pool.ntp.org
 
-sudoforge_pacman_config:
+pacman_packages: []
+pacman_repositories:
+  - name: core
+    priority: "01"
+    options: []
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: extra
+    priority: "02"
+    options: []
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: community
+    priority: "03"
+    options: []
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+pacman_options:
   - HoldPkg = pacman glibc
   - Architecture = auto
   - CheckSpace
   - SigLevel = Required DatabaseOptional
   - LocalFileSigLevel = Optional
-sudoforge_pacman_repositories:
-  - name: core
-    config:
-      - Include = /etc/pacman.d/mirrorlist
-  - name: extra
-    config:
-      - Include = /etc/pacman.d/mirrorlist
-  - name: community
-    config:
-      - Include = /etc/pacman.d/mirrorlist
-sudoforge_pacman_packages: []
 
-dotfiles:
+sshd_service_enabled: false
+sshd_socket_port: 22
+sshd_config: |-
+  Port 22
+  Protocol 2
+  PermitRootLogin no
+  PasswordAuthentication no
+  X11Forwarding no
+  PrintMotd no
+  PrintLastLog yes
+  AllowUsers root
+  LoginGraceTime 1m
+  ChallengeResponseAuthentication no
+  PubkeyAuthentication yes
+  Subsystem sftp	/usr/lib/ssh/sftp-server
 
-sudoforge_sudo_groups:
-  - name: wheel
-    nopasswd: []
+  # Preferred algorithms from
+  # https://wiki.mozilla.org/Security/Guidelines/OpenSSH#Modern_.28OpenSSH_6.7.2B.29
+  KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+  Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+  MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+sudoforge_sudo:
+  config: |-
+    # group privilege specification
+    %wheel ALL=(ALL) ALL
+
+    # user privilege specification
+    root ALL=(ALL) ALL
 
 sxhkd:
   enabled: false
@@ -127,6 +169,7 @@ timezone:
   hwclock: UTC
   zoneinfo: UTC
 
+# nameservers to use, in order of preference
 sudoforge_unbound_nameservers:
   - 1.1.1.1     # Cloudflare DNS over HTTPS
   - 1.0.0.1     # Cloudflare DNS over HTTPS
@@ -134,6 +177,21 @@ sudoforge_unbound_nameservers:
   - 209.244.0.3 # Level 3
   - 74.82.42.42 # Hurricane Electric
 
-sudoforge_user_list: []
+# how often to update the root name server list
+sudoforge_unbound_roothints_timer: monthly
+
+sudoforge_user:
+  # a list of users
+  users: []
+  #  # an example user
+  #  - username: foobar
+  #    uid: 1000
+  #
+  #    # optional parameters
+  #    services:
+  #     - service: foo.service
+  #       state: enabled
+  #       started: false
+  #    git:
 
 sudoforge_wpa_supplicant_configs: []
