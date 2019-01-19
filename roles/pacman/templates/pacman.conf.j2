@@ -1,3 +1,9 @@
 # {{ ansible_managed }}
 
-{{ pacman_config }}
+{% if pacman_options | length %}
+[options]
+{% for option in pacman_options %}
+{{ option }}
+{% endfor %}
+{% endif %}
+Include = /etc/pacman.d/repos/*.conf

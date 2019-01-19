@@ -1,18 +1,24 @@
 ---
 pacman_packages: []
-pacman_config: |-
-  [options]
-  HoldPkg = pacman glibc
-  Architecture = auto
-  CheckSpace
-  SigLevel = Required DatabaseOptional
-  Local
-
-  [core]
-  Include = /etc/pacman.d/mirrorlist
-
-  [extra]
-  Include = /etc/pacman.d/mirrorlist
-
-  [community]
-  Include = /etc/pacman.d/mirrorlist
+pacman_repositories:
+  - name: core
+    priority: "01"
+    options: []
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: extra
+    priority: "02"
+    options: []
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+  - name: community
+    priority: "03"
+    options: []
+    config:
+      - Include = /etc/pacman.d/mirrorlist
+pacman_options:
+  - HoldPkg = pacman glibc
+  - Architecture = auto
+  - CheckSpace
+  - SigLevel = Required DatabaseOptional
+  - LocalFileSigLevel = Optional

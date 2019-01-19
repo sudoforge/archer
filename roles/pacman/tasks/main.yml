@@ -25,6 +25,23 @@
   tags:
     - sudoforge.pacman
 
+- name: create pacman repos directory
+  file:
+    path: /etc/pacman.d/repos
+    state: directory
+  when:
+    - pacman_repos | length
+  tags:
+    - sudoforge.pacman
+
+- name: create pacman repository configuration files
+  template:
+    src: repo.conf.j2
+    dest: "/etc/pacman.d/repos/{{ [item.priority | default(), item.name] | join('.') }}.conf"
+  loop: "{{ pacman_repositories }}"
+  tags:
+    - sudoforge.pacman
+
 - name: apply template for /etc/pacman.conf
   template:
     src: pacman.conf.j2
