@@ -25,12 +25,12 @@
   tags:
     - sudoforge.pacman
 
-- name: create pacman repos directory
+- name: create /etc/pacman.d/repos
   file:
     path: /etc/pacman.d/repos
     state: directory
   when:
-    - pacman_repos | length
+    - pacman_repositories | length
   tags:
     - sudoforge.pacman
 

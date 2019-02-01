@@ -3,18 +3,15 @@ pacman_packages: []
 pacman_repositories:
   - name: core
     priority: "01"
-    options: []
-    config:
+    options:
       - Include = /etc/pacman.d/mirrorlist
   - name: extra
     priority: "02"
-    options: []
-    config:
+    options:
       - Include = /etc/pacman.d/mirrorlist
   - name: community
     priority: "03"
-    options: []
-    config:
+    options:
       - Include = /etc/pacman.d/mirrorlist
 pacman_options:
   - HoldPkg = pacman glibc

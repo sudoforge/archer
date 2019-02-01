@@ -1,13 +1,6 @@
 # {{ ansible_managed }}
 
-{% if item.options | length %}
-[options]
-{% for option in item.options %}
-{{ option }}
-{% endfor %}
-
-{% endif %}
 [{{ item.name }}]
-{% for option in item.config %}
+{% for option in item.options %}
 {{ option }}
 {% endfor %}
