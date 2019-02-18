@@ -1,0 +1,6 @@
+---
+- name: Install autorandr
+  aur: name=autorandr-git user={{ user.name }}
+  tags:
+    - aur
+    - autorandr

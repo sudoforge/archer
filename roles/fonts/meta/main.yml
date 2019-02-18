@@ -2,14 +2,12 @@
 galaxy_info:
   author: sudoforge
   description: >
-    install and configure sudo
+    install system fonts
   license: MIT
   min_ansible_version: 1.2
   platforms:
     - name: ArchLinux
       versions:
         - all
-  tags:
-    - sudo
-    - wheel
-dependencies: []
+  tags: []
+dependencies : []

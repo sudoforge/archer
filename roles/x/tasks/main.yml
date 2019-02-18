@@ -1,0 +1,27 @@
+---
+- name: install packages
+  pacman:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - xorg-server
+    - xorg-xinit
+    - xorg-xmodmap
+    - xorg-xdpyinfo
+    - xorg-xev
+    - xorg-sessreg
+    - xautomation
+
+- name: install video driver(s)
+  pacman:
+    name: "{{ xorg_video_drivers }}"
+    state: present
+
+- name: Add user to video group
+  user: name={{ user.name }} groups=video append=yes
+
+- import_tasks: sxhkd.yml
+- import_tasks: autorandr.yml
+- import_tasks: srandrd.yml
+- import_tasks: autocutsel.yml
+- import_tasks: xdg.yml
