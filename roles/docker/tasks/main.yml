@@ -1,0 +1,11 @@
+---
+- name: install docker
+  pacman:
+    name: docker
+    state: present
+
+- name: enable and start docker.service
+  systemd:
+    name: docker.service
+    enabled: yes
+    state: started

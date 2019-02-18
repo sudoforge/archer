@@ -4,24 +4,33 @@
     name: "{{ item }}"
     state: present
   loop:
+    - autocutsel
+    - autorandr
+    - sxhkd
+    - xautomation
+    - xdg-user-dirs
+    - xf86-input-libinput
     - xorg-server
-    - xorg-xinit
-    - xorg-xmodmap
+    - xorg-sessreg
     - xorg-xdpyinfo
     - xorg-xev
-    - xorg-sessreg
-    - xautomation
+    - xorg-xinit
+    - xorg-xmodmap
+  tags:
+    - sudoforge.x
 
 - name: install video driver(s)
   pacman:
     name: "{{ xorg_video_drivers }}"
     state: present
+  tags:
+    - sudoforge.x
 
-- name: Add user to video group
-  user: name={{ user.name }} groups=video append=yes
-
-- import_tasks: sxhkd.yml
-- import_tasks: autorandr.yml
-- import_tasks: srandrd.yml
-- import_tasks: autocutsel.yml
-- import_tasks: xdg.yml
+- name: Create XDG user directories
+  command: /usr/bin/xdg-user-dirs-update
+  become: yes
+  become_user: "{{ item.username }}"
+  loop: "{{ sudoforge_user.users }}"
+  tags:
+    - xdg
+    - sudoforge.x

@@ -1,0 +1,3 @@
+---
+udisks_auto_mount: True
+udisks_shared_mount: False

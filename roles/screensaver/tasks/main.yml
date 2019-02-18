@@ -1,0 +1,29 @@
+---
+- name: Install packages
+  pacman:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - xautolock
+    - physlock
+
+- name: Push lock script
+  copy:
+    src: lock.sh
+    dest: /usr/local/bin/lock
+    mode: 0755
+
+- name: Push screen lock service file
+  copy:
+    src: screenlock.service
+    dest: /etc/systemd/system/screenlock@.service
+  notify:
+    - reload systemd daemon
+
+- name: Enable screenlock services for users
+  systemd:
+    name: "screenlock@{{ item }}.service"
+    enabled: yes
+    state: started
+  loop: "{{ screensaver_service_users }}"
+    

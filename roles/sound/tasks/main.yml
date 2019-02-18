@@ -1,0 +1,20 @@
+---
+- name: install packages
+  pacman:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - alsa-utils
+    - pulseaudio
+    - pulseaudio-alsa
+    - pavucontrol
+  tags:
+    - sudoforge.sound
+
+- name: install pulseaudio-ctl from the AUR
+  aur:
+    name: pulseaudio-ctl
+    user: "{{ aur_user }}"
+    dbpath: "{{ aur_db_path }}"
+    state: present
+    install: true

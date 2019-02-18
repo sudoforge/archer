@@ -15,7 +15,9 @@
     - { role: andrewrothstein.bash, tags: ['andrewrothstein.bash'] }
     - zsh
     - background
+    - x
     - lightdm
+    - screensaver
     - user
     - sudo
     - aur
@@ -25,3 +27,9 @@
     - glances
     - sshd
     - fonts
+    - iptables
+    - nettools
+    - sound
+    - bluetooth
+    - hostsctl
+    - udisks

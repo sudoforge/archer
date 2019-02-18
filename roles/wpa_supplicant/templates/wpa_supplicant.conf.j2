@@ -7,5 +7,8 @@ network={
 {% for key in network.keys() %}
   {{ key }}={{ network[key] }}
 {% endfor %}
+{% if item.auto_priority == True and 'priority' not in network.keys() %}
+  priority={{ loop.length - (loop.index - 1) }}
+{% endif %}
 }
 {% endfor %}

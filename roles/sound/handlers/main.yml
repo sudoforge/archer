@@ -1,0 +1,11 @@
+---
+- name: restart pulse as user
+  systemd:
+    name: pulseaudio.service
+    user: yes
+    state: restarted
+  become: yes
+  become_user: "{{ item.name }}"
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ item.uid }}"
+  loop: "{{ pulseaudio_systemd_users }}"

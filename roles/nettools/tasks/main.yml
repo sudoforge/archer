@@ -1,0 +1,20 @@
+---
+- name: install packages
+  pacman:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - openvpn
+    - mtr
+    - net-tools
+    - bind-tools
+    - whois
+    - nmap
+    - tcpdump
+    - sshuttle
+    - wireshark-cli
+    - socat
+    - nethogs
+    - speedtest-cli
+  tags:
+    - sudoforge.nettools

@@ -1,0 +1,20 @@
+---
+- name: Install hostsctl
+  aur:
+    name: hostsctl
+    user: "{{ aur_user }}"
+    dbpath: "{{ aur_db_path }}"
+  tags:
+    - sudoforge.aur
+
+- name: Push hostsctl config
+  template:
+    src: hostsctl.conf.j2
+    dest: /etc/hostsctl.conf
+  tags:
+    - sudoforge.aur
+
+- name: Update hostsctl
+  command: hostsctl update
+  tags:
+    - sudoforge.aur

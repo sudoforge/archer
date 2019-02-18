@@ -1,0 +1,54 @@
+- name: Install bluetooth libraries and tools
+  pacman:
+    name: "{{ item }}"
+    state: present
+  loop:
+      - bluez
+      - bluez-firmware
+      - bluez-libs
+      - bluez-utils
+      - pulseaudio-bluetooth
+  notify:
+    - restart pulse as user
+  tags:
+    - sudoforge.bluetooth
+
+- name: Unblock the bluetooth service
+  service:
+    name: rfkill-block@bluetooth.service
+    enabled: no
+    state: stopped
+  when:
+    - bluetooth_enabled == True
+  tags:
+    - sudoforge.bluetooth
+
+- name: Enable and start the bluetooth service
+  service:
+    name: bluetooth.service
+    enabled: yes
+    state: started
+  when:
+    - bluetooth_enabled == True
+  tags:
+    - sudoforge.bluetooth
+
+- name: Disable and stop the bluetooth service
+  service:
+    name: bluetooth.service
+    enabled: no
+    state: stopped
+  when:
+    - bluetooth_enabled == False
+  tags:
+    - sudoforge.bluetooth
+
+- name: Block the bluetooth service
+  service:
+    name: rfkill-block@bluetooth.service
+    enabled: yes
+    state: started
+  when:
+    - bluetooth_enabled == False
+  tags:
+    - sudoforge.bluetooth

@@ -78,7 +78,8 @@
  
 - name: Install packages
   pacman:
-    name: "{{ pacman_packages }}"
+    name: "{{ item }}"
     state: present
+  loop: "{{ pacman_packages }}"
   tags:
     - sudoforge.pacman
