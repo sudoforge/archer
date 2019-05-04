@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: sudoforge
+  description: >
+    install hostsctl, and create a systemd timer for updating
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  tags:
+    - pulseaudio
+    - sound
+    - pavu
+    - alsa
+dependencies:
+  - { role: aur }
