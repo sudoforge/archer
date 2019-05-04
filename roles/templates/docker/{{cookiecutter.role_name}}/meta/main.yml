@@ -18,7 +18,7 @@ galaxy_info:
     {%- endfor %}
   {%- endif %}
 {%- if not cookiecutter.dependencies | length %}
-dependencies : []
+dependencies: []
 {%- else %}
 dependencies:
 {%- for dep in cookiecutter.dependencies.split() | unique | sort(case_sensitive=False) %}
