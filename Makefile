@@ -17,6 +17,6 @@ pull-defaults:
 	@sed -i '2,$${/.*/d;}' localhost.example.yml
 	@for d in $(DEFAULTS_DIRS); do \
 		echo "adding defaults from '$$d'"; \
-		sed '1d;$$s/$$/\n/' "$$d/main.yml" >> localhost.example.yml; \
+		sed '1d;$$s/$$/\n\n/' "$$d/main.yml" >> localhost.example.yml; \
 	done
-	@truncate -s -1 localhost.example.yml
+	@truncate -s -2 localhost.example.yml

@@ -8,8 +8,10 @@ sudoforge_aur_db_path: /var/cache/pacman/aur.db.tar
 # a list of packages to install from the AUR
 sudoforge_aur_packages: []
 
+
 sudoforge_background_directory: /usr/share/backgrounds
 sudoforge_background_images: []
+
 
 bootloader:
   systemd:
@@ -25,6 +27,7 @@ sudoforge_glances_optdeps:
   - python-matplotlib
   - python-netifaces
   - python-zeroconf
+
 
 hostname:
   enabled: false
@@ -50,7 +53,9 @@ initramfs:
     - keyboard
     - fsck
 
+
 sudoforge_journald_max_size: 500M
+
 
 sudoforge_lightdm:
   enable_service: false
@@ -71,6 +76,7 @@ sudoforge_lightdm_greeter_config: []
 # enable lightdm.service
 sudoforge_lightdm_enable_service: false
 
+
 locale:
   enabled: false
   lang: en_US.UTF-8
@@ -79,6 +85,7 @@ locale:
   locales:
     - en_US.UTF-8
     - en_DK.UTF-8
+
 
 sudoforge_networkd_profiles:
   - name: wired
@@ -91,6 +98,7 @@ sudoforge_networkd_profiles:
       DHCP:
         - RouteMetric=10
 
+
 ntp:
   enabled: false
   primary:
@@ -102,6 +110,7 @@ ntp:
     - 0.pool.ntp.org
     - 1.pool.ntp.org
     - 0.us.pool.ntp.org
+
 
 pacman_packages: []
 pacman_repositories:
@@ -124,7 +133,9 @@ pacman_options:
   - SigLevel = Required DatabaseOptional
   - LocalFileSigLevel = Optional
 
+
 screensaver_systemd_users: []
+
 
 sshd_service_enabled: false
 sshd_socket_port: 22
@@ -148,6 +159,7 @@ sshd_config: |-
   Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
   MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
 
+
 sudoforge_sudo:
   config: |-
     # group privilege specification
@@ -156,17 +168,21 @@ sudoforge_sudo:
     # user privilege specification
     root ALL=(ALL) ALL
 
+
 sxhkd:
   enabled: false
   service: false
+
 
 timezone:
   enabled: false
   hwclock: UTC
   zoneinfo: UTC
 
+
 udisks_auto_mount: True
 udisks_shared_mount: False
+
 
 # nameservers to use, in order of preference
 sudoforge_unbound_nameservers:
@@ -178,6 +194,7 @@ sudoforge_unbound_nameservers:
 
 # how often to update the root name server list
 sudoforge_unbound_roothints_timer: monthly
+
 
 sudoforge_user:
   # a list of users
@@ -192,5 +209,6 @@ sudoforge_user:
   #       state: enabled
   #       started: false
   #    git:
+
 
 sudoforge_wpa_supplicant_configs: []
