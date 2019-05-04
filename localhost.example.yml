@@ -18,7 +18,9 @@ bootloader:
     enabled: false
     options: []
 
-fonts:
+
+fonts: []
+
 
 sudoforge_glances_optdeps:
   - hddtemp
