@@ -17,3 +17,5 @@
     user: "{{ sudoforge_aur_user }}"
     dbpath: "{{ sudoforge_aur_db_path }}"
     install: true
+  tags:
+    - sudoforge.sound
