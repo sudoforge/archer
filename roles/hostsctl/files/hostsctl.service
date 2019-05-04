@@ -1,0 +1,6 @@
+[Unit]
+Description=Update /etc/hosts using hostsctl
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/hostsctl update

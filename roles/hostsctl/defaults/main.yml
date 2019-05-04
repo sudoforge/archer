@@ -1,2 +1,10 @@
 ---
-hostsctl_url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+# The url of the hosts file to use
+sudoforge_hostsctl_url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+
+# Whether or not to update on a schedule
+sudoforge_hostsctl_timer_enabled: true
+
+# The value for the OnCalendar option see the manual for systemd.timer(5) and
+# systemd.time(7) for more information
+sudoforge_hostsctl_timer_schedule: daily

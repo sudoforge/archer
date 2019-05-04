@@ -5,16 +5,30 @@
     user: "{{ sudoforge_aur_user }}"
     dbpath: "{{ sudoforge_aur_db_path }}"
   tags:
-    - sudoforge.aur
+    - sudoforge.hostsctl
 
 - name: Push hostsctl config
   template:
     src: hostsctl.conf.j2
     dest: /etc/hostsctl.conf
   tags:
-    - sudoforge.aur
+    - sudoforge.hostsctl
 
 - name: Update hostsctl
   command: hostsctl update
   tags:
-    - sudoforge.aur
+    - sudoforge.hostsctl
+
+- name: copy service file hostsctl.service
+  copy:
+    src: hostsctl.service
+    dest: /etc/systemd/system/hostsctl.service
+  tags:
+    - sudoforge.hostsctl
+
+- name: apply template for /etc/systemd/system/hostsctl.timer
+  template:
+    src: hostsctl.timer.j2
+    dest: /etc/systemd/system/hostsctl.timer
+  tags:
+    - sudoforge.hostsctl
