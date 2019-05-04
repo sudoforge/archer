@@ -83,7 +83,7 @@ class User(object):
             self.name = name
             self.id = uid
         except KeyError:
-            raise Exception("User '%s' not found" % name)
+            raise Exception(f"User '{ name }' not found")
 
 
 class SRCINFO(object):
@@ -119,9 +119,9 @@ class SRCINFO(object):
                         else:
                             self.store[key].append(value)
 
-        self.store['version'] = '%s-%s' % (self.store['pkgver'], self.store['pkgrel'])
+        self.store['version'] = f'{ self.store["pkgver"] }-{ self.store["pkgrel"] }'
         if self.store['epoch']:
-            self.store['version'] = '%s:%s' % (self.store['epoch'], self.store['version'])
+            self.store['version'] = f'{ self.store["epoch"] }-{ self.store["version"] }'
 
         rc, arch, stderr = module.run_command('uname -m', check_rc=False)
         arch = arch.replace('\n', '')
@@ -131,15 +131,14 @@ class SRCINFO(object):
         if self.store['arch'] == 'any':
             arch = 'any'
         elif arch not in self.store['arch']: 
-            errmsg = "Machine architecture '%s' not a valid target in list: %s"
-            module.fail_json(msg=errmsg % (arch, self.store['arch']))
+            module.fail_json(msg=f"Machine architecture '{arch}' not a valid target in list: {self.store['arch']}")
 
         self.store['targets'] = []
         if type(self.store['pkgname']) is 'list':
             for name in self.store['pkgname']:
-                self.store['targets'].append('%s-%s-%s.pkg.tar.xz' % (name, self.store['version'], arch))
+                self.store['targets'].append(f'{name}-{self.store["version"]}-{arch}.pkg.tar.xz')
         else:
-            self.store['targets'].append('%s-%s-%s.pkg.tar.xz' % (self.store['pkgname'], self.store['version'], arch))
+            self.store['targets'].append(f'{self.store["pkgname"]}-{self.store["version"]}-{arch}.pkg.tar.xz')
 
 
 class Package(object):
@@ -148,7 +147,7 @@ class Package(object):
     """
     def __init__(self, name, pkgver = None, pkgrel = None, epoch = None, skip_pgp_check = False):
         self.name = name
-        self.url = 'https://aur.archlinux.org/cgit/aur.git/snapshot/%s.tar.gz' % name
+        self.url = f'https://aur.archlinux.org/cgit/aur.git/snapshot/{name}.tar.gz'
         self.skip_pgp_check = skip_pgp_check
         self.__version(pkgver, pkgrel, epoch)
 
@@ -177,14 +176,14 @@ class Package(object):
                 else:
                     raise Exception("More than one filename match found")
             else:
-                raise Exception("Header '%s' not found or empty" % header)
+                raise Exception(f"Header '{header}' not found or empty")
             with open(filename, 'wb') as f:
                 for chunk in r.iter_content(chunk_size=1024):
                     f.write(chunk)
                 self.tarfile = os.path.join(os.getcwd(), filename)
 
         if not os.path.exists(self.tarfile):
-            raise Exception("Tarfile '%s' not found" % self.tarfile)
+            raise Exception(f"Tarfile '{self.tarfile}' not found")
         else:
             with tarfile.open(self.tarfile, 'r') as f:
                 f.extractall()
@@ -199,9 +198,9 @@ class Package(object):
         self.pkgrel = pkgrel
         self.pkgver = pkgver
         self.epoch = epoch
-        self.version = '%s-%s' % (pkgver, pkgrel)
+        self.version = f'{pkgver}-{pkgrel}'
         if epoch:
-            self.version = '%s:%s' % (epoch, self.version)
+            self.version = f'{epoch}:{self.version}'
 
 
 class Repository(object):
@@ -217,7 +216,7 @@ class Repository(object):
         if os.path.exists(self.path):
             # Get packages from existing repository
             cmd = subprocess.Popen(
-                'pacman -Sl %s | sed -e "s/^%s //"' % (self.name, self.name),
+                f'pacman -Sl { self.name } | sed -e "s/^{ self.name } //"',
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 shell=True)
@@ -233,7 +232,7 @@ class Repository(object):
                 match = re.match('^(\d+):', vstring)
                 if match:
                     epoch = match.groups()[0]
-                    vstring = vstring.replace('%s:' % epoch, '') # remove epoch
+                    vstring = vstring.replace(f'{epoch}:', '') # remove epoch
 
                 pkgver =  vstring.split('-')[0]
                 pkgrel = vstring.split('-')[1]
@@ -249,7 +248,7 @@ class Repository(object):
         os.chown(self.root, self.user.id, -1)
         self.packages = []
         try:
-            subprocess.Popen('sudo -u %s repo-add %s' % (self.user.name, self.path), shell=True)
+            subprocess.Popen(f'sudo -u {self.user.name} repo-add {self.path}', shell=True)
         except:
             raise Exception('Failed to create repository')
             
@@ -257,9 +256,9 @@ class Repository(object):
         """
         Sync repository database
         """
-        rc, stdout, stderr = module.run_command('sudo pacsync %s' % self.name, check_rc=False)
+        rc, stdout, stderr = module.run_command(f'sudo pacsync {self.name}', check_rc=False)
         if rc != 0:
-            module.fail_json(msg='failed to sync repository: %s' % stderr)
+            module.fail_json(msg=f'failed to sync repository: {stderr}')
 
     def build(self, module, package: Package, skip_pgp_check = False):
         """
@@ -274,18 +273,17 @@ class Repository(object):
             makepkg_args += ' -Acsr'
         else:
             makepkg_args += ' -csr'
-        cmd = 'sudo -u %s PKGDEST="%s" makepkg %s' % (self.user.name, self.root, makepkg_args)
+        cmd = f'sudo -u {self.user.name} PKGDEST="{self.root}" makepkg {makepkg_args}'
         rc, stdout, stderr = module.run_command(cmd, check_rc=False)
         if rc != 0:
-            module.fail_json(msg='failed to build package: %s' % stderr)
+            module.fail_json(msg=f'failed to build package: {stderr}')
 
     def add(self, module, package: Package):
-        cmd = 'sudo -u %s repo-add %s %s'
         for target in package.targets:
             pkgfile = os.path.join(self.root, target)
-            rc, stdout, stderr = module.run_command(cmd % (self.user.name, self.path, pkgfile), check_rc=False)
+            rc, stdout, stderr = module.run_command(f'sudo -u {self.user.name} repo-add {self.path} {pkgfile}', check_rc=False)
             if rc != 0:
-                module.fail_json(msg='failed to add package to repository: %s' % stderr)
+                module.fail_json(msg=f'failed to add package to repository: {stderr}')
 
     def has_package(self, package: Package):
         return any(rp.name == package.name and rp.version == package.version for rp in self.existing_packages)
@@ -311,7 +309,7 @@ def check_packages(module, repo: Repository, packages: [Package]):
             would_be_changed = package
 
     if would_be_changed:
-        module.exit_json(changed=True, msg='%s package(s) would be installed' % (len(would_be_changed)))
+        module.exit_json(changed=True, msg=f'{len(would_be_changed)} package(s) would be installed')
     else:
         module.exit_json(changed=False, msg='all packages are already installed')
 
@@ -326,7 +324,7 @@ def build_packages(module, repo: Repository, packages: [Package]):
         # Attempt to download the package
         package.download(module, repo.user)
         # If the package is already installed, skip the install
-        if repo.has_package(package):
+        if repo.has_package(package) and module.params['upgrade'] is False:
             continue
         # Change into the package directory
         with cd(package.root):
@@ -341,7 +339,7 @@ def build_packages(module, repo: Repository, packages: [Package]):
 
     # Exit with the number of packages succesfully installed
     if num_success > 0:
-        module.exit_json(changed=True, msg='added %s package(s) to the repository' % num_success)
+        module.exit_json(changed=True, msg=f'added {num_success} package(s) to the repository')
     else:
         module.exit_json(changed=False, msg='all packages were already installed')
 
@@ -352,6 +350,7 @@ def main():
             user = dict(required=True),
             name = dict(required=True),
             dbpath = dict(required=True),
+            update = dict(default=False, type='bool'),
             install = dict(default=False, type='bool'),
             skip_pgp = dict(default=False, type='bool'),
         ),
