@@ -2,8 +2,8 @@
 - name: create and add packages to local repository
   aur:
     name: "{{ item }}"
-    user: "{{ aur_user }}"
-    dbpath: "{{ aur_db_path }}"
-  loop: "{{ aur_packages }}"
+    user: "{{ sudoforge_aur_user }}"
+    dbpath: "{{ sudoforge_aur_db_path }}"
+  loop: "{{ sudoforge_aur_packages }}"
   tags:
     - sudoforge.aur

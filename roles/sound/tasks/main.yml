@@ -14,7 +14,6 @@
 - name: install pulseaudio-ctl from the AUR
   aur:
     name: pulseaudio-ctl
-    user: "{{ aur_user }}"
-    dbpath: "{{ aur_db_path }}"
-    state: present
+    user: "{{ sudoforge_aur_user }}"
+    dbpath: "{{ sudoforge_aur_db_path }}"
     install: true

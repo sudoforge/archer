@@ -1,7 +1,12 @@
 ---
-aur_user: aurmgr
-aur_db_path: /var/cache/pacman/aur.db.tar
-aur_packages: []
+# the name of the user to operate as
+sudoforge_aur_user: aurmgr
+
+# the path to the repository database
+sudoforge_aur_db_path: /var/cache/pacman/aur.db.tar
+
+# a list of packages to install from the AUR
+sudoforge_aur_packages: []
 
 sudoforge_background_directory: /usr/share/backgrounds
 sudoforge_background_images: []

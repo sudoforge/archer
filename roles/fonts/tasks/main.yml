@@ -51,8 +51,8 @@
 - name: Install AUR fonts
   aur:
     name: "{{ item }}"
-    user: "{{ aur_user }}"
-    dbpath: "{{ aur_db_path }}"
+    user: "{{ sudoforge_aur_user }}"
+    dbpath: "{{ sudoforge_aur_db_path }}"
     install: true
   loop:
     - ttf-signika
