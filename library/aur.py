@@ -121,7 +121,7 @@ class SRCINFO(object):
 
         self.store['version'] = f'{ self.store["pkgver"] }-{ self.store["pkgrel"] }'
         if self.store['epoch']:
-            self.store['version'] = f'{ self.store["epoch"] }-{ self.store["version"] }'
+            self.store['version'] = f'{ self.store["epoch"] }:{ self.store["version"] }'
 
         rc, arch, stderr = module.run_command('uname -m', check_rc=False)
         arch = arch.replace('\n', '')
