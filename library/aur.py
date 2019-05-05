@@ -350,7 +350,7 @@ def main():
             user = dict(required=True),
             name = dict(required=True),
             dbpath = dict(required=True),
-            update = dict(default=False, type='bool'),
+            upgrade = dict(default=False, type='bool'),
             install = dict(default=False, type='bool'),
             skip_pgp = dict(default=False, type='bool'),
         ),
