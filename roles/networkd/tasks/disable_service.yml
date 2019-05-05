@@ -3,7 +3,7 @@
   command: systemctl list-unit-files "{{ item }}" | grep "{{ item }}"
   register: unit_file_check
   ignore_errors: yes
-  changed_when: 1 > 2
+  changed_when: False
   tags:
     - sudoforge.networkd
 
