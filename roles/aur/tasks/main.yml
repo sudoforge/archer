@@ -1,4 +1,9 @@
 ---
+- include_tasks: gpg.yml
+  loop: "{{ sudoforge_aur_gpg_keys }}"
+  tags:
+    - sudoforge.aur
+
 - name: create and add packages to local repository
   aur:
     name: "{{ item }}"
