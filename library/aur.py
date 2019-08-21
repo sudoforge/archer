@@ -16,7 +16,7 @@
 # Feature requests, bugs, source code, and comments:
 # https://github.com/sudoforge/ansible-aur-repository
 #
-#
+# ##############################################################################
 #
 # This is free and unencumbered software released into the public domain.
 # 
@@ -130,7 +130,7 @@ class SRCINFO(object):
 
         if self.store['arch'] == 'any':
             arch = 'any'
-        elif arch not in self.store['arch']: 
+        elif arch not in self.store['arch']:
             module.fail_json(msg=f"Machine architecture '{arch}' not a valid target in list: {self.store['arch']}")
 
         self.store['targets'] = []
@@ -216,7 +216,7 @@ class Repository(object):
         if os.path.exists(self.path):
             # Get packages from existing repository
             cmd = subprocess.Popen(
-                f'pacman -Sl { self.name } | sed -e "s/^{ self.name } //"',
+                f'pacman -Sl {self.name} | sed -e "s/^{self.name} //"',
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 shell=True)
@@ -251,7 +251,7 @@ class Repository(object):
             subprocess.Popen(f'sudo -u {self.user.name} repo-add {self.path}', shell=True)
         except:
             raise Exception('Failed to create repository')
-            
+
     def sync(self, module):
         """
         Sync repository database

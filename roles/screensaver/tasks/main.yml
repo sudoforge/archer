@@ -24,6 +24,4 @@
   systemd:
     name: "screenlock@{{ item }}.service"
     enabled: yes
-    state: started
   loop: "{{ screensaver_service_users }}"
-    

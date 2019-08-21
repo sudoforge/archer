@@ -75,7 +75,7 @@
     enabled: "yes"
   tags:
     - sudoforge.pacman
- 
+
 - name: Install packages
   pacman:
     name: "{{ item }}"

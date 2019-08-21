@@ -22,7 +22,7 @@ None
 ```
 ---
 hostname:
-  # Whether or not this role is enabled 
+  # Whether or not this role is enabled
   # Default: false
   enabled: boolean
 
