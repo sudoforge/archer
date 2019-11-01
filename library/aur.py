@@ -19,12 +19,12 @@
 # ##############################################################################
 #
 # This is free and unencumbered software released into the public domain.
-# 
+#
 # Anyone is free to copy, modify, publish, use, compile, sell, or
 # distribute this software, either in source code form or as a compiled
 # binary, for any purpose, commercial or non-commercial, and by any
 # means.
-# 
+#
 # In jurisdictions that recognize copyright laws, the author or authors
 # of this software dedicate any and all copyright interest in the
 # software to the public domain. We make this dedication for the benefit
@@ -32,7 +32,7 @@
 # successors. We intend this dedication to be an overt act of
 # relinquishment in perpetuity of all present and future rights to this
 # software under copyright law.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -62,6 +62,7 @@ class cd:
     """
     Context manager for changing the current working directory
     """
+
     def __init__(self, newPath):
         self.newPath = os.path.expanduser(newPath)
 
@@ -77,6 +78,7 @@ class User(object):
     """
     A user on the machine
     """
+
     def __init__(self, name):
         try:
             uid = pwd.getpwnam(name).pw_uid
@@ -90,24 +92,20 @@ class SRCINFO(object):
     """
     Represents a .SRCINFO file
     """
+
     def __init__(self, module, path):
         self.store = defaultdict(list)
-        _allowed_keys = [
-            'arch',
-            'epoch',
-            'pkgdesc',
-            'pkgname',
-            'pkgrel',
-            'pkgver',
-        ]
-        with open(path, 'r') as lines:
+        _allowed_keys = ["arch", "epoch", "pkgdesc", "pkgname", "pkgrel", "pkgver"]
+        with open(path, "r") as lines:
             for line in lines:
                 # ignore commented and empty lines
-                if line.startswith('#') or line == "\n": # ignore comments and empty lines
+                if (
+                    line.startswith("#") or line == "\n"
+                ):  # ignore comments and empty lines
                     continue
                 # remove newlines and tabs
-                line = line.replace('\n', '').replace('\t', '')
-                array = line.split(' = ')
+                line = line.replace("\n", "").replace("\t", "")
+                array = line.split(" = ")
                 key = array[0]
                 value = array[1]
                 if key in _allowed_keys:
@@ -119,35 +117,44 @@ class SRCINFO(object):
                         else:
                             self.store[key].append(value)
 
-        self.store['version'] = f'{ self.store["pkgver"] }-{ self.store["pkgrel"] }'
-        if self.store['epoch']:
-            self.store['version'] = f'{ self.store["epoch"] }:{ self.store["version"] }'
+        self.store["version"] = f'{ self.store["pkgver"] }-{ self.store["pkgrel"] }'
+        if self.store["epoch"]:
+            self.store["version"] = f'{ self.store["epoch"] }:{ self.store["version"] }'
 
-        rc, arch, stderr = module.run_command('uname -m', check_rc=False)
-        arch = arch.replace('\n', '')
+        rc, arch, stderr = module.run_command("uname -m", check_rc=False)
+        arch = arch.replace("\n", "")
         if rc != 0:
-            module.fail_json(msg='Unable to determine machine architecture')
+            module.fail_json(msg="Unable to determine machine architecture")
 
-        if self.store['arch'] == 'any':
-            arch = 'any'
-        elif arch not in self.store['arch']:
-            module.fail_json(msg=f"Machine architecture '{arch}' not a valid target in list: {self.store['arch']}")
+        if self.store["arch"] == "any":
+            arch = "any"
+        elif arch not in self.store["arch"]:
+            module.fail_json(
+                msg=f"Machine architecture '{arch}' not a valid target in list: {self.store['arch']}"
+            )
 
-        self.store['targets'] = []
-        if type(self.store['pkgname']) is 'list':
-            for name in self.store['pkgname']:
-                self.store['targets'].append(f'{name}-{self.store["version"]}-{arch}.pkg.tar.xz')
+        self.store["targets"] = []
+        if type(self.store["pkgname"]) is "list":
+            for name in self.store["pkgname"]:
+                self.store["targets"].append(
+                    f'{name}-{self.store["version"]}-{arch}.pkg.tar.xz'
+                )
         else:
-            self.store['targets'].append(f'{self.store["pkgname"]}-{self.store["version"]}-{arch}.pkg.tar.xz')
+            self.store["targets"].append(
+                f'{self.store["pkgname"]}-{self.store["version"]}-{arch}.pkg.tar.xz'
+            )
 
 
 class Package(object):
     """
     Represents an AUR package
     """
-    def __init__(self, name, pkgver = None, pkgrel = None, epoch = None, skip_pgp_check = False):
+
+    def __init__(
+        self, name, pkgver=None, pkgrel=None, epoch=None, skip_pgp_check=False
+    ):
         self.name = name
-        self.url = f'https://aur.archlinux.org/cgit/aur.git/snapshot/{name}.tar.gz'
+        self.url = f"https://aur.archlinux.org/cgit/aur.git/snapshot/{name}.tar.gz"
         self.skip_pgp_check = skip_pgp_check
         self.__version(pkgver, pkgrel, epoch)
 
@@ -157,7 +164,7 @@ class Package(object):
         """
         if not header:
             return None
-        filename = re.findall('filename=(.+)', header)
+        filename = re.findall("filename=(.+)", header)
         if len(filename) == 0:
             return None
         return filename[0]
@@ -167,17 +174,17 @@ class Package(object):
         Attempt to download package
         """
         with requests.get(self.url, stream=True) as r:
-            header = 'content-disposition'
+            header = "content-disposition"
             value = r.headers.get(header)
             if value:
-                matches = re.findall('filename=(.+)', value)
+                matches = re.findall("filename=(.+)", value)
                 if len(matches) == 1:
                     filename = matches[0]
                 else:
                     raise Exception("More than one filename match found")
             else:
                 raise Exception(f"Header '{header}' not found or empty")
-            with open(filename, 'wb') as f:
+            with open(filename, "wb") as f:
                 for chunk in r.iter_content(chunk_size=1024):
                     f.write(chunk)
                 self.tarfile = os.path.join(os.getcwd(), filename)
@@ -185,22 +192,25 @@ class Package(object):
         if not os.path.exists(self.tarfile):
             raise Exception(f"Tarfile '{self.tarfile}' not found")
         else:
-            with tarfile.open(self.tarfile, 'r') as f:
+            with tarfile.open(self.tarfile, "r") as f:
                 f.extractall()
                 self.root = os.path.join(os.getcwd(), self.name)
                 os.chown(self.root, user.id, -1)
-                srcinfo = SRCINFO(module, os.path.join(self.root, '.SRCINFO'))
-                self.__version(srcinfo.store['pkgver'], srcinfo.store['pkgrel'], srcinfo.store['epoch'])
-                self.targets = srcinfo.store['targets']
+                srcinfo = SRCINFO(module, os.path.join(self.root, ".SRCINFO"))
+                self.__version(
+                    srcinfo.store["pkgver"],
+                    srcinfo.store["pkgrel"],
+                    srcinfo.store["epoch"],
+                )
+                self.targets = srcinfo.store["targets"]
 
-
-    def __version(self, pkgver, pkgrel, epoch = None):
+    def __version(self, pkgver, pkgrel, epoch=None):
         self.pkgrel = pkgrel
         self.pkgver = pkgver
         self.epoch = epoch
-        self.version = f'{pkgver}-{pkgrel}'
+        self.version = f"{pkgver}-{pkgrel}"
         if epoch:
-            self.version = f'{epoch}:{self.version}'
+            self.version = f"{epoch}:{self.version}"
 
 
 class Repository(object):
@@ -208,7 +218,7 @@ class Repository(object):
         self.module = module
         self.path = path
         self.root = os.path.dirname(path)
-        self.name = os.path.basename(path)[:os.path.basename(path).index('.')]
+        self.name = os.path.basename(path)[: os.path.basename(path).index(".")]
         self.user = user
         self.packages = packages
         self.existing_packages = []
@@ -219,23 +229,26 @@ class Repository(object):
                 f'pacman -Sl {self.name} | sed -e "s/^{self.name} //"',
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                shell=True)
+                shell=True,
+            )
 
             for line in cmd.stdout.readlines():
                 line = line.decode()
-                line = line.replace('\n', '').replace('\t', '').replace(' [installed]', '')
-                array = line.split(' ')
+                line = (
+                    line.replace("\n", "").replace("\t", "").replace(" [installed]", "")
+                )
+                array = line.split(" ")
                 pkgname = array[0]
                 vstring = array[1]
 
                 epoch = None
-                match = re.match('^(\d+):', vstring)
+                match = re.match("^(\d+):", vstring)
                 if match:
                     epoch = match.groups()[0]
-                    vstring = vstring.replace(f'{epoch}:', '') # remove epoch
+                    vstring = vstring.replace(f"{epoch}:", "")  # remove epoch
 
-                pkgver =  vstring.split('-')[0]
-                pkgrel = vstring.split('-')[1]
+                pkgver = vstring.split("-")[0]
+                pkgrel = vstring.split("-")[1]
                 self.existing_packages.append(Package(pkgname, pkgver, pkgrel, epoch))
         else:
             self.__create()
@@ -248,53 +261,62 @@ class Repository(object):
         os.chown(self.root, self.user.id, -1)
         self.packages = []
         try:
-            subprocess.Popen(f'sudo -u {self.user.name} repo-add {self.path}', shell=True)
+            subprocess.Popen(
+                f"sudo -u {self.user.name} repo-add {self.path}", shell=True
+            )
         except:
-            raise Exception('Failed to create repository')
+            raise Exception("Failed to create repository")
 
     def sync(self, module):
         """
         Sync repository database
         """
-        rc, stdout, stderr = module.run_command(f'sudo pacsync {self.name}', check_rc=False)
+        rc, stdout, stderr = module.run_command(
+            f"sudo pacsync {self.name}", check_rc=False
+        )
         if rc != 0:
-            module.fail_json(msg=f'failed to sync repository: {stderr}')
+            module.fail_json(msg=f"failed to sync repository: {stderr}")
 
-    def build(self, module, package: Package, skip_pgp_check = False):
+    def build(self, module, package: Package, skip_pgp_check=False):
         """
         Attempt to build an AUR package
         """
-        makepkg_args = '--force --noconfirm --needed --noprogressbar'
-        if module.params['install'] is True:
-            makepkg_args += ' --install'
+        makepkg_args = "--force --noconfirm --needed --noprogressbar"
+        if module.params["install"] is True:
+            makepkg_args += " --install"
         if skip_pgp_check is True:
-            makepkg_args += ' --skippgpcheck'
-        if platform.machine().startswith('arm'):
-            makepkg_args += ' -Acsr'
+            makepkg_args += " --skippgpcheck"
+        if platform.machine().startswith("arm"):
+            makepkg_args += " -Acsr"
         else:
-            makepkg_args += ' -csr'
+            makepkg_args += " -csr"
         cmd = f'sudo -u {self.user.name} PKGDEST="{self.root}" makepkg {makepkg_args}'
         rc, stdout, stderr = module.run_command(cmd, check_rc=False)
         if rc != 0:
-            module.fail_json(msg=f'failed to build package: {stderr}')
+            module.fail_json(msg=f"failed to build package: {stderr}")
 
     def add(self, module, package: Package):
         for target in package.targets:
             pkgfile = os.path.join(self.root, target)
-            rc, stdout, stderr = module.run_command(f'sudo -u {self.user.name} repo-add {self.path} {pkgfile}', check_rc=False)
+            rc, stdout, stderr = module.run_command(
+                f"sudo -u {self.user.name} repo-add {self.path} {pkgfile}",
+                check_rc=False,
+            )
             if rc != 0:
-                module.fail_json(msg=f'failed to add package to repository: {stderr}')
+                module.fail_json(msg=f"failed to add package to repository: {stderr}")
 
     def has_package(self, package: Package):
-        return any(rp.name == package.name and rp.version == package.version for rp in self.existing_packages)
-
+        return any(
+            rp.name == package.name and rp.version == package.version
+            for rp in self.existing_packages
+        )
 
 
 def pacman_in_path(module):
     """
     Determine if pacman is available
     """
-    rc, stdout, stderr = module.run_command('which pacman', check_rc=False)
+    rc, stdout, stderr = module.run_command("which pacman", check_rc=False)
     return rc == 0
 
 
@@ -309,9 +331,11 @@ def check_packages(module, repo: Repository, packages: [Package]):
             would_be_changed = package
 
     if would_be_changed:
-        module.exit_json(changed=True, msg=f'{len(would_be_changed)} package(s) would be installed')
+        module.exit_json(
+            changed=True, msg=f"{len(would_be_changed)} package(s) would be installed"
+        )
     else:
-        module.exit_json(changed=False, msg='all packages are already installed')
+        module.exit_json(changed=False, msg="all packages are already installed")
 
 
 def build_packages(module, repo: Repository, packages: [Package]):
@@ -324,7 +348,7 @@ def build_packages(module, repo: Repository, packages: [Package]):
         # Attempt to download the package
         package.download(module, repo.user)
         # If the package is already installed, skip the install
-        if repo.has_package(package) and module.params['upgrade'] is False:
+        if repo.has_package(package) and module.params["upgrade"] is False:
             continue
         # Change into the package directory
         with cd(package.root):
@@ -339,22 +363,24 @@ def build_packages(module, repo: Repository, packages: [Package]):
 
     # Exit with the number of packages succesfully installed
     if num_success > 0:
-        module.exit_json(changed=True, msg=f'added {num_success} package(s) to the repository')
+        module.exit_json(
+            changed=True, msg=f"added {num_success} package(s) to the repository"
+        )
     else:
-        module.exit_json(changed=False, msg='all packages were already installed')
+        module.exit_json(changed=False, msg="all packages were already installed")
 
 
 def main():
     module = AnsibleModule(
-        argument_spec = dict(
-            user = dict(required=True),
-            name = dict(required=True),
-            dbpath = dict(required=True),
-            upgrade = dict(default=False, type='bool'),
-            install = dict(default=False, type='bool'),
-            skip_pgp = dict(default=False, type='bool'),
+        argument_spec=dict(
+            user=dict(required=True),
+            name=dict(required=True),
+            dbpath=dict(required=True),
+            upgrade=dict(default=False, type="bool"),
+            install=dict(default=False, type="bool"),
+            skip_pgp=dict(default=False, type="bool"),
         ),
-        supports_check_mode = True
+        supports_check_mode=True,
     )
 
     # Fail if pacman is not available
@@ -362,15 +388,15 @@ def main():
         module.fail_json(msg="could not locate pacman executable")
 
     # Create user
-    user = User(module.params['user'])
+    user = User(module.params["user"])
 
     # Create package objects
     packages = []
-    for pkgname in module.params['name'].split(','):
+    for pkgname in module.params["name"].split(","):
         packages.append(Package(pkgname))
 
     # Create repository
-    repo = Repository(module, module.params['dbpath'], user, packages)
+    repo = Repository(module, module.params["dbpath"], user, packages)
 
     with tempfile.TemporaryDirectory() as tmpdir:
         os.chown(tmpdir, user.id, -1)
