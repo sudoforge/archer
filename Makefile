@@ -1,8 +1,7 @@
-.PHONY: test pull-defaults
-
 DEFAULTS_DIRS=$(shell find roles -maxdepth 2 -name 'defaults' -type d | sort | tr '\n' ' ')
 TEST_DIRS=$(shell find roles -maxdepth 2 -name 'molecule' -type d -printf '%h ')
 
+.PHONY: test
 test:
 	@for d in $(TEST_DIRS); do \
 		grep "$$(basename $$d)" local.yml > /dev/null 2>&1 || continue; \
@@ -13,6 +12,7 @@ test:
 		cd ../../; \
 	done
 
+.PHONY: pull-defaults
 pull-defaults:
 	@sed -i '2,$${/.*/d;}' localhost.example.yml
 	@for d in $(DEFAULTS_DIRS); do \
