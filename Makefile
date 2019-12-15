@@ -24,3 +24,6 @@ pull-defaults:
 .PHONY: run-all
 run-all:
 	@/usr/bin/env ANSIBLE_STDOUT_CALLBACK=debug ansible-playbook --diff local.yml
+
+run-tag/%:
+	@/usr/bin/env ANSIBLE_STDOUT_CALLBACK=debug ansible-playbook --diff -t '$(subst run-tag/,,$@)' local.yml
