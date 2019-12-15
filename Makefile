@@ -20,3 +20,7 @@ pull-defaults:
 		sed '1d;$$s/$$/\n\n/' "$$d/main.yml" >> localhost.example.yml; \
 	done
 	@truncate -s -2 localhost.example.yml
+
+.PHONY: run-all
+run-all:
+	@/usr/bin/env ANSIBLE_STDOUT_CALLBACK=debug ansible-playbook --diff local.yml
