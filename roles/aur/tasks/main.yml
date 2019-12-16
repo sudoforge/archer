@@ -1,6 +1,8 @@
 ---
-- include_tasks: gpg.yml
-  loop: "{{ sudoforge_aur_gpg_keys }}"
+- block:
+    - name: "install aur gpg keys"
+      include_tasks: gpg.yml
+      loop: "{{ sudoforge_aur_gpg_keys }}"
   tags:
     - sudoforge.aur
 

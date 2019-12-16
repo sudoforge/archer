@@ -42,13 +42,14 @@
   tags:
     - sudoforge.user
 
-- name: "{{ user.username }} : mangae git repositories"
-  include_tasks: git.yml
+- block:
+    - name: "{{ user.username }} : manage git repositories"
+      include_tasks: git.yml
+      loop: "{{ user.git.repositories | default([]) }}"
+      loop_control:
+        loop_var: repo
   become: yes
   become_user: "{{ user.username }}"
-  loop: "{{ user.git.repositories | default([]) }}"
-  loop_control:
-    loop_var: repo
   when:
     - user.git is defined
   tags:
