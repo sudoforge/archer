@@ -1,8 +1,6 @@
 ---
 - name: "check for key: {{ item }}"
   command: gpg --list-key "{{ item }}"
-  become: "yes"
-  become_user: "{{ sudoforge_aur_user }}"
   register: pgp_key_check
   ignore_errors: yes
   changed_when: False
@@ -11,8 +9,6 @@
 
 - name: "download gpg signing key: {{ item }}"
   command: gpg --recv-key "{{ item }}"
-  become: "yes"
-  become_user: "{{ sudoforge_aur_user }}"
   when:
     - pgp_key_check.failed == True
   tags:

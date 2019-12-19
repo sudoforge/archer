@@ -3,6 +3,8 @@
     - name: "install aur gpg keys"
       include_tasks: gpg.yml
       loop: "{{ sudoforge_aur_gpg_keys }}"
+  become: "yes"
+  become_user: "{{ sudoforge_aur_user }}"
   tags:
     - sudoforge.aur
 
