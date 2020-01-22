@@ -134,7 +134,7 @@ class SRCINFO(object):
             )
 
         self.store["targets"] = []
-        if type(self.store["pkgname"]) is "list":
+        if isinstance(self.store["pkgname"], list):
             for name in self.store["pkgname"]:
                 self.store["targets"].append(
                     f'{name}-{self.store["version"]}-{arch}.pkg.tar.xz'
