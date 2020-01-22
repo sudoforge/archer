@@ -2,8 +2,9 @@
 - name: Install hostsctl
   aur:
     name: hostsctl
-    user: "{{ sudoforge_aur_user }}"
     dbpath: "{{ sudoforge_aur_db_path }}"
+  become: "yes"
+  become_user: "{{ sudoforge_aur_user }}"
   tags:
     - sudoforge.hostsctl
 

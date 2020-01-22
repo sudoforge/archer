@@ -74,20 +74,6 @@ class cd:
         os.chdir(self.savedPath)
 
 
-class User(object):
-    """
-    A user on the machine
-    """
-
-    def __init__(self, name):
-        try:
-            uid = pwd.getpwnam(name).pw_uid
-            self.name = name
-            self.id = uid
-        except KeyError:
-            raise Exception(f"User '{ name }' not found")
-
-
 class SRCINFO(object):
     """
     Represents a .SRCINFO file
@@ -169,7 +155,7 @@ class Package(object):
             return None
         return filename[0]
 
-    def download(self, module, user: User):
+    def download(self, module):
         """
         Attempt to download package
         """
@@ -195,7 +181,6 @@ class Package(object):
             with tarfile.open(self.tarfile, "r") as f:
                 f.extractall()
                 self.root = os.path.join(os.getcwd(), self.name)
-                os.chown(self.root, user.id, -1)
                 srcinfo = SRCINFO(module, os.path.join(self.root, ".SRCINFO"))
                 self.__version(
                     srcinfo.store["pkgver"],
@@ -214,12 +199,11 @@ class Package(object):
 
 
 class Repository(object):
-    def __init__(self, module, path, user: User, packages: [Package] = []):
+    def __init__(self, module, path, packages: [Package] = []):
         self.module = module
         self.path = path
         self.root = os.path.dirname(path)
         self.name = os.path.basename(path)[: os.path.basename(path).index(".")]
-        self.user = user
         self.packages = packages
         self.existing_packages = []
 
@@ -258,11 +242,10 @@ class Repository(object):
         Create repository root and initalize database
         """
         os.mkdir(self.root)
-        os.chown(self.root, self.user.id, -1)
         self.packages = []
         try:
             subprocess.Popen(
-                f"sudo -u {self.user.name} repo-add {self.path}", shell=True
+                f"repo-add {self.path}", shell=True
             )
         except:
             raise Exception("Failed to create repository")
@@ -290,7 +273,7 @@ class Repository(object):
             makepkg_args += " -Acsr"
         else:
             makepkg_args += " -csr"
-        cmd = f'sudo -u {self.user.name} PKGDEST="{self.root}" makepkg {makepkg_args}'
+        cmd = f'makepkg PKGDEST="{self.root}" {makepkg_args}'
         rc, stdout, stderr = module.run_command(cmd, check_rc=False)
         if rc != 0:
             module.fail_json(msg=f"failed to build package: {stderr}")
@@ -299,7 +282,7 @@ class Repository(object):
         for target in package.targets:
             pkgfile = os.path.join(self.root, target)
             rc, stdout, stderr = module.run_command(
-                f"sudo -u {self.user.name} repo-add {self.path} {pkgfile}",
+                f"repo-add {self.path} {pkgfile}",
                 check_rc=False,
             )
             if rc != 0:
@@ -346,7 +329,7 @@ def build_packages(module, repo: Repository, packages: [Package]):
 
     for package in packages:
         # Attempt to download the package
-        package.download(module, repo.user)
+        package.download(module)
         # If the package is already installed, skip the install
         if repo.has_package(package) and module.params["upgrade"] is False:
             continue
@@ -373,7 +356,6 @@ def build_packages(module, repo: Repository, packages: [Package]):
 def main():
     module = AnsibleModule(
         argument_spec=dict(
-            user=dict(required=True),
             name=dict(required=True),
             dbpath=dict(required=True),
             upgrade=dict(default=False, type="bool"),
@@ -387,19 +369,15 @@ def main():
     if not pacman_in_path(module):
         module.fail_json(msg="could not locate pacman executable")
 
-    # Create user
-    user = User(module.params["user"])
-
     # Create package objects
     packages = []
     for pkgname in module.params["name"].split(","):
         packages.append(Package(pkgname))
 
     # Create repository
-    repo = Repository(module, module.params["dbpath"], user, packages)
+    repo = Repository(module, module.params["dbpath"], packages)
 
     with tempfile.TemporaryDirectory() as tmpdir:
-        os.chown(tmpdir, user.id, -1)
         os.chdir(tmpdir)
 
         if module.check_mode:
