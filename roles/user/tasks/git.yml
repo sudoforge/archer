@@ -11,7 +11,7 @@
   tags:
     - sudoforge.repo
 
-- name: clone repository
+- name: "clone repository {{ repo.source }}"
   git:
     repo: "{{ repo.source }}"
     dest: "{{ repo.destination }}"
