@@ -3,5 +3,8 @@ linux /vmlinuz-linux
 {% if 'GenuineIntel' in ansible_processor %}
 initrd /intel-ucode.img
 {% endif %}
+{% if 'AuthenticAMD' in ansible_processor %}
+initrd /amd-ucode.img
+{% endif %}
 initrd /initramfs-linux.img
 options {{ bootloader.systemd.options | join(' ') }}

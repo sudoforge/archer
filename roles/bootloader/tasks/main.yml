@@ -42,6 +42,18 @@
     - sudoforge.bootloader
     - notest
 
+- name: Install amd-ucode for microcode updates
+  pacman:
+    name: amd-ucode
+    state: present
+  when:
+    - bootloader.systemd is defined
+    - bootloader.systemd.enabled == true
+    - "'AuthenticAMD' in ansible_processor"
+  tags:
+    - sudoforge.bootloader
+    - notest
+
 - name: Copy boot loader configuration
   copy:
     src: loader.conf
