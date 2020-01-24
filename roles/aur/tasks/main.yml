@@ -15,5 +15,7 @@
   become: yes
   become_user: "{{ sudoforge_aur_user }}"
   loop: "{{ sudoforge_aur_packages }}"
+  notify:
+    - sync aur repository
   tags:
     - sudoforge.aur

@@ -1,0 +1,3 @@
+---
+- name: sync aur repository
+  command: pacsync aur

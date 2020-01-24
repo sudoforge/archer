@@ -250,16 +250,6 @@ class Repository(object):
         except:
             raise Exception("Failed to create repository")
 
-    def sync(self, module):
-        """
-        Sync repository database
-        """
-        rc, stdout, stderr = module.run_command(
-            f"sudo pacsync {self.name}", check_rc=False
-        )
-        if rc != 0:
-            module.fail_json(msg=f"failed to sync repository: {stderr}")
-
     def build(self, module, package: Package, skip_pgp_check=False):
         """
         Attempt to build an AUR package
@@ -341,8 +331,6 @@ def build_packages(module, repo: Repository, packages: [Package]):
             repo.add(module, package)
             # Increment success count
             num_success += 1
-
-    repo.sync(module)
 
     # Exit with the number of packages succesfully installed
     if num_success > 0:
