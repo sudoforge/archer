@@ -26,6 +26,6 @@
 - name: Push mount configuration rules
   template:
     src: 99-udisks2.rules.j2
-    dest: /etc/udev/rules.d/99-udisk2.rules
+    dest: /etc/udev/rules.d/99-udisks2.rules
   tags:
     - sudoforge.udisks
