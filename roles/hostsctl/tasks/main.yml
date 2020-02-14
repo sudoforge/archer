@@ -33,5 +33,15 @@
   template:
     src: hostsctl.timer.j2
     dest: /etc/systemd/system/hostsctl.timer
+  register: hostsctltimer
+  tags:
+    - sudoforge.hostsctl
+
+- name: enable timer /etc/systemd/system/hostsctl.timer
+  systemd:
+    name: hostsctl.timer
+    enabled: "{{ 'yes' if sudoforge_hostsctl_timer_enabled == true else 'no' }}"
+    state: "{{ 'started' if sudoforge_hostsctl_timer_enabled == true else 'stopped' }}"
+    daemon_reload: "{{ 'yes' if hostsctltimer.changed or hostsctlconf.changed else 'no' }}"
   tags:
     - sudoforge.hostsctl
