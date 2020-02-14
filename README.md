@@ -80,18 +80,19 @@ _Please read the following section carefully!_
 #### Standard execution
 
 ```
-ansible-pull -U https://github.com/sudoforge/archer.git -C develop [OPTIONS]
+ansible-pull -U https://github.com/sudoforge/archer.git [OPTIONS]
 ```
 
 #### Significant options
 
 Pass any relevant options to the command displayed above.
 
-| Option      | Use case                                    |
-|-------------|---------------------------------------------|
-| `-t chroot` | Running Archer in a chroot jail             |
-| `-K`        | Running Archer as a non-root user           |
-| `-o`        | Only run if the repository has been updated |
+| Option      | Use case                                      |
+| ----------- | --------------------------------------------- |
+| `-t chroot` | Running Archer in a chroot jail               |
+| `-K`        | Running Archer as a non-root user             |
+| `-o`        | Only run if the repository has been updated   |
+| `-C`        | Use a specific tree, such as a feature branch |
 
 #### Running as a cron job
 
@@ -102,7 +103,7 @@ Wiki for more information.
 Archer recommends the following command when running automatically:
 
 ```
-/usr/bin/ansible-pull -U https://github.com/sudoforge/archer.git -C develop -o
+/usr/bin/ansible-pull -U https://github.com/sudoforge/archer.git -o
 ```
 
 ### Contributing
