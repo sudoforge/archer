@@ -12,11 +12,13 @@
   template:
     src: hostsctl.conf.j2
     dest: /etc/hostsctl.conf
+  register: hostsctlconf
   tags:
     - sudoforge.hostsctl
 
 - name: Update hostsctl
   command: hostsctl update
+  when: hostsctlconf.changed
   tags:
     - sudoforge.hostsctl
 
