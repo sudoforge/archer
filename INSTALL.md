@@ -35,7 +35,7 @@ mkfs.ext4 /dev/mapper/archlinux-home
 mkswap /dev/mapper/archlinux-swap
 swapon -d /dev/mapper/archlinux-swap
 
-pacstrap /mnt base base-devel wpa_supplicant git ansible vim
+pacstrap /mnt base base-devel wpa_supplicant git ansible neovim
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
