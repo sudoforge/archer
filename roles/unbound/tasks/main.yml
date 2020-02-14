@@ -10,6 +10,7 @@
   copy:
     src: root.hints
     dest: /etc/unbound/root.hints
+    force: no
   tags:
     - sudoforge.unbound
 
