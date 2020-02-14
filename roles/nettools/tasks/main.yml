@@ -4,6 +4,7 @@
     name: "{{ item }}"
     state: present
   loop:
+    - aircrack-ng
     - openvpn
     - mtr
     - net-tools
