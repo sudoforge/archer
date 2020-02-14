@@ -5,6 +5,7 @@
     state: present
   loop:
     - aircrack-ng
+    - arp-scan
     - openvpn
     - mtr
     - net-tools
