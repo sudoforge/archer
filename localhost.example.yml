@@ -210,6 +210,28 @@ sudoforge_unbound_nameservers:
 # how often to update the root name server list
 sudoforge_unbound_roothints_timer: monthly
 
+# verbosity number, 0 is least verbose
+sudoforge_unbound_verbosity: 1
+
+# print statistics to the log every N seconds
+# "" or 0 to disable
+sudoforge_unbound_statistics_interval: 0
+
+# enable shm for stats
+sudoforge_unbound_shm_enable: "no"
+
+# this key is used for shm, and n+1 for shared mem segment
+sudoforge_unbound_shm_key: 11777
+
+# enable cumulative statistics, without clearing them after printing
+sudoforge_unbound_statistics_cumulative: "no"
+
+# enable extended statistics
+sudoforge_unbound_extended_statistics: "no"
+
+# number of threads to create, 1 disables threading
+sudoforge_unbound_num_threads: 1
+
 
 sudoforge_user:
   # a list of users

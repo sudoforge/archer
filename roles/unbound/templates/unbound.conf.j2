@@ -7,6 +7,13 @@ server:
   do-daemonize: no
   do-not-query-localhost: no
   access-control: 0.0.0.0/8 allow
+  verbosity: {{ sudoforge_unbound_verbosity }}
+  statistics-interval: {{ sudoforge_unbound_statistics_interval }}
+  shm-enable: {{ sudoforge_unbound_shm_enable }}
+  shm-key: {{ sudoforge_unbound_shm_key }}
+  statistics-cumulative: {{ sudoforge_unbound_statistics_cumulative }}
+  extended-statistics: {{ sudoforge_unbound_extended_statistics }}
+  num-threads: {{ sudoforge_unbound_num_threads }}
 
   # Set root DNS servers.
   root-hints: "/etc/unbound/root.hints"
