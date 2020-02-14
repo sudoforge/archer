@@ -30,9 +30,9 @@
   tags:
     - sudoforge.sshd
 
-- name: manage sshd.socket service
+- name: manage service sshd.service
   service:
-    name: sshd.socket
+    name: sshd.service
     enabled: "{{ 'yes' if sshd_service_enabled == true else 'no' }}"
     state: "{{ 'started' if sshd_service_enabled == true else 'stopped' }}"
   tags:
