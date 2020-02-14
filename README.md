@@ -40,7 +40,7 @@ and create a new issue if one does not already exist.
 To install the requirements:
 
 ```
-pacman -S ansible
+pacman -S git ansible
 ```
 
 ### Customizing the build
