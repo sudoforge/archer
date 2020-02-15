@@ -121,5 +121,5 @@ Please see [`CONTRIBUTING.md`][contributing].
 [awiki-cron]: https://wiki.archlinux.org/index.php/Cron
 [contributing]: CONTRIBUTING.md
 [issues]: https://github.com/sudoforge/archer/issues "view or create issues"
-[travis-build]: https://travis-ci.org/sudoforge/archer.svg?branch=develop
+[travis-build]: https://travis-ci.org/sudoforge/archer.svg?branch=master
 [travis-url]: https://travis-ci.org/sudoforge/archer
