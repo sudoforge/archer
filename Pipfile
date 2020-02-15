@@ -3,7 +3,7 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[packages]
+[dev-packages]
 ansible = "==2.9.5"
 docker = "==4.2.0"
 molecule = "==2.22.0"
