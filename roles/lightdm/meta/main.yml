@@ -12,4 +12,4 @@ galaxy_info:
   tags:
     - desktop-manager
     - lightdm
-dependencies : []
+dependencies: []

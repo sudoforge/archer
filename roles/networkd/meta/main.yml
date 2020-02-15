@@ -16,4 +16,4 @@ galaxy_info:
     - networkd
     - networking
     - systemd
-dependencies : []
+dependencies: []

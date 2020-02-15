@@ -16,6 +16,9 @@ sudoforge_background_directory: /usr/share/backgrounds
 sudoforge_background_images: []
 
 
+bluetooth_enabled: False
+
+
 bootloader:
   systemd:
     enabled: false
@@ -201,11 +204,11 @@ udisks_shared_mount: False
 
 # nameservers to use, in order of preference
 sudoforge_unbound_nameservers:
-  - 1.1.1.1     # Cloudflare DNS over HTTPS
-  - 1.0.0.1     # Cloudflare DNS over HTTPS
-  - 8.8.8.8     # Google
-  - 209.244.0.3 # Level 3
-  - 74.82.42.42 # Hurricane Electric
+  - 1.1.1.1      # Cloudflare DNS over HTTPS
+  - 1.0.0.1      # Cloudflare DNS over HTTPS
+  - 8.8.8.8      # Google
+  - 209.244.0.3  # Level 3
+  - 74.82.42.42  # Hurricane Electric
 
 # how often to update the root name server list
 sudoforge_unbound_roothints_timer: monthly

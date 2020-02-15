@@ -13,4 +13,4 @@ galaxy_info:
     - network
     - supplicant
     - wpa
-dependencies : []
+dependencies: []

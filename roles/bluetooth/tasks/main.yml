@@ -4,9 +4,9 @@
     name: "{{ item }}"
     state: present
   loop:
-      - bluez
-      - bluez-utils
-      - pulseaudio-bluetooth
+    - bluez
+    - bluez-utils
+    - pulseaudio-bluetooth
   notify:
     - restart pulse as user
   tags:

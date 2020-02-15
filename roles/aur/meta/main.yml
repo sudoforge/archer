@@ -14,4 +14,4 @@ galaxy_info:
     - aur
     - pacman
     - repository
-dependencies : []
+dependencies: []

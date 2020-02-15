@@ -15,4 +15,4 @@ galaxy_info:
     - log
     - logs
     - systemd
-dependencies : []
+dependencies: []
