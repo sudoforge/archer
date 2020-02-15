@@ -5,18 +5,6 @@ machine running [Arch Linux][al-web]. It can be used directly after the [Chroot
 step][awiki-chroot] of the [Installation Guide][awiki-install] or at any other
 point in time during the machine's life cycle.
 
-## IMPORTANT: ARCHER IS IN PROGRESS
-
-PLEASE AVOID FORKING OR USING THE PLAYBOOK(S) WITHIN THIS REPOSITORY UNTIL THIS
-MESSAGE IS REMOVED.
-
-The `develop` branch is effectively a rewrite of the project from the ground
-up. It will likely receive force pushes, rebases, and other tomfoolery. It will
-eventually be promoted to `master`. When this happens, the git history will be
-overwritten. From the beginning. We'll have a new "initial commit".
-
-You have been warned.
-
 ## Usage
 
 Archer aims to automate various steps of administering an Arch Linux
@@ -55,7 +43,7 @@ To do this, download `host_vars/localhost.example` from this repository:
 
 ```
 curl --create-dirs -o /etc/ansible/host_vars/localhost \
-    https://raw.githubusercontent.com/sudoforge/archer/develop/localhost.example.yml
+    https://raw.githubusercontent.com/sudoforge/archer/master/localhost.example.yml
 ```
 
 Open the file with an editor. Look through the file and change the `enabled`
