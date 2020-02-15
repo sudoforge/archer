@@ -1,3 +1,4 @@
+---
 - name: Install bluetooth libraries and tools
   pacman:
     name: "{{ item }}"
