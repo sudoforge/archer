@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = pacman-mirrorlist
+
+[Action]
+Description = Updating mirror list...
+When = PostTransaction
+Depends = reflector
+Exec = /usr/bin/sh -c "[ -f /etc/pacman.d/mirrorlist.pacnew ] && /usr/bin/mv /etc/pacman.d/mirrorlist.pacnew /etc/pacman.d/mirrorlist ; reflector --latest {{ sudoforge_pacman_mirrorlist.latest }}{%- for c in sudoforge_pacman_mirrorlist.countries %} --country {{ c }}{%- endfor %} --age {{ sudoforge_pacman_mirrorlist.max_age }}{%- for p in sudoforge_pacman_mirrorlist.protocols %} --protocol {{ p }}{%- endfor %} --sort {{ sudoforge_pacman_mirrorlist.sort }} --save /etc/pacman.d/mirrorlist"

@@ -150,6 +150,13 @@ pacman_options:
   - CheckSpace
   - SigLevel = Required DatabaseOptional
   - LocalFileSigLevel = Optional
+sudoforge_pacman_mirrorlist:
+  countries: []
+  latest: 15
+  max_age: 12
+  protocols:
+    - https
+  sort: rate
 
 
 screensaver_systemd_users: []

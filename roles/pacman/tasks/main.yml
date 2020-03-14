@@ -18,9 +18,9 @@
   tags:
     - sudoforge.pacman
 
-- name: Push pacman mirror list update hook
-  copy:
-    src: mirrorlist.hook
+- name: Apply template for pacman mirror list update hook
+  template:
+    src: mirrorlist.hook.j2
     dest: /etc/pacman.d/hooks/mirrorlist.hook
   tags:
     - sudoforge.pacman
