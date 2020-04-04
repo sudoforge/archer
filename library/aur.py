@@ -244,9 +244,7 @@ class Repository(object):
         os.mkdir(self.root)
         self.packages = []
         try:
-            subprocess.Popen(
-                f"repo-add {self.path}", shell=True
-            )
+            subprocess.Popen(f"repo-add {self.path}", shell=True)
         except:
             raise Exception("Failed to create repository")
 
@@ -272,8 +270,7 @@ class Repository(object):
         for target in package.targets:
             pkgfile = os.path.join(self.root, target)
             rc, stdout, stderr = module.run_command(
-                f"repo-add {self.path} {pkgfile}",
-                check_rc=False,
+                f"repo-add {self.path} {pkgfile}", check_rc=False,
             )
             if rc != 0:
                 module.fail_json(msg=f"failed to add package to repository: {stderr}")
