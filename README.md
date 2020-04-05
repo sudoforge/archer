@@ -13,8 +13,7 @@ post-installation configuration both during the initial setup and ongoing
 maintenance. Due to its flexibility and easy per-host customisation, you might
 consider Archer a framework of sorts.
 
-By default, no roles will execute and no changes will occur on the system. To
-take advantage of the suite of roles contained in this project, see
+To take advantage of the suite of roles contained in this project, see
 [**Customizing the build**](#customizing-the-build).
 
 To report a bug or request a new feature, please [search the issues][issues]
@@ -33,11 +32,9 @@ pacman -S git ansible
 
 ### Customizing the build
 
-Archer subscribes to an *opt-in* philosophy. The roles you see in this
-repository **will not run by default**. Instead, you need to enable them by
-configuring them for your host machine. This is to allow consumers of this
-project to selectively choose the software and tools their machine is
-configured with, instead of installing an opinionated collection of tools.
+Archer tries to subscribe to an *opt-in* philosophy, which in reality means that
+_most_ roles in this repository **will not run by default**. You will instead
+need to enable them by configuring the host variables on your machine(s).
 
 To do this, download `host_vars/localhost.example` from this repository:
 
@@ -52,9 +49,10 @@ remove sections that relate to roles you do not want to install. Once you have
 configured the file as you wish, it is recommended to save this in your own
 version-controlled repository.
 
-**IMPORTANT**
-
-Without customizing this file, every task will be skipped.
+> **IMPORTANT**
+> Note that **there are roles which will take action by default**. It would be
+> best to thoroughly review the roles declared in `local.yml`, or optionally,
+> omit roles which you do not want to run from that file entirely.
 
 ### Running Archer
 
