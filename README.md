@@ -75,7 +75,7 @@ Pass any relevant options to the command displayed above.
 
 | Option      | Use case                                      |
 | ----------- | --------------------------------------------- |
-| `-t chroot` | Running Archer in a chroot jail               |
+| `-t <tag>`  | Only run tasks which have the given `<tag>`   |
 | `-K`        | Running Archer as a non-root user             |
 | `-o`        | Only run if the repository has been updated   |
 | `-C`        | Use a specific tree, such as a feature branch |
