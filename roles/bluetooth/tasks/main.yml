@@ -12,6 +12,17 @@
   tags:
     - sudoforge.bluetooth
 
+- name: apply templates to /etc/bluetooth
+  template:
+    src: main.conf.j2
+    dest: "/etc/bluetooth/{{ item.name }}.conf"
+    mode: 0644
+  loop: "{{ sudoforge_bluetooth_options }}"
+  when:
+    - sudoforge_bluetooth_enabled == True
+  tags:
+    - sudoforge.bluetooth
+
 - name: Unblock the bluetooth service
   service:
     name: rfkill-block@bluetooth.service

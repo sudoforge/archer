@@ -1,2 +1,10 @@
 ---
 sudoforge_bluetooth_enabled: False
+sudoforge_bluetooth_options: []
+#  # an example configuration for sudoforge_bluetooth_options
+#  - name: main
+#    config:
+#      General:
+#        - ControllerMode=dual
+#      Policy:
+#        - AutoEnable=true
