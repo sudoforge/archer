@@ -16,7 +16,7 @@ sudoforge_background_directory: /usr/share/backgrounds
 sudoforge_background_images: []
 
 
-bluetooth_enabled: False
+sudoforge_bluetooth_enabled: False
 
 
 bootloader:

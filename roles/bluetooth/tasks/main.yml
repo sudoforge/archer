@@ -18,7 +18,7 @@
     enabled: no
     state: stopped
   when:
-    - bluetooth_enabled == True
+    - sudoforge_bluetooth_enabled == True
   tags:
     - sudoforge.bluetooth
 
@@ -28,7 +28,7 @@
     enabled: yes
     state: started
   when:
-    - bluetooth_enabled == True
+    - sudoforge_bluetooth_enabled == True
   tags:
     - sudoforge.bluetooth
 
@@ -38,7 +38,7 @@
     enabled: no
     state: stopped
   when:
-    - bluetooth_enabled == False
+    - sudoforge_bluetooth_enabled == False
   tags:
     - sudoforge.bluetooth
 
@@ -48,6 +48,6 @@
     enabled: yes
     state: started
   when:
-    - bluetooth_enabled == False
+    - sudoforge_bluetooth_enabled == False
   tags:
     - sudoforge.bluetooth
