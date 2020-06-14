@@ -14,7 +14,7 @@
 
 - name: apply templates to /etc/bluetooth
   template:
-    src: main.conf.j2
+    src: base_template.conf.j2
     dest: "/etc/bluetooth/{{ item.name }}.conf"
     mode: 0644
   loop: "{{ sudoforge_bluetooth_options }}"
