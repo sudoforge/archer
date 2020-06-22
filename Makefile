@@ -5,11 +5,12 @@ TEST_DIRS=$(shell find roles -maxdepth 2 -name 'molecule' -type d -printf '%h ')
 test:
 	@for d in $(TEST_DIRS); do \
 		grep "$$(basename $$d)" local.yml > /dev/null 2>&1 || continue; \
-		cd "$$d" && \
+		cd "$$d" && echo "# $${d}" && \
 		if ! command molecule --debug test --all; then \
 			exit 1 ; \
 		fi && \
 		cd ../../; \
+		printf "\n\n"; \
 	done
 
 .PHONY: pull-defaults
