@@ -1,5 +1,6 @@
 DEFAULTS_DIRS=$(shell find roles -maxdepth 2 -name 'defaults' -type d | sort | tr '\n' ' ')
 TEST_DIRS=$(shell find roles -maxdepth 2 -name 'molecule' -type d -printf '%h ')
+TOPLEVEL=$(shell git rev-parse --show-toplevel || pwd)
 
 .PHONY: test
 test:
@@ -28,3 +29,7 @@ run-all:
 
 run-tag/%:
 	@/usr/bin/env ANSIBLE_STDOUT_CALLBACK=debug ansible-playbook --diff -t '$(subst run-tag/,,$@)' local.yml
+
+.PHONY: create
+create:
+	@pushd "$(TOPLEVEL)/roles" && molecule init template --url templates/docker ; popd
