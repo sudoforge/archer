@@ -23,3 +23,11 @@
     state: started
   tags:
     - sudoforge.networkd
+
+- name: Configure systemd-networkd-wait-online.service
+  systemd:
+    name: systemd-networkd-wait-online.service
+    enabled: no
+    state: stopped
+  tags:
+    - sudoforge.networkd
