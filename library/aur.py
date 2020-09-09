@@ -123,11 +123,11 @@ class SRCINFO(object):
         if isinstance(self.store["pkgname"], list):
             for name in self.store["pkgname"]:
                 self.store["targets"].append(
-                    f'{name}-{self.store["version"]}-{arch}.pkg.tar.xz'
+                    f'{name}-{self.store["version"]}-{arch}.pkg.tar.zst'
                 )
         else:
             self.store["targets"].append(
-                f'{self.store["pkgname"]}-{self.store["version"]}-{arch}.pkg.tar.xz'
+                f'{self.store["pkgname"]}-{self.store["version"]}-{arch}.pkg.tar.zst'
             )
 
 
