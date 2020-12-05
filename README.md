@@ -1,4 +1,4 @@
-# Archer [![Build Status][travis-build]][travis-url]
+# Archer [![Build Status][trunk-workflow-badge]][trunk-workflow-url]
 
 **Archer** provides [Ansible][ansible-web] roles for use in provisioning a
 machine running [Arch Linux][al-web]. It can be used directly after the [Chroot
@@ -107,5 +107,5 @@ Please see [`CONTRIBUTING.md`][contributing].
 [awiki-cron]: https://wiki.archlinux.org/index.php/Cron
 [contributing]: CONTRIBUTING.md
 [issues]: https://github.com/sudoforge/archer/issues "view or create issues"
-[travis-build]: https://travis-ci.org/sudoforge/archer.svg?branch=trunk
-[travis-url]: https://travis-ci.org/sudoforge/archer
+[trunk-workflow-badge]: https://github.com/sudoforge/archer/workflows/trunk/badge.svg
+[trunk-workflow-url]: https://github.com/sudoforge/archer/actions?query=workflow%3Atrunk
