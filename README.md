@@ -40,7 +40,7 @@ To do this, download `host_vars/localhost.example` from this repository:
 
 ```
 curl --create-dirs -o /etc/ansible/host_vars/localhost \
-    https://raw.githubusercontent.com/sudoforge/archer/master/localhost.example.yml
+    https://raw.githubusercontent.com/sudoforge/archer/trunk/localhost.example.yml
 ```
 
 Open the file with an editor. Look through the file and change the `enabled`
@@ -107,5 +107,5 @@ Please see [`CONTRIBUTING.md`][contributing].
 [awiki-cron]: https://wiki.archlinux.org/index.php/Cron
 [contributing]: CONTRIBUTING.md
 [issues]: https://github.com/sudoforge/archer/issues "view or create issues"
-[travis-build]: https://travis-ci.org/sudoforge/archer.svg?branch=master
+[travis-build]: https://travis-ci.org/sudoforge/archer.svg?branch=trunk
 [travis-url]: https://travis-ci.org/sudoforge/archer
