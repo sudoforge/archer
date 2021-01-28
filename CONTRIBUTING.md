@@ -96,35 +96,23 @@ about Ansible.
 
 Because of Archer's design goals, both roles and tasks should be tagged.
 
-### Tagging roles
-
-Any given role should be tagged with a name equal or similar to the name of the
-role. the tag should be added to the role when the role is added to
-`local.yml`.
-
-For example:
-
-```
-roles:
-  - { role: timezone, tags: ['timezone'] }
-```
-
-Tagging entire roles makes it easy to exclusively skip or run roles.
-
 ### Tagging tasks
 
-Tasks inherit their role's tag, so there is no need to tag tasks with the
-role's name. Instead, tasks should be tagged only if they meet any of the
-special cases defined below.
+Tasks are tagged to ensure consistency throughout various workspaces; for
+example, if an individual role is copied out to another workspace. Tags for
+tasks in this project exist under the `sudoforge.*` namespace with a name
+related to the role, such as `sudoforge.hostname`. There are exceptions to this
+rule:
 
 | Tag name | Use case                                 |
 | ---------|----------------------------------------- |
 | `aur`    | The task relates to an AUR package       |
 | `notest` | This task should be skipped during tests |
+| `chroot` | This task works in a chroot sandbox      |
 
 #### The `chroot` tag
 
-In a chroot jail, such as when you are first installing Arch Linux on
+In a chroot sandbox, such as when you are first installing Arch Linux on
 a machine, certain tasks will fail, such as those attempting to access files
 that are outside of the chroot environment.
 
