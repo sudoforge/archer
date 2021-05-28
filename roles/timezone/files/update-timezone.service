@@ -1,0 +1,6 @@
+[Unit]
+Description=Update /etc/localtime
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/update-timezone

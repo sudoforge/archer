@@ -1,15 +1,8 @@
 ---
-- name: Set the time zone
-  file:
-    force: "yes"
-    state: link
-    path: /etc/localtime
-    src: /usr/share/zoneinfo/{{ timezone.zoneinfo }}
-  tags:
-    - sudoforge.timezone
-
 - name: Check /etc/adjtime
   stat: path=/etc/adjtime
+  when:
+    - timezone.enabled == true
   register: adjtime
   tags:
     - notest
@@ -22,4 +15,61 @@
     - timezone.hwclock == 'UTC' and adjtime.stat.exists == false
   tags:
     - notest
+    - sudoforge.timezone
+
+- name: manually link /etc/localtime to the specified timezone
+  file:
+    force: "yes"
+    state: link
+    path: /etc/localtime
+    src: /usr/share/zoneinfo/{{ timezone.zoneinfo }}
+  when:
+    - timezone.enabled == true
+    - sudoforge_timezone_update_enabled == false
+  tags:
+    - sudoforge.timezone
+
+- name: install /usr/bin/update-timezone
+  copy:
+    src: update-timezone
+    dest: /usr/bin/update-timezone
+    mode: 0755
+  when:
+    - timezone.enabled == true
+    - sudoforge_timezone_update_enabled == true
+  tags:
+    - sudoforge.timezone
+
+- name: copy service file update-timezone.service
+  copy:
+    src: update-timezone.service
+    dest: /etc/systemd/system/update-timezone.service
+  when:
+    - timezone.enabled == true
+    - sudoforge_timezone_update_enabled == true
+  register: update_timezone_service
+  tags:
+    - sudoforge.timezone
+
+- name: apply template for /etc/systemd/system/update-timezone.timer
+  template:
+    src: update-timezone.timer.j2
+    dest: /etc/systemd/system/update-timezone.timer
+  when:
+    - timezone.enabled == true
+    - sudoforge_timezone_update_enabled == true
+  register: update_timezone_timer
+  tags:
+    - sudoforge.timezone
+
+- name: enable timer /etc/systemd/system/update-timezone.timer
+  systemd:
+    name: update-timezone.timer
+    enabled: "{{ 'yes' if sudoforge_timezone_update_enabled == true else 'no' }}"
+    state: "{{ 'started' if sudoforge_timezone_update_enabled == true else 'stopped' }}"
+    daemon_reload: "{{ 'yes' if update_timezone_service.changed or update_timezone_timer.changed else 'no' }}"
+  when:
+    - timezone.enabled == true
+    - sudoforge_timezone_update_enabled == true
+  tags:
     - sudoforge.timezone

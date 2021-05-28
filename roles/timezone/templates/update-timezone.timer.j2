@@ -1,0 +1,11 @@
+[Unit]
+Description=update-timezone.service
+
+[Timer]
+OnBootSec={{ sudoforge_timezone_update_boot_delay }}
+OnUnitInactiveSec={{ sudoforge_timezone_update_schedule }}
+RandomizedDelaySec={{ sudoforge_timezone_update_schedule_delay }}
+Persistent=true
+
+[Install]
+WantedBy=timers.target

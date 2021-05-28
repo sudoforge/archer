@@ -224,6 +224,20 @@ timezone:
   hwclock: UTC
   zoneinfo: UTC
 
+# Whether or not to update on a schedule
+sudoforge_timezone_update_enabled: true
+
+# The value for the OnBootSec option. See systemd.timer(5) for more information.
+sudoforge_timezone_update_boot_delay: 0
+
+# The value for the OnUnitActiveSec option. See systemd.timer(5) and systemd.time(7)
+# for more information.
+sudoforge_timezone_update_schedule: 5m
+
+# The value for the RandomizedDelaySec option. See systemd.timer(5) for more
+# information.
+sudoforge_timezone_update_schedule_delay: 15
+
 
 udisks_auto_mount: True
 udisks_shared_mount: False
