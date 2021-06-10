@@ -29,47 +29,24 @@
   tags:
     - sudoforge.timezone
 
-- name: install /usr/bin/update-timezone
-  copy:
-    src: update-timezone
-    dest: /usr/bin/update-timezone
-    mode: 0755
+- name: install localtime-git
+  aur:
+    name: localtime-git
+    dbpath: "{{ sudoforge_aur_db_path }}"
+  become: "yes"
+  become_user: "{{ sudoforge_aur_user }}"
   when:
     - timezone.enabled == true
-    - sudoforge_timezone_update_enabled == true
+    - sudoforge_timezone_auto_update == true
   tags:
     - sudoforge.timezone
 
-- name: copy service file update-timezone.service
-  copy:
-    src: update-timezone.service
-    dest: /etc/systemd/system/update-timezone.service
-  when:
-    - timezone.enabled == true
-    - sudoforge_timezone_update_enabled == true
-  register: update_timezone_service
-  tags:
-    - sudoforge.timezone
-
-- name: apply template for /etc/systemd/system/update-timezone.timer
-  template:
-    src: update-timezone.timer.j2
-    dest: /etc/systemd/system/update-timezone.timer
-  when:
-    - timezone.enabled == true
-    - sudoforge_timezone_update_enabled == true
-  register: update_timezone_timer
-  tags:
-    - sudoforge.timezone
-
-- name: enable timer /etc/systemd/system/update-timezone.timer
+- name: enable localtime.service
   systemd:
-    name: update-timezone.timer
-    enabled: "{{ 'yes' if sudoforge_timezone_update_enabled == true else 'no' }}"
-    state: "{{ 'started' if sudoforge_timezone_update_enabled == true else 'stopped' }}"
-    daemon_reload: "{{ 'yes' if update_timezone_service.changed or update_timezone_timer.changed else 'no' }}"
+    name: localtime.service
+    enabled: "{{ 'yes' if sudoforge_timezone_auto_update == true else 'no' }}"
+    state: "{{ 'started' if sudoforge_timezone_auto_update == true else 'stopped' }}"
   when:
     - timezone.enabled == true
-    - sudoforge_timezone_update_enabled == true
   tags:
     - sudoforge.timezone
